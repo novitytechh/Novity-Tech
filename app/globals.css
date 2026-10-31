@@ -1,0 +1,130 @@
+/* Custom global overrides & React modal animations */
+.modal.fade.show {
+  display: block !important;
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1055;
+  overflow-y: auto;
+}
+
+.modal-dialog {
+  margin: 1.75rem auto;
+  z-index: 1060;
+}
+
+.modal-backdrop.fade.show {
+  opacity: 0.5;
+  z-index: 1050;
+}
+
+/* Custom Cursor styles */
+.c-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+.c-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease;
+}
+
+.c-ring.big {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(var(--primary-rgb), 0.5);
+  background-color: rgba(var(--primary-rgb), 0.08);
+}
+
+@media (max-width: 991px) {
+  .c-dot, .c-ring {
+    display: none !important;
+  }
+}
+
+/* Smooth active state transitions */
+.nav-link.active {
+  color: var(--primary) !important;
+}
+
+/* Swiper custom overrides */
+.tst-slider-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.tst-slider-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.tst-slide-item {
+  flex: 0 0 100%;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .tst-slide-item {
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tst-slide-item {
+    flex: 0 0 33.333333%;
+  }
+}
+
+.tst-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.tst-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.tst-dot.active {
+  width: 28px;
+  border-radius: 10px;
+  background: var(--primary);
+}
+
+/* Accordion React Transitions */
+.accordion-collapse {
+  transition: max-height 0.35s ease, opacity 0.35s ease;
+  overflow: hidden;
+}
+
+.accordion-collapse:not(.show) {
+  display: none;
+}
+
+.accordion-collapse.show {
+  display: block;
+}
