@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
@@ -326,8 +326,9 @@ export default function Home() {
       {/* LOADER */}
       {loading && (
         <div id="loader" className={!loading ? "gone" : ""}>
-          <div className="ld-logo">
-            Min<span>ton</span>
+          <div className="ld-logo" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+            <img src="/img/novity-logo.jpg" alt="Novity Tech Logo" style={{ height: "64px", width: "auto", borderRadius: "14px", boxShadow: "0 4px 16px rgba(0,0,0,0.3)" }} />
+            <div>Novity<span> Tech</span></div>
           </div>
           <div className="ld-bar">
             <div className="ld-fill"></div>
@@ -364,8 +365,8 @@ export default function Home() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-7 tb-l">
-              <a href="mailto:info@mintonagency.com">
-                <i className="fas fa-envelope"></i> info@mintonagency.com
+              <a href="mailto:info@novitytech.com">
+                <i className="fas fa-envelope"></i> info@novitytech.com
               </a>
               <a href="tel:+15551234567">
                 <i className="fas fa-phone"></i> +1 (555) 123-4567
@@ -408,8 +409,20 @@ export default function Home() {
             className="navbar-brand"
             href="#"
             onClick={(e) => { e.preventDefault(); scrollTo("hero"); }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "12px" }}
           >
-            NOVITY<span> TECH</span>
+            <img
+              src="/img/novity-logo.jpg"
+              alt="Novity Tech Logo"
+              style={{
+                height: "38px",
+                width: "auto",
+                borderRadius: "8px",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+                objectFit: "cover",
+              }}
+            />
+            <span>NOVITY<span> TECH</span></span>
           </a>
           <button
             className="navbar-toggler"
@@ -691,7 +704,7 @@ export default function Home() {
                 <div className="sec-badge">About Our Agency</div>
                 <h2 className="sec-title">We&apos;re a Digital-First <span>Creative Agency</span></h2>
                 <p className="about-desc">
-                  Founded in 2012, Minton is a full-service digital marketing agency blending creative thinking with data-driven strategy. We believe great work happens at the intersection of art and science — where bold ideas meet measurable results.
+                  Founded in 2012, Novity Tech is a full-service digital marketing agency blending creative thinking with data-driven strategy. We believe great work happens at the intersection of art and science — where bold ideas meet measurable results.
                 </p>
                 <p className="about-desc">
                   Our team of 50+ specialists across marketing, design, and technology work as an extension of your business, obsessed with your growth.
@@ -1257,7 +1270,7 @@ export default function Home() {
             <div className="col-lg-5">
               <div className="sec-badge">FAQ</div>
               <h2 className="sec-title">Frequently Asked <span>Questions</span></h2>
-              <p className="sec-desc">Everything you need to know about working with Minton Digital Agency.</p>
+              <p className="sec-desc">Everything you need to know about working with Novity Tech Digital Agency.</p>
               <a
                 href="#contact"
                 className="btn-p mt-4"
@@ -1420,9 +1433,9 @@ export default function Home() {
                 <div>
                   <div className="ci-lbl">Email Us</div>
                   <div className="ci-val">
-                    <a href="mailto:hello@mintonagency.com">hello@mintonagency.com</a>
+                    <a href="mailto:hello@novitytech.com">hello@novitytech.com</a>
                     <br />
-                    <a href="mailto:support@mintonagency.com">support@mintonagency.com</a>
+                    <a href="mailto:support@novitytech.com">support@novitytech.com</a>
                   </div>
                 </div>
               </div>
@@ -1583,7 +1596,7 @@ export default function Home() {
                 Build Something <span style={{ textDecoration: "underline", textDecorationColor: "rgba(255,255,255,.35)" }}>Great</span>
               </h2>
               <p className="cta-desc">
-                Join 250+ businesses that trust Minton to drive their digital growth. Start your free consultation today.
+                Join 250+ businesses that trust Novity Tech to drive their digital growth. Start your free consultation today.
               </p>
             </div>
             <div className="col-lg-5 text-lg-end mt-4 mt-lg-0">
@@ -1617,8 +1630,24 @@ export default function Home() {
         <div className="container">
           <div className="row g-5">
             <div className="col-lg-4">
-              <a className="ft-brand" href="#" onClick={(e) => { e.preventDefault(); scrollTo("hero"); }}>
-                NOVITY<span> TECH</span>
+              <a
+                className="ft-brand"
+                href="#"
+                onClick={(e) => { e.preventDefault(); scrollTo("hero"); }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}
+              >
+                <img
+                  src="/img/novity-logo.jpg"
+                  alt="Novity Tech Logo"
+                  style={{
+                    height: "44px",
+                    width: "auto",
+                    borderRadius: "10px",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
+                    objectFit: "cover",
+                  }}
+                />
+                <span>NOVITY<span> TECH</span></span>
               </a>
               <p className="ft-desc">
                 We&apos;re a digital-first agency that transforms bold ideas into measurable growth. Strategy, design, and technology — all under one roof.
@@ -2152,7 +2181,7 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="tm-mod-bio">
-                  Michael brings 15 years of creative leadership to Minton. A former design director at global agencies, he&apos;s led award-winning campaigns for Fortune 500 brands. His philosophy: great creative starts with deep strategic thinking.
+                  Michael brings 15 years of creative leadership to Novity Tech. A former design director at global agencies, he&apos;s led award-winning campaigns for Fortune 500 brands. His philosophy: great creative starts with deep strategic thinking.
                 </p>
                 <h6 style={{ fontWeight: 700, margin: "20px 0 14px" }}>Skills</h6>
                 <div className="tm-sk-row">
@@ -2194,7 +2223,7 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="tm-mod-bio">
-                  Sarah is Minton&apos;s strategic powerhouse. With an MBA from Wharton and 12 years in digital marketing, she has an uncanny ability to identify growth opportunities.
+                  Sarah is Novity Tech&apos;s strategic powerhouse. With an MBA from Wharton and 12 years in digital marketing, she has an uncanny ability to identify growth opportunities.
                 </p>
                 <h6 style={{ fontWeight: 700, margin: "20px 0 14px" }}>Skills</h6>
                 <div className="tm-sk-row">

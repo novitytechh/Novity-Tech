@@ -5,7 +5,8 @@ export const metadata = {
   title: "Novity Tech — Engineering Digital Excellence for Ambitious Brands",
   description: "We create modern web platforms, design systems, and digital ecosystems that strengthen your market position and drive business growth.",
   icons: {
-    icon: "/img/ab1.jpg",
+    icon: "/img/novity-logo.jpg",
+    apple: "/img/novity-logo.jpg",
   },
   openGraph: {
     title: "Novity Tech — Engineering Digital Excellence",
