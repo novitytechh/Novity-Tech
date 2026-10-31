@@ -1,42 +1,59 @@
-/* ==================== CSS VARIABLES ==================== */
+﻿/* ==================== CSS VARIABLES: LUXURY GOLD & BLACK ==================== */
 :root {
-  --primary: #ff5225;
-  --primary-rgb: 255, 82, 37;
-  --primary-dark: #e03d10;
-  --primary-light: #ff7a54;
-  --dark: #1c1c22;
-  --dark2: #252530;
-  --bg: #fafaf7;
-  --bg2: #f2f0eb;
-  --bg3: #e8e5df;
-  --text: #1c1c22;
-  --text2: #555560;
-  --text3: #8a8a95;
-  --border: #e0ddd8;
-  --card: #ffffff;
-  --nav-bg: rgba(250, 250, 247, 0.96);
-  --sh1: 0 2px 15px rgba(0, 0, 0, 0.06);
-  --sh2: 0 8px 40px rgba(0, 0, 0, 0.1);
-  --sh3: 0 20px 80px rgba(0, 0, 0, 0.15);
+  --primary: #d4af37;
+  --primary-rgb: 212, 175, 55;
+  --primary-dark: #b8922c;
+  --primary-light: #f3e29f;
+  --gold-glow: rgba(212, 175, 55, 0.25);
+  --dark: #07070a;
+  --dark2: #100f15;
+  --bg: #0b0a0e;
+  --bg2: #121117;
+  --bg3: #181720;
+  --text: #f5f3ef;
+  --text2: #b8b3a8;
+  --text3: #757168;
+  --border: rgba(212, 175, 55, 0.16);
+  --card: #131219;
+  --nav-bg: rgba(11, 10, 14, 0.94);
+  --sh1: 0 4px 20px rgba(0, 0, 0, 0.45);
+  --sh2: 0 10px 40px rgba(0, 0, 0, 0.65), 0 0 1px rgba(212, 175, 55, 0.2);
+  --sh3: 0 25px 80px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.12);
   --r: 16px;
   --rs: 8px;
   --rl: 24px;
   --tr: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   --trf: all 0.15s ease;
 }
+
 [data-theme="dark"] {
-  --bg: #0c0c10;
-  --bg2: #13131a;
-  --bg3: #1a1a24;
-  --text: #f0ede8;
-  --text2: #a8a5a0;
-  --text3: #606068;
-  --border: #252530;
-  --card: #13131a;
-  --nav-bg: rgba(12, 12, 16, 0.96);
-  --sh1: 0 2px 15px rgba(0, 0, 0, 0.25);
-  --sh2: 0 8px 40px rgba(0, 0, 0, 0.4);
-  --sh3: 0 20px 80px rgba(0, 0, 0, 0.6);
+  --bg: #0b0a0e;
+  --bg2: #121117;
+  --bg3: #181720;
+  --text: #f5f3ef;
+  --text2: #b8b3a8;
+  --text3: #757168;
+  --border: rgba(212, 175, 55, 0.16);
+  --card: #131219;
+  --nav-bg: rgba(11, 10, 14, 0.94);
+  --sh1: 0 4px 20px rgba(0, 0, 0, 0.45);
+  --sh2: 0 10px 40px rgba(0, 0, 0, 0.65), 0 0 1px rgba(212, 175, 55, 0.2);
+  --sh3: 0 25px 80px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.12);
+}
+
+[data-theme="light"] {
+  --bg: #faf7f2;
+  --bg2: #f2ece0;
+  --bg3: #e8e0d0;
+  --text: #161513;
+  --text2: #5c564c;
+  --text3: #8a8274;
+  --border: rgba(184, 146, 44, 0.22);
+  --card: #ffffff;
+  --nav-bg: rgba(250, 247, 242, 0.96);
+  --sh1: 0 2px 15px rgba(0, 0, 0, 0.06);
+  --sh2: 0 8px 40px rgba(0, 0, 0, 0.1);
+  --sh3: 0 20px 80px rgba(0, 0, 0, 0.15);
 }
 
 /* ==================== BASE ==================== */
@@ -172,11 +189,12 @@ section {
   gap: 8px;
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--primary);
-  padding: 6px 14px;
-  background: rgba(var(--primary-rgb), 0.1);
+  color: #dfc15d;
+  padding: 7px 16px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.25);
   border-radius: 100px;
   margin-bottom: 16px;
 }
@@ -184,7 +202,8 @@ section {
   content: "";
   width: 6px;
   height: 6px;
-  background: var(--primary);
+  background: #dfc15d;
+  box-shadow: 0 0 8px #dfc15d;
   border-radius: 50%;
 }
 .sec-title {
@@ -194,7 +213,10 @@ section {
   letter-spacing: -0.02em;
 }
 .sec-title span {
-  color: var(--primary);
+  background: linear-gradient(135deg, #FFF0B3 0%, #E5C365 30%, #D4AF37 60%, #AA8022 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 .sec-desc {
   font-size: 1.05rem;
@@ -211,19 +233,21 @@ section {
   align-items: center;
   gap: 10px;
   padding: 14px 32px;
-  background: var(--primary);
-  color: #fff;
+  background: linear-gradient(135deg, #f5e8ba 0%, #dfc15d 50%, #b8922c 100%);
+  color: #0b0a0e !important;
   border-radius: 100px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.95rem;
-  border: 2px solid var(--primary);
+  border: 1px solid #f5e8ba;
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.28);
   transition: var(--tr);
   cursor: pointer;
 }
 .btn-p:hover {
-  color: #fff;
+  color: #000 !important;
+  background: linear-gradient(135deg, #fff3c4 0%, #dfc15d 50%, #c49422 100%);
   transform: translateY(-3px);
-  box-shadow: 0 14px 40px rgba(var(--primary-rgb), 0.4);
+  box-shadow: 0 14px 36px rgba(212, 175, 55, 0.45);
 }
 .btn-o {
   display: inline-flex;
@@ -495,7 +519,10 @@ section {
   margin-bottom: 24px;
 }
 .hero-title .hl {
-  color: var(--primary);
+  background: linear-gradient(135deg, #FFF0B3 0%, #E5C365 30%, #D4AF37 60%, #AA8022 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 .hero-desc {
   font-size: 1.1rem;

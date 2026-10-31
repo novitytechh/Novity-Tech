@@ -7,7 +7,7 @@ export default function Home() {
   // Loading state
   const [loading, setLoading] = useState(true);
   // Theme state
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   // Navbar & scroll state
   const [scrolled, setScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -51,7 +51,7 @@ export default function Home() {
 
   // Handle Initial Load & Theme
   useEffect(() => {
-    const savedTheme = localStorage.getItem("nxTheme") || "light";
+    const savedTheme = localStorage.getItem("nxTheme") || "dark";
     setTheme(savedTheme);
     document.documentElement.setAttribute("data-theme", savedTheme);
 
@@ -297,23 +297,23 @@ export default function Home() {
   const faqs = [
     {
       q: "How long does it take to see results from digital marketing?",
-      a: "SEO typically shows meaningful results in 3–6 months, while PPC and social media campaigns can drive traffic and leads within days. We set realistic timelines based on your industry, competition, and goals from day one.",
+      a: "SEO typically shows meaningful results in 3�6 months, while PPC and social media campaigns can drive traffic and leads within days. We set realistic timelines based on your industry, competition, and goals from day one.",
     },
     {
       q: "What makes Novity Tech different from other digital agencies?",
-      a: "We combine deep strategic thinking with creative excellence and technical expertise under one roof. Every campaign is backed by data, crafted with care, and optimized relentlessly. We don't just execute — we become a true extension of your team.",
+      a: "We combine deep strategic thinking with creative excellence and technical expertise under one roof. Every campaign is backed by data, crafted with care, and optimized relentlessly. We don't just execute � we become a true extension of your team.",
     },
     {
       q: "Do you work with small businesses or only enterprises?",
-      a: "We work with businesses of all sizes — from ambitious startups to Fortune 500 companies. Our tiered pricing and flexible packages are designed to grow alongside your business, ensuring maximum value at every stage.",
+      a: "We work with businesses of all sizes � from ambitious startups to Fortune 500 companies. Our tiered pricing and flexible packages are designed to grow alongside your business, ensuring maximum value at every stage.",
     },
     {
       q: "How do you measure and report on campaign performance?",
-      a: "We provide transparent reporting through custom dashboards and regular reports (weekly or monthly based on your plan). We track KPIs that matter — traffic, leads, conversions, ROAS, and revenue impact — giving you a clear picture of ROI.",
+      a: "We provide transparent reporting through custom dashboards and regular reports (weekly or monthly based on your plan). We track KPIs that matter � traffic, leads, conversions, ROAS, and revenue impact � giving you a clear picture of ROI.",
     },
     {
       q: "Can we start with just one service and expand later?",
-      a: "Absolutely. Many clients start with a single service — often SEO or social media — and expand as they see results. We design each engagement to be modular, so scaling up is seamless and strategic.",
+      a: "Absolutely. Many clients start with a single service � often SEO or social media � and expand as they see results. We design each engagement to be modular, so scaling up is seamless and strategic.",
     },
     {
       q: "What is your contract length and cancellation policy?",
@@ -704,7 +704,7 @@ export default function Home() {
                 <div className="sec-badge">About Our Agency</div>
                 <h2 className="sec-title">We&apos;re a Digital-First <span>Creative Agency</span></h2>
                 <p className="about-desc">
-                  Founded in 2012, Novity Tech is a full-service digital marketing agency blending creative thinking with data-driven strategy. We believe great work happens at the intersection of art and science — where bold ideas meet measurable results.
+                  Founded in 2012, Novity Tech is a full-service digital marketing agency blending creative thinking with data-driven strategy. We believe great work happens at the intersection of art and science � where bold ideas meet measurable results.
                 </p>
                 <p className="about-desc">
                   Our team of 50+ specialists across marketing, design, and technology work as an extension of your business, obsessed with your growth.
@@ -893,18 +893,18 @@ export default function Home() {
         </div>
         <div className="mq-wrap">
           <div className="mq-track">
-            <span className="mq-item">Digital Marketing <span>★</span></span>
-            <span className="mq-item">Brand Identity <span>★</span></span>
-            <span className="mq-item">Web Design <span>★</span></span>
-            <span className="mq-item">SEO Strategy <span>★</span></span>
-            <span className="mq-item">Social Media <span>★</span></span>
-            <span className="mq-item">Content Creation <span>★</span></span>
-            <span className="mq-item">Performance Marketing <span>★</span></span>
-            <span className="mq-item">Digital Marketing <span>★</span></span>
-            <span className="mq-item">Brand Identity <span>★</span></span>
-            <span className="mq-item">Web Design <span>★</span></span>
-            <span className="mq-item">SEO Strategy <span>★</span></span>
-            <span className="mq-item">Social Media <span>★</span></span>
+            <span className="mq-item">Digital Marketing <span>?</span></span>
+            <span className="mq-item">Brand Identity <span>?</span></span>
+            <span className="mq-item">Web Design <span>?</span></span>
+            <span className="mq-item">SEO Strategy <span>?</span></span>
+            <span className="mq-item">Social Media <span>?</span></span>
+            <span className="mq-item">Content Creation <span>?</span></span>
+            <span className="mq-item">Performance Marketing <span>?</span></span>
+            <span className="mq-item">Digital Marketing <span>?</span></span>
+            <span className="mq-item">Brand Identity <span>?</span></span>
+            <span className="mq-item">Web Design <span>?</span></span>
+            <span className="mq-item">SEO Strategy <span>?</span></span>
+            <span className="mq-item">Social Media <span>?</span></span>
           </div>
         </div>
       </section>
@@ -1214,7 +1214,7 @@ export default function Home() {
             </div>
             <div className="col-lg-6 d-flex align-items-end">
               <p className="sec-desc ms-auto" style={{ color: "rgba(255,255,255,.55)" }}>
-                Don&apos;t take our word for it — hear from the brands we&apos;ve helped grow significantly.
+                Don&apos;t take our word for it � hear from the brands we&apos;ve helped grow significantly.
               </p>
             </div>
           </div>
@@ -1365,7 +1365,7 @@ export default function Home() {
                 <div className="news-body">
                   <span className="news-cat">Brand Strategy</span>
                   <h4 className="news-title">Why Brand Positioning Is the Foundation of Every Marketing Win</h4>
-                  <p className="news-ex">Great marketing doesn&apos;t start with tactics — it starts with a clear, compelling position in the market. Learn how to build yours.</p>
+                  <p className="news-ex">Great marketing doesn&apos;t start with tactics � it starts with a clear, compelling position in the market. Learn how to build yours.</p>
                   <div className="news-meta">
                     <span><i className="fas fa-calendar"></i> May 8, 2026</span>
                     <span><i className="fas fa-clock"></i> 7 min read</span>
@@ -1443,7 +1443,7 @@ export default function Home() {
                 <div className="ci-ico"><i className="fas fa-clock"></i></div>
                 <div>
                   <div className="ci-lbl">Business Hours</div>
-                  <div className="ci-val">Mon – Fri: 9:00 AM – 6:00 PM<br />Sat: 10:00 AM – 2:00 PM</div>
+                  <div className="ci-val">Mon � Fri: 9:00 AM � 6:00 PM<br />Sat: 10:00 AM � 2:00 PM</div>
                 </div>
               </div>
               <div className="ft-soc" style={{ marginTop: "16px" }}>
@@ -1535,8 +1535,8 @@ export default function Home() {
                       >
                         <option value="">Select budget range</option>
                         <option>Under $1,000/month</option>
-                        <option>$1,000 – $3,000/month</option>
-                        <option>$3,000 – $10,000/month</option>
+                        <option>$1,000 � $3,000/month</option>
+                        <option>$3,000 � $10,000/month</option>
                         <option>$10,000+/month</option>
                         <option>Let&apos;s discuss</option>
                       </select>
@@ -1650,7 +1650,7 @@ export default function Home() {
                 <span>NOVITY<span> TECH</span></span>
               </a>
               <p className="ft-desc">
-                We&apos;re a digital-first agency that transforms bold ideas into measurable growth. Strategy, design, and technology — all under one roof.
+                We&apos;re a digital-first agency that transforms bold ideas into measurable growth. Strategy, design, and technology � all under one roof.
               </p>
               <div className="ft-soc">
                 <a href="#" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
@@ -2321,7 +2321,7 @@ export default function Home() {
                   <span style={{ fontSize: ".8rem", color: "var(--text3)" }}><i className="fas fa-clock" style={{ color: "var(--primary)", marginRight: "5px" }}></i>5 min read</span>
                 </div>
                 <p style={{ color: "var(--text2)", lineHeight: "1.85", fontSize: ".92rem", marginBottom: "16px" }}>
-                  AI-driven search, E-E-A-T signals, and Core Web Vitals are reshaping how Google ranks content in 2026. Staying ahead of these shifts is no longer optional — it&apos;s survival for any brand that relies on organic traffic.
+                  AI-driven search, E-E-A-T signals, and Core Web Vitals are reshaping how Google ranks content in 2026. Staying ahead of these shifts is no longer optional � it&apos;s survival for any brand that relies on organic traffic.
                 </p>
                 <h6 style={{ fontWeight: 700, marginBottom: "10px" }}>1. AI-Powered Search Generative Experience (SGE)</h6>
                 <p style={{ color: "var(--text2)", lineHeight: "1.85", fontSize: ".9rem", marginBottom: "14px" }}>
@@ -2349,7 +2349,7 @@ export default function Home() {
               <div className="modal-body">
                 <img src="/img/blog/2.jpg" style={{ width: "100%", height: "280px", objectFit: "cover", borderRadius: "var(--r)", marginBottom: "22px" }} alt="Brand Positioning" />
                 <p style={{ color: "var(--text2)", lineHeight: "1.85", fontSize: ".92rem", marginBottom: "16px" }}>
-                  Most marketing fails not because of poor execution, but because of a weak or undefined brand position. Before you write a single ad, design a logo, or publish a post — you need to know exactly where you stand.
+                  Most marketing fails not because of poor execution, but because of a weak or undefined brand position. Before you write a single ad, design a logo, or publish a post � you need to know exactly where you stand.
                 </p>
               </div>
             </div>
