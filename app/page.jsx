@@ -46,7 +46,6 @@ export default function Home() {
     projects: 0,
     satisfaction: 0,
     experience: 0,
-    awards: 0,
   });
 
   // Handle Initial Load & Theme
@@ -85,10 +84,9 @@ export default function Home() {
       const factor = 1 - (1 - progress) * (1 - progress);
 
       setCounters({
-        projects: Math.floor(250 * factor),
+        projects: Math.floor(20 * factor),
         satisfaction: Math.floor(98 * factor),
-        experience: Math.floor(12 * factor),
-        awards: Math.floor(40 * factor),
+        experience: Math.floor(3 * factor),
       });
 
       if (progress >= 1) clearInterval(timer);
@@ -372,47 +370,7 @@ export default function Home() {
         <i className="fas fa-arrow-up"></i>
       </button>
 
-      {/* ==================== TOPBAR ==================== */}
-      <div id="topbar">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-7 tb-l">
-              <a href="mailto:info@novitytech.com">
-                <i className="fas fa-envelope"></i> info@novitytech.com
-              </a>
-              <a href="tel:+15551234567">
-                <i className="fas fa-phone"></i> +1 (555) 123-4567
-              </a>
-              <a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}>
-                <i className="fas fa-map-marker-alt"></i> 125 Creative St, New York
-              </a>
-            </div>
-            <div className="col-lg-5">
-              <div className="tb-r">
-                <div className="tb-soc">
-                  <a href="#" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
-                  <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-                  <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
-                  <a href="#" aria-label="Dribbble"><i className="fab fa-dribbble"></i></a>
-                </div>
-                <button
-                  className="t-toggle"
-                  id="themeBtn"
-                  onClick={toggleTheme}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                >
-                  <div className="t-icon">
-                    <i className={`fas ${theme === "dark" ? "fa-moon" : "fa-sun"}`} id="thIco"></i>
-                  </div>
-                  <span id="thLbl">{theme === "dark" ? "Dark Mode" : "Light Mode"}</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       {/* ==================== NAVBAR ==================== */}
       <nav id="navbar" className={`navbar navbar-expand-lg ${scrolled ? "scrolled" : ""}`}>
@@ -552,15 +510,33 @@ export default function Home() {
               </li>
             </ul>
           </div>
-          <a
-            href="#contact"
-            className="nav-link nav-cta ms-3 d-none d-lg-inline-flex"
-            onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            Get Started <i className="fas fa-arrow-right ms-1"></i>
-          </a>
+          <div className="d-flex align-items-center gap-2 gap-sm-3 ms-lg-3">
+            <button
+              className="t-toggle"
+              id="themeBtn"
+              onClick={toggleTheme}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              aria-label="Toggle Dark/Light Mode"
+              style={{ margin: 0, padding: "7px 14px", border: "1px solid var(--border)", borderRadius: "var(--rp)", background: "var(--card)" }}
+            >
+              <div className="t-icon">
+                <i className={`fas ${theme === "dark" ? "fa-moon" : "fa-sun"}`} id="thIco"></i>
+              </div>
+              <span id="thLbl" className="d-none d-sm-inline" style={{ fontSize: "0.82rem", fontWeight: 600 }}>
+                {theme === "dark" ? "Dark" : "Light"}
+              </span>
+            </button>
+            <a
+              href="#contact"
+              className="nav-link nav-cta d-none d-lg-inline-flex"
+              onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              Get Started <i className="fas fa-arrow-right ms-1"></i>
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -573,9 +549,7 @@ export default function Home() {
         <div className="container hero-content">
           <div className="row align-items-center">
             <div className="col-lg-7">
-              <div className="hero-tag">
-                <span className="hero-dot"></span>Award-Winning Digital Agency
-              </div>
+
               <h1 className="hero-title">
                 We <span className="hl">Transform</span>
                 <br />
@@ -596,18 +570,6 @@ export default function Home() {
                 >
                   Explore Services <i className="fas fa-arrow-right"></i>
                 </a>
-                <button
-                  type="button"
-                  className="btn-hs border-0 bg-transparent"
-                  onClick={() => setActiveModal("videoModal")}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                >
-                  <div className="pico">
-                    <i className="fas fa-play"></i>
-                  </div>
-                  <span>Watch Our Story</span>
-                </button>
               </div>
               <div className="hero-stats">
                 <div className="hstat">
@@ -632,14 +594,6 @@ export default function Home() {
                     <span>+</span>
                   </div>
                   <div className="hstat-lbl">Years Experience</div>
-                </div>
-                <div className="hstat-div"></div>
-                <div className="hstat">
-                  <div className="hstat-num">
-                    <span>{counters.awards}</span>
-                    <span>+</span>
-                  </div>
-                  <div className="hstat-lbl">Awards Won</div>
                 </div>
               </div>
             </div>
@@ -713,27 +667,7 @@ export default function Home() {
                       Engineering Digital Eminence
                     </div>
                   </div>
-                  <div
-                    style={{
-                      marginTop: "20px",
-                      paddingTop: "16px",
-                      borderTop: "1px solid rgba(223, 193, 93, 0.18)",
-                      display: "flex",
-                      justifyContent: "space-around",
-                      alignItems: "center",
-                      gap: "12px",
-                    }}
-                  >
-                    <div style={{ textAlign: "center" }}>
-                      <div style={{ color: "var(--primary)", fontWeight: 700, fontSize: "0.95rem" }}>100%</div>
-                      <div style={{ color: "var(--text3)", fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>Code Ownership</div>
-                    </div>
-                    <div style={{ width: "1px", height: "24px", background: "rgba(255,255,255,0.1)" }} />
-                    <div style={{ textAlign: "center" }}>
-                      <div style={{ color: "var(--primary)", fontWeight: 700, fontSize: "0.95rem" }}>4.9 / 5.0</div>
-                      <div style={{ color: "var(--text3)", fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>Client Rating</div>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -811,7 +745,7 @@ export default function Home() {
               <div className="about-img-wrap">
                 <img className="about-img" src="/img/about-img.jpg" alt="About Novity Tech" />
                 <div className="about-exp">
-                  <div className="about-exp-n">12+</div>
+                  <div className="about-exp-n">3+</div>
                   <div className="about-exp-l">Years of Excellence</div>
                 </div>
                 <div className="about-clients">
@@ -820,7 +754,7 @@ export default function Home() {
                     <img className="cl-av" src="/img/ab2.jpg" alt="Client 2" />
                     <img className="cl-av" src="/img/ab3.jpg" alt="Client 3" />
                   </div>
-                  <div className="cl-cnt">250+ Happy Clients</div>
+                  <div className="cl-cnt">20+ Happy Clients</div>
                   <div className="cl-lbl">98% satisfaction rate</div>
                 </div>
               </div>
@@ -830,7 +764,7 @@ export default function Home() {
                 <div className="sec-badge">About Our Agency</div>
                 <h2 className="sec-title">We&apos;re a Digital-First <span>Creative Agency</span></h2>
                 <p className="about-desc">
-                  Founded in 2012, Novity Tech is a full-service digital marketing agency blending creative thinking with data-driven strategy. We believe great work happens at the intersection of art and science � where bold ideas meet measurable results.
+                  Founded in 2023, Novity Tech is a digital-first creative engineering agency blending strategic thinking with modern architecture. We believe great work happens at the intersection of art and science � where bold ideas meet measurable results.
                 </p>
                 <p className="about-desc">
                   Our team of 50+ specialists across marketing, design, and technology work as an extension of your business, obsessed with your growth.
@@ -995,45 +929,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== SHOWREEL ==================== */}
-      <section id="showreel">
-        <div className="sr-bg"></div>
-        <div className="container sr-cnt">
-          <div className="d-flex align-items-center justify-content-center flex-wrap gap-3">
-            <div className="sr-yr">&copy;2026</div>
-            <div className="sr-play">
-              <button
-                type="button"
-                className="sr-play border-0 bg-transparent"
-                onClick={() => setActiveModal("videoModal")}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <div className="pico"><i className="fas fa-play"></i></div>
-              </button>
-            </div>
-            <h2 className="sr-title">SHOWREEL</h2>
-            <i className="fas fa-star sr-star"></i>
-            <h2 className="sr-title">HIGHLIGHTS</h2>
-          </div>
-        </div>
-        <div className="mq-wrap">
-          <div className="mq-track">
-            <span className="mq-item">Digital Marketing <span>?</span></span>
-            <span className="mq-item">Brand Identity <span>?</span></span>
-            <span className="mq-item">Web Design <span>?</span></span>
-            <span className="mq-item">SEO Strategy <span>?</span></span>
-            <span className="mq-item">Social Media <span>?</span></span>
-            <span className="mq-item">Content Creation <span>?</span></span>
-            <span className="mq-item">Performance Marketing <span>?</span></span>
-            <span className="mq-item">Digital Marketing <span>?</span></span>
-            <span className="mq-item">Brand Identity <span>?</span></span>
-            <span className="mq-item">Web Design <span>?</span></span>
-            <span className="mq-item">SEO Strategy <span>?</span></span>
-            <span className="mq-item">Social Media <span>?</span></span>
-          </div>
-        </div>
-      </section>
+
 
       {/* ==================== PORTFOLIO ==================== */}
       <section id="portfolio">
@@ -1722,7 +1618,7 @@ export default function Home() {
                 Build Something <span style={{ textDecoration: "underline", textDecorationColor: "rgba(255,255,255,.35)" }}>Great</span>
               </h2>
               <p className="cta-desc">
-                Join 250+ businesses that trust Novity Tech to drive their digital growth. Start your free consultation today.
+                Join 20+ forward-thinking businesses that trust Novity Tech to drive their digital growth. Start your free consultation today.
               </p>
             </div>
             <div className="col-lg-5 text-lg-end mt-4 mt-lg-0">
@@ -2327,7 +2223,7 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="tm-mod-bio">
-                  Michael brings 15 years of creative leadership to Novity Tech. A former design director at global agencies, he&apos;s led award-winning campaigns for Fortune 500 brands. His philosophy: great creative starts with deep strategic thinking.
+                  Michael brings 3+ years of creative leadership to Novity Tech. He has led high-impact digital campaigns and modern platform designs for ambitious brands. His philosophy: great creative starts with deep strategic thinking.
                 </p>
                 <h6 style={{ fontWeight: 700, margin: "20px 0 14px" }}>Skills</h6>
                 <div className="tm-sk-row">
@@ -2369,7 +2265,7 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="tm-mod-bio">
-                  Sarah is Novity Tech&apos;s strategic powerhouse. With an MBA from Wharton and 12 years in digital marketing, she has an uncanny ability to identify growth opportunities.
+                  Sarah is Novity Tech&apos;s strategic powerhouse. With an MBA from Wharton and 3+ years in digital marketing and growth, she has an uncanny ability to identify market opportunities.
                 </p>
                 <h6 style={{ fontWeight: 700, margin: "20px 0 14px" }}>Skills</h6>
                 <div className="tm-sk-row">
@@ -2407,7 +2303,7 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="tm-mod-bio">
-                  David&apos;s design work has won 12 industry awards including two Awwwards and a FWA. With expertise spanning UI/UX, brand identity, and motion design.
+                  David brings 3+ years of specialized design craftsmanship to Novity Tech, with expertise spanning modern UI/UX systems, brand identity, and motion design.
                 </p>
                 <h6 style={{ fontWeight: 700, margin: "20px 0 14px" }}>Skills</h6>
                 <div className="tm-sk-row">
@@ -2437,7 +2333,7 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="tm-mod-bio">
-                  Lisa is an SEO specialist with 9 years of experience driving organic growth for B2B and B2C brands. Certified by Google and SEMrush.
+                  Lisa is an SEO specialist with 3+ years of experience driving organic growth for B2B and B2C brands. Certified by Google and SEMrush.
                 </p>
                 <h6 style={{ fontWeight: 700, margin: "20px 0 14px" }}>Skills</h6>
                 <div className="tm-sk-row">

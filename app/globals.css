@@ -203,3 +203,24 @@
 .hero-emblem-img {
   animation: pulseGoldGlow 4s ease-in-out infinite;
 }
+
+/* Sticky Navbar & Navbar Theme Toggle Integration */
+#navbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1030 !important;
+}
+
+.t-toggle {
+  background: rgba(223, 193, 93, 0.08) !important;
+  border: 1px solid rgba(223, 193, 93, 0.25) !important;
+  color: var(--text) !important;
+  transition: all 0.3s ease !important;
+}
+
+.t-toggle:hover {
+  background: rgba(223, 193, 93, 0.18) !important;
+  border-color: rgba(223, 193, 93, 0.5) !important;
+  color: var(--primary) !important;
+  box-shadow: 0 0 14px rgba(223, 193, 93, 0.25);
+}
