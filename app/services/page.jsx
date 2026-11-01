@@ -163,25 +163,25 @@ export default function ServicesPage() {
             <h2 className="sec-title">Full Services <span>Catalog</span></h2>
             <div className="filter-tabs justify-content-center mt-3">
               <button
-                className={`tab-btn ${activeTab === "all" ? "active" : ""}`}
+                type="button" className={`tab-btn ftab ${activeTab === "all" ? "active" : ""}`}
                 onClick={() => setActiveTab("all")}
               >
                 All 17 Capabilities
               </button>
               <button
-                className={`tab-btn ${activeTab === "Talent & Core Engineering" ? "active" : ""}`}
+                type="button" className={`tab-btn ftab ${activeTab === "Talent & Core Engineering" ? "active" : ""}`}
                 onClick={() => setActiveTab("Talent & Core Engineering")}
               >
                 Talent & Core
               </button>
               <button
-                className={`tab-btn ${activeTab === "Cloud, DevOps & AI" ? "active" : ""}`}
+                type="button" className={`tab-btn ftab ${activeTab === "Cloud, DevOps & AI" ? "active" : ""}`}
                 onClick={() => setActiveTab("Cloud, DevOps & AI")}
               >
                 Cloud, DevOps & AI
               </button>
               <button
-                className={`tab-btn ${activeTab === "Custom Apps & Software" ? "active" : ""}`}
+                type="button" className={`tab-btn ftab ${activeTab === "Custom Apps & Software" ? "active" : ""}`}
                 onClick={() => setActiveTab("Custom Apps & Software")}
               >
                 Custom Apps & Software

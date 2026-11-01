@@ -293,7 +293,7 @@ export default function ReviewsPage() {
               key={cat.id}
               type="button"
               onClick={() => setActiveCategory(cat.id)}
-              className={`ftab ${activeCategory === cat.id ? "active" : ""}`}
+              className={`tab-btn ftab ${activeCategory === cat.id ? "active" : ""}`}
               style={{ padding: "10px 20px", fontSize: "0.88rem" }}
             >
               {cat.label}

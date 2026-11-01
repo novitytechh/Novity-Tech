@@ -51,31 +51,36 @@ export default function WorkPage() {
           {/* Filter Tabs */}
           <div className="filter-tabs justify-content-center">
             <button
-              className={`tab-btn ${activeFilter === "all" ? "active" : ""}`}
+              type="button"
+              className={`tab-btn ftab ${activeFilter === "all" ? "active" : ""}`}
               onClick={() => setActiveFilter("all")}
             >
               All Projects {projects.length > 0 ? `(${projects.length})` : ""}
             </button>
             <button
-              className={`tab-btn ${activeFilter === "ecommerce" ? "active" : ""}`}
+              type="button"
+              className={`tab-btn ftab ${activeFilter === "ecommerce" ? "active" : ""}`}
               onClick={() => setActiveFilter("ecommerce")}
             >
               E-Commerce
             </button>
             <button
-              className={`tab-btn ${activeFilter === "web" ? "active" : ""}`}
+              type="button"
+              className={`tab-btn ftab ${activeFilter === "web" ? "active" : ""}`}
               onClick={() => setActiveFilter("web")}
             >
               Web Platforms
             </button>
             <button
-              className={`tab-btn ${activeFilter === "cloud" ? "active" : ""}`}
+              type="button"
+              className={`tab-btn ftab ${activeFilter === "cloud" ? "active" : ""}`}
               onClick={() => setActiveFilter("cloud")}
             >
               Cloud & FinTech
             </button>
             <button
-              className={`tab-btn ${activeFilter === "design" ? "active" : ""}`}
+              type="button"
+              className={`tab-btn ftab ${activeFilter === "design" ? "active" : ""}`}
               onClick={() => setActiveFilter("design")}
             >
               Design Systems

@@ -367,3 +367,62 @@ textarea,
   color: #000 !important;
 }
 
+
+/* ==================== LUXURY FILTER TABS & CATEGORY BUTTONS ==================== */
+.filter-tabs {
+  display: flex !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 42px !important;
+  padding: 4px !important;
+}
+
+.ftab,
+.tab-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px 24px !important;
+  border-radius: 9999px !important;
+  border: 1px solid rgba(223, 193, 93, 0.22) !important;
+  background: rgba(18, 17, 24, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  color: #b8b3a8 !important;
+  font-family: inherit !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.4 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  transition: all 0.28s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45) !important;
+  user-select: none !important;
+  text-decoration: none !important;
+}
+
+.ftab:hover,
+.tab-btn:hover {
+  border-color: rgba(223, 193, 93, 0.55) !important;
+  background: rgba(30, 28, 40, 0.95) !important;
+  color: #fdf6d8 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 18px rgba(223, 193, 93, 0.22) !important;
+}
+
+.ftab.active,
+.tab-btn.active {
+  background: linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%) !important;
+  border-color: #dfc15d !important;
+  color: #0b0a0e !important;
+  font-weight: 800 !important;
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 25px rgba(223, 193, 93, 0.45) !important;
+}
+
+.ftab:focus-visible,
+.tab-btn:focus-visible {
+  outline: 2px solid #dfc15d !important;
+  outline-offset: 2px !important;
+}

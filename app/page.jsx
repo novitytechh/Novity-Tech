@@ -735,7 +735,7 @@ export default function Home() {
                 {["all", "branding", "digital", "web", "social"].map((tab) => (
                   <button
                     key={tab}
-                    className={`ftab ${portfolioFilter === tab ? "active" : ""}`}
+                    className={`tab-btn ftab ${portfolioFilter === tab ? "active" : ""}`}
                     onClick={() => setPortfolioFilter(tab)}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}

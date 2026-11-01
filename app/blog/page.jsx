@@ -119,7 +119,7 @@ export default function BlogPage() {
             {["all", "Engineering", "Architecture", "Design", "AI & Cloud"].map((cat) => (
               <button
                 key={cat}
-                className={`tab-btn ${activeCategory === cat ? "active" : ""}`}
+                type="button" className={`tab-btn ftab ${activeCategory === cat ? "active" : ""}`}
                 onClick={() => setActiveCategory(cat)}
               >
                 {cat === "all" ? "All Articles" : cat}
@@ -246,3 +246,4 @@ export default function BlogPage() {
     </>
   );
 }
+
