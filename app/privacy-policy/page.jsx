@@ -1,3 +1,5 @@
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import React from "react";
 import Link from "next/link";
 
@@ -8,7 +10,9 @@ export const metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div style={{ minHeight: "100vh", padding: "80px 20px" }}>
+    <>
+      <Navbar />
+      <main style={{ minHeight: "100vh", padding: "50px 20px 90px" }}>
       <div style={{ maxWidth: "900px", margin: "0 auto" }}>
         <div style={{ marginBottom: "28px" }}>
           <Link
@@ -95,6 +99,8 @@ export default function PrivacyPolicyPage() {
           </p>
         </div>
       </div>
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }

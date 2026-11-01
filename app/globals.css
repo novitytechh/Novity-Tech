@@ -224,3 +224,17 @@
   color: var(--primary) !important;
   box-shadow: 0 0 14px rgba(223, 193, 93, 0.25);
 }
+
+/* Services Dropdown Hover Effects */
+.svc-dropdown-item:hover {
+  background: rgba(223, 193, 93, 0.1) !important;
+}
+
+.svc-dropdown-item:hover .svc-item-title {
+  color: var(--primary) !important;
+}
+
+.svc-dropdown-item:hover .svc-ico-wrap {
+  background: var(--primary) !important;
+  color: #0b0a0e !important;
+}

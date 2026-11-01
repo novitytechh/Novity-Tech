@@ -1,5 +1,8 @@
 "use client";
 
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -31,7 +34,9 @@ export default function NotFound() {
   };
 
   return (
-    <div
+    <>
+      <Navbar />
+      <main
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -179,6 +184,8 @@ export default function NotFound() {
           </div>
         </div>
       </div>
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }

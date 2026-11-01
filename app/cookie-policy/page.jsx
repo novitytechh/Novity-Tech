@@ -1,5 +1,8 @@
 "use client";
 
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+
 import React from "react";
 import Link from "next/link";
 
@@ -42,7 +45,9 @@ export default function CookiePolicyPage() {
   ];
 
   return (
-    <div style={{ minHeight: "100vh", padding: "80px 20px" }}>
+    <>
+      <Navbar />
+      <main style={{ minHeight: "100vh", padding: "50px 20px 90px" }}>
       {/* Container */}
       <div style={{ maxWidth: "900px", margin: "0 auto" }}>
         {/* Navigation Breadcrumb */}
@@ -159,6 +164,8 @@ export default function CookiePolicyPage() {
           </p>
         </div>
       </div>
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }
