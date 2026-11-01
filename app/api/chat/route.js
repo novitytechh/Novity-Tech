@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { neon } from "@neondatabase/serverless";
 
 export async function POST(req) {
   try {
@@ -11,7 +12,72 @@ export async function POST(req) {
       );
     }
 
-    // 1. If Supabase and Gemini are configured, execute the server-side RAG pipeline
+    const qLower = question.toLowerCase().trim();
+
+    // 1. NEON POSTGRESQL INTEGRATION
+    // If DATABASE_URL is set, query knowledge directly from Neon!
+    if (process.env.DATABASE_URL) {
+      try {
+        const sql = neon(process.env.DATABASE_URL);
+        
+        // Search knowledge base in Neon
+        const rows = await sql`
+          SELECT title, content, url, category, tags
+          FROM chatbot_knowledge
+          ORDER BY id ASC;
+        `;
+
+        if (rows && rows.length > 0) {
+          // Tokenize question words for relevance matching
+          const tokens = qLower
+            .replace(/[^\w\s]/g, "")
+            .split(/\s+/)
+            .filter((w) => w.length > 2);
+
+          let bestMatch = null;
+          let highestScore = 0;
+
+          for (const row of rows) {
+            let score = 0;
+            const fullText = `${row.title} ${row.content} ${(row.tags || []).join(" ")}`.toLowerCase();
+
+            // Direct inclusion check
+            if (fullText.includes(qLower)) {
+              score += 10;
+            }
+
+            // Keyword hits
+            for (const token of tokens) {
+              if (fullText.includes(token)) {
+                score += 2;
+              }
+            }
+
+            if (score > highestScore) {
+              highestScore = score;
+              bestMatch = row;
+            }
+          }
+
+          if (bestMatch && highestScore >= 2) {
+            return NextResponse.json({
+              answer: bestMatch.content,
+              sources: [{ title: bestMatch.title, url: bestMatch.url || "/about" }],
+              needsHumanHandoff: false,
+              suggestedQuestions: [
+                "What services does Novity Tech offer?",
+                "What is your phone number & office address?",
+                "Who is on the Novity Tech team?",
+              ],
+            });
+          }
+        }
+      } catch (neonErr) {
+        console.warn("[Neon DB Query Notice - Falling back to local responder]:", neonErr.message);
+      }
+    }
+
+    // 2. SUPABASE RAG PIPELINE (if configured)
     if (
       process.env.GEMINI_API_KEY &&
       process.env.SUPABASE_URL &&
@@ -37,9 +103,7 @@ export async function POST(req) {
       }
     }
 
-    // 2. Intelligent Built-in Knowledge Base Responder for Novity Tech
-    const qLower = question.toLowerCase();
-
+    // 3. HIGH-PERFORMANCE BUILT-IN FALLBACK KNOWLEDGE BASE
     let answer = "";
     let sources = [];
     let needsHumanHandoff = false;
