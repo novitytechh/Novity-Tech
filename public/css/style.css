@@ -19,9 +19,9 @@
   --sh1: 0 4px 20px rgba(0, 0, 0, 0.45);
   --sh2: 0 10px 40px rgba(0, 0, 0, 0.65), 0 0 1px rgba(212, 175, 55, 0.2);
   --sh3: 0 25px 80px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.12);
-  --r: 16px;
-  --rs: 8px;
-  --rl: 24px;
+  --r: 22px;
+  --rs: 14px;
+  --rl: 30px;
   --tr: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   --trf: all 0.15s ease;
 }

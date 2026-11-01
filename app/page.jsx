@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { PROJECTS_DATA } from "@/lib/projectsData";
 
 export default function Home() {
   // Loading state
@@ -207,57 +208,13 @@ export default function Home() {
   };
 
   // Portfolio items data
-  const portfolioItems = [
-    {
-      id: "pfM1",
-      cat: "branding",
-      catLabel: "Branding",
-      name: "Brand Identity & Positioning",
-      img: "/img/portfolio/p1.jpg",
-      height: "380px",
-      colClass: "col-lg-8",
-    },
-    {
-      id: "pfM2",
-      cat: "social",
-      catLabel: "Social Media",
-      name: "Social Growth Campaign",
-      img: "/img/portfolio/p2.jpg",
-      height: "380px",
-      colClass: "col-lg-4",
-    },
-    {
-      id: "pfM4",
-      cat: "digital",
-      catLabel: "SEO / Digital",
-      name: "SEO Performance Campaign",
-      img: "/img/portfolio/p3.jpg",
-      height: "300px",
-      colClass: "col-lg-4",
-    },
-    {
-      id: "pfM5",
-      cat: "web",
-      catLabel: "Web Design",
-      name: "SaaS Platform Redesign",
-      img: "/img/portfolio/p4.jpg",
-      height: "300px",
-      colClass: "col-lg-4",
-    },
-    {
-      id: "pfM3",
-      cat: "branding",
-      catLabel: "Branding",
-      name: "Brand Refresh & Rebranding",
-      img: "/img/portfolio/p5.jpg",
-      height: "300px",
-      colClass: "col-lg-4",
-    },
-  ];
+  const portfolioItems = PROJECTS_DATA || [];
 
   const filteredPortfolio = portfolioFilter === "all"
     ? portfolioItems
-    : portfolioItems.filter((item) => item.cat === portfolioFilter);
+    : portfolioItems.filter((item) => (item.cat || item.category) === portfolioFilter);
+
+  const activePortfolioModalItem = portfolioItems.find((item) => item.id === activeModal);
 
   // Testimonials data
   const testimonials = [
@@ -791,26 +748,67 @@ export default function Home() {
             </div>
           </div>
           <div className="row g-4" id="pfGrid">
-            {filteredPortfolio.map((item) => (
-              <div key={item.id} className={`${item.colClass} pf-cat`}>
-                <div
-                  className="pf-item"
-                  style={{ height: item.height, cursor: "pointer" }}
-                  onClick={() => setActiveModal(item.id)}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                >
-                  <img className="pf-img" src={item.img} alt={item.name} />
-                  <div className="pf-ov">
-                    <div>
-                      <div className="pf-cat">{item.catLabel}</div>
-                      <h3 className="pf-name">{item.name}</h3>
+            {filteredPortfolio.length > 0 ? (
+              filteredPortfolio.map((item) => (
+                <div key={item.id} className={`${item.colClass || "col-lg-4"} pf-cat`}>
+                  <div
+                    className="pf-item"
+                    style={{ height: item.height || "320px", cursor: "pointer" }}
+                    onClick={() => setActiveModal(item.id)}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                    <img className="pf-img" src={item.img || item.image} alt={item.name || item.title} />
+                    <div className="pf-ov">
+                      <div>
+                        <div className="pf-cat">{item.catLabel || item.categoryLabel}</div>
+                        <h3 className="pf-name">{item.name || item.title}</h3>
+                      </div>
                     </div>
+                    <div className="pf-plus"><i className="fas fa-plus"></i></div>
                   </div>
-                  <div className="pf-plus"><i className="fas fa-plus"></i></div>
+                </div>
+              ))
+            ) : (
+              <div className="col-12 text-center" style={{ padding: "60px 20px" }}>
+                <div
+                  style={{
+                    maxWidth: "540px",
+                    margin: "0 auto",
+                    padding: "44px 28px",
+                    borderRadius: "24px",
+                    background: "var(--card)",
+                    border: "1px dashed rgba(223, 193, 93, 0.35)",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "56px",
+                      height: "56px",
+                      borderRadius: "50%",
+                      background: "rgba(223, 193, 93, 0.12)",
+                      color: "var(--primary)",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.6rem",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <i className="fas fa-folder-open"></i>
+                  </div>
+                  <h4 style={{ fontSize: "1.3rem", fontWeight: 700, color: "var(--text)", marginBottom: "8px" }}>
+                    No Projects Added Yet
+                  </h4>
+                  <p style={{ color: "var(--text2)", fontSize: "0.92rem", lineHeight: "1.6", marginBottom: "20px" }}>
+                    Existing demo projects have been removed. Add your custom projects to <code>lib/projectsData.js</code> to feature them here.
+                  </p>
+                  <Link href="/contact" className="btn-p" style={{ display: "inline-block", fontSize: "0.85rem", padding: "10px 24px" }}>
+                    Discuss a Project <i className="fas fa-arrow-right"></i>
+                  </Link>
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -1149,32 +1147,28 @@ export default function Home() {
                 <div className="ci-ico"><i className="fas fa-map-marker-alt"></i></div>
                 <div>
                   <div className="ci-lbl">Our Office</div>
-                  <div className="ci-val">125 Creative Street, Design City<br />New York, NY 10001</div>
+                  <div className="ci-val">Gujranwala, Pakistan</div>
                 </div>
               </div>
               <div className="ci-item">
                 <div className="ci-ico"><i className="fas fa-phone"></i></div>
                 <div>
                   <div className="ci-lbl">Call Us</div>
-                  <div className="ci-val">+1 (555) 123-4567<br />+1 (555) 987-6543</div>
+                  <div className="ci-val"><a href="tel:03291013649">03291013649</a></div>
                 </div>
               </div>
               <div className="ci-item">
                 <div className="ci-ico"><i className="fas fa-envelope"></i></div>
                 <div>
                   <div className="ci-lbl">Email Us</div>
-                  <div className="ci-val">
-                    <a href="mailto:hello@novitytech.com">hello@novitytech.com</a>
-                    <br />
-                    <a href="mailto:support@novitytech.com">support@novitytech.com</a>
-                  </div>
+                  <div className="ci-val"><a href="mailto:novitytechh@gmail.com">novitytechh@gmail.com</a></div>
                 </div>
               </div>
               <div className="ci-item">
                 <div className="ci-ico"><i className="fas fa-clock"></i></div>
                 <div>
                   <div className="ci-lbl">Business Hours</div>
-                  <div className="ci-val">Mon � Fri: 9:00 AM � 6:00 PM<br />Sat: 10:00 AM � 2:00 PM</div>
+                  <div className="ci-val">Mon - Fri: 9:00 AM - 6:00 PM<br />Sat: 10:00 AM - 2:00 PM</div>
                 </div>
               </div>
               <div className="ft-soc" style={{ marginTop: "16px" }}>
@@ -1228,7 +1222,7 @@ export default function Home() {
                         className="form-control"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="03291013649"
                       />
                     </div>
                     <div className="col-md-6">
@@ -1342,13 +1336,13 @@ export default function Home() {
                   Start Free Consultation <i className="fas fa-arrow-right"></i>
                 </a>
                 <a
-                  href="tel:+15551234567"
+                  href="tel:03291013649"
                   className="btn-hs"
                   style={{ borderColor: "rgba(255,255,255,.25)" }}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
-                  <i className="fas fa-phone"></i> Call Us Now
+                  <i className="fas fa-phone"></i> Call Us: 03291013649
                 </a>
               </div>
             </div>
@@ -1568,210 +1562,60 @@ export default function Home() {
         </div>
       )}
 
-      {/* PORTFOLIO MODAL 1 */}
-      {activeModal === "pfM1" && (
+      {/* DYNAMIC PORTFOLIO MODAL */}
+      {activePortfolioModalItem && (
         <div className="modal fade show" tabIndex="-1" onClick={() => setActiveModal(null)}>
           <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" onClick={(e) => e.stopPropagation()}>
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Brand Identity &amp; Positioning</h5>
+                <h5 className="modal-title">{activePortfolioModalItem.name || activePortfolioModalItem.title}</h5>
                 <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
               </div>
               <div className="modal-body">
-                <img className="pf-mod-img" src="/img/portfolio/p1.jpg" alt="Brand Identity" />
+                {(activePortfolioModalItem.img || activePortfolioModalItem.image) && (
+                  <img
+                    className="pf-mod-img"
+                    src={activePortfolioModalItem.img || activePortfolioModalItem.image}
+                    alt={activePortfolioModalItem.name || activePortfolioModalItem.title}
+                  />
+                )}
                 <div className="row g-3 mb-4">
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Client</div>
-                    <div className="pf-d-val">TechFlow Inc.</div>
-                  </div>
+                  {activePortfolioModalItem.client && (
+                    <div className="col-6 col-md-3">
+                      <div className="pf-d-lbl">Client</div>
+                      <div className="pf-d-val">{activePortfolioModalItem.client}</div>
+                    </div>
+                  )}
                   <div className="col-6 col-md-3">
                     <div className="pf-d-lbl">Category</div>
-                    <div className="pf-d-val">Branding</div>
+                    <div className="pf-d-val">{activePortfolioModalItem.catLabel || activePortfolioModalItem.categoryLabel || activePortfolioModalItem.category}</div>
                   </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Year</div>
-                    <div className="pf-d-val">2026</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Duration</div>
-                    <div className="pf-d-val">3 Months</div>
-                  </div>
+                  {activePortfolioModalItem.year && (
+                    <div className="col-6 col-md-3">
+                      <div className="pf-d-lbl">Year</div>
+                      <div className="pf-d-val">{activePortfolioModalItem.year}</div>
+                    </div>
+                  )}
+                  {activePortfolioModalItem.duration && (
+                    <div className="col-6 col-md-3">
+                      <div className="pf-d-lbl">Duration</div>
+                      <div className="pf-d-val">{activePortfolioModalItem.duration}</div>
+                    </div>
+                  )}
                 </div>
-                <h6 style={{ fontWeight: 700, marginBottom: "12px" }}>Project Overview</h6>
-                <p style={{ color: "var(--text2)", lineHeight: "1.82" }}>
-                  TechFlow needed a complete brand overhaul to better reflect their position as an enterprise SaaS platform. We conducted extensive market research, developed a new visual identity, and created a comprehensive brand system across all digital and print touchpoints.
-                </p>
-                <div className="pf-result">
-                  <p><strong>Result:</strong> 40% increase in brand recognition, 25% improvement in sales conversion rate post-rebrand, and TechFlow secured 3 major enterprise contracts within the first month of the new brand launch.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* PORTFOLIO MODAL 2 */}
-      {activeModal === "pfM2" && (
-        <div className="modal fade show" tabIndex="-1" onClick={() => setActiveModal(null)}>
-          <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Social Media Growth Campaign</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
-              </div>
-              <div className="modal-body">
-                <img className="pf-mod-img" src="/img/portfolio/p2.jpg" alt="Social Media Growth" />
-                <div className="row g-3 mb-4">
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Client</div>
-                    <div className="pf-d-val">StyleHub</div>
+                {(activePortfolioModalItem.desc || activePortfolioModalItem.overview) && (
+                  <>
+                    <h6 style={{ fontWeight: 700, marginBottom: "12px" }}>Project Overview</h6>
+                    <p style={{ color: "var(--text2)", lineHeight: "1.82" }}>
+                      {activePortfolioModalItem.desc || activePortfolioModalItem.overview}
+                    </p>
+                  </>
+                )}
+                {activePortfolioModalItem.result && (
+                  <div className="pf-result">
+                    <p><strong>Result:</strong> {activePortfolioModalItem.result}</p>
                   </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Category</div>
-                    <div className="pf-d-val">Social Media</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Year</div>
-                    <div className="pf-d-val">2026</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Duration</div>
-                    <div className="pf-d-val">6 Months</div>
-                  </div>
-                </div>
-                <h6 style={{ fontWeight: 700, marginBottom: "12px" }}>Project Overview</h6>
-                <p style={{ color: "var(--text2)", lineHeight: "1.82" }}>
-                  A complete social media transformation for StyleHub, a fashion e-commerce brand. We developed platform-specific content strategies, built an influencer partnership program, and managed paid social campaigns across Instagram, TikTok, and Pinterest.
-                </p>
-                <div className="pf-result">
-                  <p><strong>Result:</strong> 250K new followers gained in 6 months, 180% increase in social-attributed revenue, and 3x improvement in engagement rate across all platforms.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* PORTFOLIO MODAL 3 */}
-      {activeModal === "pfM3" && (
-        <div className="modal fade show" tabIndex="-1" onClick={() => setActiveModal(null)}>
-          <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Brand Refresh &amp; Rebranding</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
-              </div>
-              <div className="modal-body">
-                <img className="pf-mod-img" src="/img/portfolio/p5.jpg" alt="Brand Refresh" />
-                <div className="row g-3 mb-4">
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Client</div>
-                    <div className="pf-d-val">Meridian Retail</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Category</div>
-                    <div className="pf-d-val">Rebranding</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Year</div>
-                    <div className="pf-d-val">2026</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Duration</div>
-                    <div className="pf-d-val">4 Months</div>
-                  </div>
-                </div>
-                <h6 style={{ fontWeight: 700, marginBottom: "12px" }}>Project Overview</h6>
-                <p style={{ color: "var(--text2)", lineHeight: "1.82" }}>
-                  Meridian was a 20-year-old retail brand that had lost its edge. We revitalized their brand identity while preserving brand equity, modernizing their visual system, tone of voice, and customer experience.
-                </p>
-                <div className="pf-result">
-                  <p><strong>Result:</strong> 35% increase in brand favorability scores, 20% uplift in traffic, and successfully repositioned as the premium choice in their competitive landscape.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* PORTFOLIO MODAL 4 */}
-      {activeModal === "pfM4" && (
-        <div className="modal fade show" tabIndex="-1" onClick={() => setActiveModal(null)}>
-          <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">SEO Performance Campaign</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
-              </div>
-              <div className="modal-body">
-                <img className="pf-mod-img" src="/img/portfolio/p3.jpg" alt="SEO Performance" />
-                <div className="row g-3 mb-4">
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Client</div>
-                    <div className="pf-d-val">DataSync SaaS</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Category</div>
-                    <div className="pf-d-val">SEO / Digital</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Year</div>
-                    <div className="pf-d-val">2026</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Duration</div>
-                    <div className="pf-d-val">12 Months</div>
-                  </div>
-                </div>
-                <h6 style={{ fontWeight: 700, marginBottom: "12px" }}>Project Overview</h6>
-                <p style={{ color: "var(--text2)", lineHeight: "1.82" }}>
-                  A comprehensive SEO and content strategy for DataSync, a B2B SaaS platform. Starting from minimal domain authority, we built a robust organic presence through technical optimization and link acquisition.
-                </p>
-                <div className="pf-result">
-                  <p><strong>Result:</strong> 300% increase in organic traffic, ranked #1 for 45 target keywords, and organic search became the #1 lead generation channel.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* PORTFOLIO MODAL 5 */}
-      {activeModal === "pfM5" && (
-        <div className="modal fade show" tabIndex="-1" onClick={() => setActiveModal(null)}>
-          <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">SaaS Platform Redesign</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
-              </div>
-              <div className="modal-body">
-                <img className="pf-mod-img" src="/img/portfolio/p4.jpg" alt="SaaS Platform Redesign" />
-                <div className="row g-3 mb-4">
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Client</div>
-                    <div className="pf-d-val">CloudBase</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Category</div>
-                    <div className="pf-d-val">Web Design</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Year</div>
-                    <div className="pf-d-val">2026</div>
-                  </div>
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Duration</div>
-                    <div className="pf-d-val">5 Months</div>
-                  </div>
-                </div>
-                <h6 style={{ fontWeight: 700, marginBottom: "12px" }}>Project Overview</h6>
-                <p style={{ color: "var(--text2)", lineHeight: "1.82" }}>
-                  CloudBase&apos;s aging website was costing them conversions. We conducted user research, redesigned the entire UX/UI, rebuilt the site for performance, and implemented a conversion optimization strategy.
-                </p>
-                <div className="pf-result">
-                  <p><strong>Result:</strong> 85% faster page load times, 60% improvement in trial sign-up conversion rate, and 40% reduction in bounce rate.</p>
-                </div>
+                )}
               </div>
             </div>
           </div>

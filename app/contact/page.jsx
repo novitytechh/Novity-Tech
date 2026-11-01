@@ -291,8 +291,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <div style={{ fontSize: "0.75rem", color: "var(--text3)", textTransform: "uppercase" }}>General Inquiries</div>
-                        <a href="mailto:info@novitytech.com" style={{ color: "var(--text)", fontWeight: 700, textDecoration: "none" }}>
-                          info@novitytech.com
+                        <a href="mailto:novitytechh@gmail.com" style={{ color: "var(--text)", fontWeight: 700, textDecoration: "none" }}>
+                          novitytechh@gmail.com
                         </a>
                       </div>
                     </div>
@@ -315,8 +315,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <div style={{ fontSize: "0.75rem", color: "var(--text3)", textTransform: "uppercase" }}>Phone Direct</div>
-                        <a href="tel:+15551234567" style={{ color: "var(--text)", fontWeight: 700, textDecoration: "none" }}>
-                          +1 (555) 123-4567
+                        <a href="tel:03291013649" style={{ color: "var(--text)", fontWeight: 700, textDecoration: "none" }}>
+                          03291013649
                         </a>
                       </div>
                     </div>
@@ -341,6 +341,54 @@ export default function ContactPage() {
                         <div style={{ fontSize: "0.75rem", color: "var(--text3)", textTransform: "uppercase" }}>Response Time</div>
                         <div style={{ color: "var(--primary)", fontWeight: 700 }}>
                           Under 24 Hours Guaranteed
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="d-flex align-items-center gap-3">
+                      <div
+                        style={{
+                          width: "44px",
+                          height: "44px",
+                          borderRadius: "12px",
+                          background: "rgba(223, 193, 93, 0.12)",
+                          color: "var(--primary)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: "1.1rem",
+                        }}
+                      >
+                        <i className="fas fa-map-marker-alt" />
+                      </div>
+                      <div>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text3)", textTransform: "uppercase" }}>Location</div>
+                        <div style={{ color: "var(--text)", fontWeight: 700 }}>
+                          Gujranwala, Pakistan
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="d-flex align-items-center gap-3">
+                      <div
+                        style={{
+                          width: "44px",
+                          height: "44px",
+                          borderRadius: "12px",
+                          background: "rgba(223, 193, 93, 0.12)",
+                          color: "var(--primary)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: "1.1rem",
+                        }}
+                      >
+                        <i className="fas fa-business-time" />
+                      </div>
+                      <div>
+                        <div style={{ fontSize: "0.75rem", color: "var(--text3)", textTransform: "uppercase" }}>Business Hours</div>
+                        <div style={{ color: "var(--text)", fontWeight: 700, fontSize: "0.88rem", lineHeight: "1.5" }}>
+                          Mon-Fri: 9:00 AM - 6:00 PM<br />Sat: 10:00 AM - 2:00 PM
                         </div>
                       </div>
                     </div>

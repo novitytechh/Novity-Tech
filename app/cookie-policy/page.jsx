@@ -158,8 +158,8 @@ export default function CookiePolicyPage() {
           </h3>
           <p style={{ margin: 0 }}>
             If you have questions regarding our cookie practices, reach out to our data privacy team at{" "}
-            <a href="mailto:privacy@novitytech.com" style={{ color: "var(--primary)", fontWeight: 600 }}>
-              privacy@novitytech.com
+            <a href="mailto:novitytechh@gmail.com" style={{ color: "var(--primary)", fontWeight: 600 }}>
+              novitytechh@gmail.com
             </a>.
           </p>
         </div>

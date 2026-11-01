@@ -93,8 +93,8 @@ export default function PrivacyPolicyPage() {
           </h3>
           <p style={{ margin: 0 }}>
             Under GDPR and CCPA, you have the right to access, rectify, or erase your personal data. To exercise these rights, contact us at{" "}
-            <a href="mailto:privacy@novitytech.com" style={{ color: "var(--primary)", fontWeight: 600 }}>
-              privacy@novitytech.com
+            <a href="mailto:novitytechh@gmail.com" style={{ color: "var(--primary)", fontWeight: 600 }}>
+              novitytechh@gmail.com
             </a>.
           </p>
         </div>

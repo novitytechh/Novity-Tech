@@ -105,13 +105,21 @@ export default function Footer() {
             <p style={{ color: "var(--text2)", fontSize: "0.88rem", lineHeight: "1.7" }}>
               Ready to engineer your next digital platform? Reach out directly to our engineering leads.
             </p>
-            <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
-              <a href="mailto:info@novitytech.com" style={{ color: "var(--primary)", textDecoration: "none", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                <i className="fas fa-envelope"></i> info@novitytech.com
+            <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
+              <div style={{ color: "var(--text2)", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fas fa-map-marker-alt" style={{ color: "var(--primary)" }}></i> Gujranwala, Pakistan
+              </div>
+              <a href="mailto:novitytechh@gmail.com" style={{ color: "var(--primary)", textDecoration: "none", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fas fa-envelope"></i> novitytechh@gmail.com
               </a>
-              <a href="tel:+15551234567" style={{ color: "var(--text2)", textDecoration: "none", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                <i className="fas fa-phone"></i> +1 (555) 123-4567
+              <a href="tel:03291013649" style={{ color: "var(--text2)", textDecoration: "none", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fas fa-phone"></i> 03291013649
               </a>
+              <div style={{ color: "var(--text3)", fontSize: "0.82rem", lineHeight: "1.5" }}>
+                <i className="fas fa-clock" style={{ marginRight: "6px" }}></i>
+                Mon-Fri: 9:00 AM - 6:00 PM<br />
+                <span style={{ paddingLeft: "18px" }}>Sat: 10:00 AM - 2:00 PM</span>
+              </div>
             </div>
             <Link href="/contact" className="btn-p mt-3" style={{ padding: "9px 20px", fontSize: "0.85rem", display: "inline-block", textDecoration: "none" }}>
               Request Consultation

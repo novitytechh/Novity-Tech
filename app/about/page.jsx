@@ -29,13 +29,6 @@ export default function AboutPage() {
     },
   ];
 
-  const milestones = [
-    { year: "2023", title: "Novity Tech Founded", desc: "Formed by senior software architects with a mission to bridge the gap between high design and enterprise engineering." },
-    { year: "2024", title: "Global Expansion", desc: "Scaled delivery to clients across North America, Europe, and Asia, completing 10+ major platform launches." },
-    { year: "2025", title: "AI & Cloud Practice", desc: "Launched dedicated practice groups for Autonomous AI Agents, LLM pipelines, and Kubernetes infrastructure." },
-    { year: "2026", title: "Enterprise Excellence", desc: "Delivered 20+ bespoke digital ecosystems with a 98% client satisfaction rate and 99.99% uptime." },
-  ];
-
   return (
     <>
       <Navbar />
@@ -135,41 +128,6 @@ export default function AboutPage() {
                   </div>
                   <h4 style={{ fontSize: "1.2rem", fontWeight: 800, marginBottom: "12px", color: "var(--text)" }}>{v.title}</h4>
                   <p style={{ color: "var(--text2)", fontSize: "0.9rem", lineHeight: "1.7", margin: 0 }}>{v.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Journey Timeline */}
-        <div className="container" style={{ marginBottom: "80px" }}>
-          <div className="text-center" style={{ maxWidth: "700px", margin: "0 auto 50px" }}>
-            <div className="sec-badge">Our Journey</div>
-            <h2 className="sec-title">The Evolution of <span className="hl">Excellence</span></h2>
-          </div>
-
-          <div className="row g-4 justify-content-center">
-            {milestones.map((m, i) => (
-              <div key={i} className="col-lg-3 col-md-6">
-                <div
-                  style={{
-                    background: "var(--card)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "var(--r)",
-                    padding: "28px 24px",
-                    height: "100%",
-                    position: "relative",
-                  }}
-                >
-                  <div style={{ color: "var(--primary)", fontWeight: 900, fontSize: "1.5rem", marginBottom: "8px" }}>
-                    {m.year}
-                  </div>
-                  <h4 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--text)", marginBottom: "10px" }}>
-                    {m.title}
-                  </h4>
-                  <p style={{ color: "var(--text2)", fontSize: "0.88rem", lineHeight: "1.7", margin: 0 }}>
-                    {m.desc}
-                  </p>
                 </div>
               </div>
             ))}

@@ -208,7 +208,7 @@ export default function ReviewsPage() {
               }}
             >
               <div style={{ fontFamily: "Phudu, cursive", fontSize: "2.4rem", fontWeight: 800, color: "var(--primary)" }}>
-                4.9 / 5.0
+                4.7 / 5.0
               </div>
               <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--text)", marginTop: "4px" }}>
                 Client Satisfaction
@@ -228,7 +228,7 @@ export default function ReviewsPage() {
               }}
             >
               <div style={{ fontFamily: "Phudu, cursive", fontSize: "2.4rem", fontWeight: 800, color: "var(--primary)" }}>
-                25+
+                4+
               </div>
               <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--text)", marginTop: "4px" }}>
                 Verified Reviews
@@ -451,11 +451,11 @@ export default function ReviewsPage() {
               Start a Project <i className="fas fa-arrow-right ms-2" />
             </Link>
             <a
-              href="mailto:contact@novitytech.com"
+              href="mailto:novitytechh@gmail.com"
               className="btn-hs"
               style={{ borderColor: "rgba(255,255,255,0.3)", color: "#fff", padding: "14px 28px" }}
             >
-              <i className="fas fa-envelope me-2" /> contact@novitytech.com
+              <i className="fas fa-envelope me-2" /> novitytechh@gmail.com
             </a>
           </div>
         </div>

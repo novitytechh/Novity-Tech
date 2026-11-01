@@ -238,3 +238,55 @@
   background: var(--primary) !important;
   color: #0b0a0e !important;
 }
+
+/* ==================== GLOBAL ROUNDED BOX CORNERS ==================== */
+.feat-card,
+.svc-card,
+.tm-card,
+.news-card,
+.pr-card,
+.pf-item,
+.cf-wrap,
+.ci-item,
+.tst-card,
+.accordion-item,
+.modal-content,
+.hero-emblem-card,
+.hstat,
+.cookie-banner,
+.stat-card,
+.service-card,
+.team-card,
+.review-card,
+.blog-card,
+.dropdown-menu,
+.sec-box,
+.card {
+  border-radius: 22px !important;
+}
+
+/* Medium rounded elements: form controls, inputs, headers */
+input,
+select,
+textarea,
+.form-control,
+.form-select,
+.accordion-button {
+  border-radius: 14px !important;
+}
+
+/* Sub-card image headers */
+.tm-img-wrap,
+.news-img-wrap,
+.pf-item img {
+  border-radius: 20px 20px 0 0 !important;
+}
+
+/* Minor icons and badge containers */
+.ci-ico,
+.feat-ico,
+.svc-ico,
+.stat-ico,
+.badge-rounded {
+  border-radius: 16px !important;
+}

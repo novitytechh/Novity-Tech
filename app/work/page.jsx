@@ -4,67 +4,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { PROJECTS_DATA } from "@/lib/projectsData";
 
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState("all");
 
-  const projects = [
-    {
-      id: "p1",
-      title: "Nayyab Jewellers — Bespoke Luxury E-Commerce",
-      client: "Nayyab Jewellers",
-      category: "ecommerce",
-      categoryLabel: "Luxury E-Commerce",
-      image: "/img/portfolio/p1.jpg",
-      metric: "+320% Traffic",
-      tech: ["Next.js 14", "Stripe API", "Tailwind CSS", "Redis"],
-      desc: "Architected a headless luxury jewelry shopping experience with bespoke 3D ring visualizers, sub-second product filtering, and multi-currency global checkout.",
-    },
-    {
-      id: "p2",
-      title: "Al Moman — Real-Time Order & Logistics Engine",
-      client: "Al Moman Foods",
-      category: "web",
-      categoryLabel: "Web Platform & Logistics",
-      image: "/img/portfolio/p2.jpg",
-      metric: "2.4x Revenue",
-      tech: ["React", "Node.js", "PostgreSQL", "Socket.io"],
-      desc: "Engineered a live dispatch and order routing web system handling 15,000+ daily perishable shipments with zero delivery failures and automated SMS triggers.",
-    },
-    {
-      id: "p3",
-      title: "FinFlow Analytics — SaaS Financial Dashboard",
-      client: "FinFlow Capital",
-      category: "cloud",
-      categoryLabel: "Cloud & FinTech",
-      image: "/img/portfolio/p3.jpg",
-      metric: "99.99% Uptime",
-      tech: ["TypeScript", "Next.js", "Docker", "AWS ECS"],
-      desc: "High-concurrency financial reporting portal rendering real-time portfolio returns, automated tax exports, and enterprise audit trails for wealth managers.",
-    },
-    {
-      id: "p4",
-      title: "Horizon Health — HIPAA-Compliant Patient Portal",
-      client: "Horizon Care",
-      category: "web",
-      categoryLabel: "Enterprise Healthcare",
-      image: "/img/portfolio/p4.jpg",
-      metric: "100% Compliance",
-      tech: ["Next.js", "GraphQL", "Supabase", "End-to-End Encryption"],
-      desc: "Secure telemedicine web interface facilitating encrypted medical record exchanges, biometric patient sign-in, and synchronized prescription feeds.",
-    },
-    {
-      id: "p5",
-      title: "Meridian Living — Global Brand & Design System",
-      client: "Meridian International",
-      category: "design",
-      categoryLabel: "Design System & UX",
-      image: "/img/portfolio/p5.jpg",
-      metric: "88% Retention",
-      tech: ["Figma Tokens", "Design System", "Storybook", "React Components"],
-      desc: "Created a unified design system of 120+ modular UI components, complete with responsive layout primitives and accessibility-tested micro-interactions.",
-    },
-  ];
+  const projects = PROJECTS_DATA || [];
 
   const filtered =
     activeFilter === "all"
@@ -109,7 +54,7 @@ export default function WorkPage() {
               className={`tab-btn ${activeFilter === "all" ? "active" : ""}`}
               onClick={() => setActiveFilter("all")}
             >
-              All Projects (20+)
+              All Projects {projects.length > 0 ? `(${projects.length})` : ""}
             </button>
             <button
               className={`tab-btn ${activeFilter === "ecommerce" ? "active" : ""}`}
@@ -141,91 +86,137 @@ export default function WorkPage() {
         {/* Projects Grid */}
         <div className="container" style={{ marginBottom: "90px" }}>
           <div className="row g-4">
-            {filtered.map((proj) => (
-              <div key={proj.id} className="col-lg-6">
-                <div
-                  style={{
-                    background: "var(--card)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "24px",
-                    overflow: "hidden",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    boxShadow: "0 16px 40px rgba(0,0,0,0.4)",
-                  }}
-                >
-                  <div style={{ position: "relative", height: "280px", overflow: "hidden" }}>
-                    <img
-                      src={proj.image}
-                      alt={proj.title}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        transition: "transform 0.4s ease",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "16px",
-                        right: "16px",
-                        background: "rgba(11, 10, 14, 0.85)",
-                        backdropFilter: "blur(8px)",
-                        border: "1px solid rgba(223, 193, 93, 0.35)",
-                        color: "var(--primary)",
-                        padding: "4px 12px",
-                        borderRadius: "20px",
-                        fontSize: "0.8rem",
-                        fontWeight: 800,
-                      }}
-                    >
-                      {proj.metric}
-                    </div>
-                  </div>
-
-                  <div style={{ padding: "28px 26px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                    <div>
-                      <div style={{ color: "var(--primary)", fontSize: "0.78rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "6px" }}>
-                        {proj.categoryLabel} &bull; {proj.client}
-                      </div>
-                      <h3 style={{ fontSize: "1.35rem", fontWeight: 800, color: "var(--text)", marginBottom: "12px" }}>
-                        {proj.title}
-                      </h3>
-                      <p style={{ color: "var(--text2)", fontSize: "0.92rem", lineHeight: "1.7", marginBottom: "18px" }}>
-                        {proj.desc}
-                      </p>
+            {filtered.length > 0 ? (
+              filtered.map((proj) => (
+                <div key={proj.id} className="col-lg-6">
+                  <div
+                    style={{
+                      background: "var(--card)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "24px",
+                      overflow: "hidden",
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      boxShadow: "0 16px 40px rgba(0,0,0,0.4)",
+                    }}
+                  >
+                    <div style={{ position: "relative", height: "280px", overflow: "hidden" }}>
+                      <img
+                        src={proj.image || proj.img}
+                        alt={proj.title || proj.name}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          transition: "transform 0.4s ease",
+                        }}
+                      />
+                      {proj.metric && (
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: "16px",
+                            right: "16px",
+                            background: "rgba(11, 10, 14, 0.85)",
+                            backdropFilter: "blur(8px)",
+                            border: "1px solid rgba(223, 193, 93, 0.35)",
+                            color: "var(--primary)",
+                            padding: "4px 12px",
+                            borderRadius: "20px",
+                            fontSize: "0.8rem",
+                            fontWeight: 800,
+                          }}
+                        >
+                          {proj.metric}
+                        </div>
+                      )}
                     </div>
 
-                    <div>
-                      <div className="d-flex flex-wrap gap-2 mb-4">
-                        {proj.tech.map((t, idx) => (
-                          <span
-                            key={idx}
-                            style={{
-                              padding: "4px 10px",
-                              borderRadius: "8px",
-                              background: "rgba(255, 255, 255, 0.05)",
-                              border: "1px solid var(--border)",
-                              color: "var(--text3)",
-                              fontSize: "0.76rem",
-                              fontWeight: 600,
-                            }}
-                          >
-                            {t}
-                          </span>
-                        ))}
+                    <div style={{ padding: "28px 26px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                      <div>
+                        <div style={{ color: "var(--primary)", fontSize: "0.78rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "6px" }}>
+                          {proj.categoryLabel || proj.catLabel || proj.category} {proj.client ? `• ${proj.client}` : ""}
+                        </div>
+                        <h3 style={{ fontSize: "1.35rem", fontWeight: 800, color: "var(--text)", marginBottom: "12px" }}>
+                          {proj.title || proj.name}
+                        </h3>
+                        <p style={{ color: "var(--text2)", fontSize: "0.92rem", lineHeight: "1.7", marginBottom: "18px" }}>
+                          {proj.desc || proj.overview}
+                        </p>
                       </div>
 
-                      <Link href="/contact" className="btn-p" style={{ width: "100%", textAlign: "center", display: "block", textDecoration: "none" }}>
-                        Inquire About Similar Project <i className="fas fa-arrow-right"></i>
-                      </Link>
+                      <div>
+                        {proj.tech && proj.tech.length > 0 && (
+                          <div className="d-flex flex-wrap gap-2 mb-4">
+                            {proj.tech.map((t, idx) => (
+                              <span
+                                key={idx}
+                                style={{
+                                  padding: "4px 10px",
+                                  borderRadius: "8px",
+                                  background: "rgba(255, 255, 255, 0.05)",
+                                  border: "1px solid var(--border)",
+                                  color: "var(--text3)",
+                                  fontSize: "0.76rem",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+
+                        <Link href="/contact" className="btn-p" style={{ width: "100%", textAlign: "center", display: "block", textDecoration: "none" }}>
+                          Inquire About Similar Project <i className="fas fa-arrow-right"></i>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
+              ))
+            ) : (
+              <div className="col-12 text-center" style={{ padding: "60px 20px" }}>
+                <div
+                  style={{
+                    maxWidth: "560px",
+                    margin: "0 auto",
+                    padding: "48px 32px",
+                    borderRadius: "24px",
+                    background: "var(--card)",
+                    border: "1px dashed rgba(223, 193, 93, 0.35)",
+                    boxShadow: "0 16px 40px rgba(0,0,0,0.3)",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "64px",
+                      height: "64px",
+                      borderRadius: "50%",
+                      background: "rgba(223, 193, 93, 0.12)",
+                      color: "var(--primary)",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.8rem",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    <i className="fas fa-layer-group"></i>
+                  </div>
+                  <h3 style={{ fontSize: "1.45rem", fontWeight: 800, color: "var(--text)", marginBottom: "12px" }}>
+                    No Projects Added Yet
+                  </h3>
+                  <p style={{ color: "var(--text2)", fontSize: "0.98rem", lineHeight: "1.7", marginBottom: "28px" }}>
+                    All demo projects have been cleared. You can now add your own projects by adding entries to <code>lib/projectsData.js</code>.
+                  </p>
+                  <Link href="/contact" className="btn-p" style={{ textDecoration: "none", display: "inline-block" }}>
+                    Start a Project With Us <i className="fas fa-arrow-right"></i>
+                  </Link>
+                </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
 
