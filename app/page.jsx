@@ -326,9 +326,21 @@ export default function Home() {
       {/* LOADER */}
       {loading && (
         <div id="loader" className={!loading ? "gone" : ""}>
-          <div className="ld-logo" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
-            <img src="/img/novity-logo.jpg" alt="Novity Tech Logo" style={{ height: "64px", width: "auto", borderRadius: "14px", boxShadow: "0 4px 16px rgba(0,0,0,0.3)" }} />
-            <div>Novity<span> Tech</span></div>
+          <div className="ld-logo" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
+            <img
+              src="/img/novity-emblem.png"
+              alt="Novity Tech Emblem"
+              style={{
+                height: "96px",
+                width: "96px",
+                objectFit: "contain",
+                filter: "drop-shadow(0 0 35px rgba(223, 193, 93, 0.8))",
+                animation: "pulseGoldGlow 2.5s infinite ease-in-out",
+              }}
+            />
+            <div style={{ fontFamily: "'Phudu', cursive", fontSize: "1.75rem", fontWeight: 800, letterSpacing: "0.12em", color: "#ffffff" }}>
+              NOVITY<span style={{ color: "var(--primary)" }}> TECH</span>
+            </div>
           </div>
           <div className="ld-bar">
             <div className="ld-fill"></div>
@@ -409,20 +421,40 @@ export default function Home() {
             className="navbar-brand"
             href="#"
             onClick={(e) => { e.preventDefault(); scrollTo("hero"); }}
-            style={{ display: "inline-flex", alignItems: "center", gap: "12px" }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "14px" }}
           >
             <img
-              src="/img/novity-logo.jpg"
-              alt="Novity Tech Logo"
+              src="/img/novity-emblem.png"
+              alt="Novity Tech Emblem"
               style={{
-                height: "38px",
-                width: "auto",
-                borderRadius: "8px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-                objectFit: "cover",
+                height: "50px",
+                width: "50px",
+                objectFit: "contain",
+                filter: "drop-shadow(0 0 14px rgba(223, 193, 93, 0.6)) drop-shadow(0 2px 4px rgba(0,0,0,0.8))",
               }}
             />
-            <span>NOVITY<span> TECH</span></span>
+            <span
+              style={{
+                fontFamily: "'Phudu', cursive",
+                fontWeight: 900,
+                fontSize: "1.55rem",
+                letterSpacing: "0.08em",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <span style={{ color: "#ffffff" }}>NOVITY</span>
+              <span
+                style={{
+                  background: "linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                TECH
+              </span>
+            </span>
           </a>
           <button
             className="navbar-toggler"
@@ -608,6 +640,100 @@ export default function Home() {
                     <span>+</span>
                   </div>
                   <div className="hstat-lbl">Awards Won</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Prominent Majestic Golden Wings Emblem Showcase */}
+            <div className="col-lg-5 d-none d-lg-block text-center mt-5 mt-lg-0">
+              <div className="hero-emblem-showcase" style={{ position: "relative", display: "inline-block" }}>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: "360px",
+                    height: "360px",
+                    borderRadius: "50%",
+                    background: "radial-gradient(circle, rgba(223, 193, 93, 0.3) 0%, rgba(212, 175, 55, 0.1) 45%, transparent 70%)",
+                    filter: "blur(32px)",
+                    pointerEvents: "none",
+                    zIndex: 0,
+                  }}
+                />
+
+                <div
+                  className="hero-emblem-card"
+                  style={{
+                    position: "relative",
+                    zIndex: 1,
+                    padding: "36px 32px",
+                    borderRadius: "28px",
+                    background: "linear-gradient(145deg, rgba(24, 22, 32, 0.88) 0%, rgba(11, 10, 14, 0.96) 100%)",
+                    border: "1px solid rgba(223, 193, 93, 0.38)",
+                    boxShadow: "0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(223, 193, 93, 0.2)",
+                    backdropFilter: "blur(14px)",
+                    textAlign: "center",
+                  }}
+                >
+                  <img
+                    className="hero-emblem-img"
+                    src="/img/novity-emblem.png"
+                    alt="Novity Tech Majestic Golden Wings Emblem"
+                    style={{
+                      width: "210px",
+                      height: "210px",
+                      objectFit: "contain",
+                    }}
+                  />
+                  <div style={{ marginTop: "18px" }}>
+                    <div
+                      style={{
+                        fontFamily: "'Phudu', cursive",
+                        fontSize: "1.55rem",
+                        fontWeight: 900,
+                        letterSpacing: "0.14em",
+                        color: "#f8f6f0",
+                      }}
+                    >
+                      NOVITY <span style={{ color: "var(--primary)" }}>TECH</span>
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "0.8rem",
+                        letterSpacing: "0.22em",
+                        textTransform: "uppercase",
+                        color: "var(--primary-champagne, #fdf6d8)",
+                        opacity: 0.9,
+                        marginTop: "6px",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Engineering Digital Eminence
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      marginTop: "20px",
+                      paddingTop: "16px",
+                      borderTop: "1px solid rgba(223, 193, 93, 0.18)",
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                      gap: "12px",
+                    }}
+                  >
+                    <div style={{ textAlign: "center" }}>
+                      <div style={{ color: "var(--primary)", fontWeight: 700, fontSize: "0.95rem" }}>100%</div>
+                      <div style={{ color: "var(--text3)", fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>Code Ownership</div>
+                    </div>
+                    <div style={{ width: "1px", height: "24px", background: "rgba(255,255,255,0.1)" }} />
+                    <div style={{ textAlign: "center" }}>
+                      <div style={{ color: "var(--primary)", fontWeight: 700, fontSize: "0.95rem" }}>4.9 / 5.0</div>
+                      <div style={{ color: "var(--text3)", fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>Client Rating</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1634,20 +1760,40 @@ export default function Home() {
                 className="ft-brand"
                 href="#"
                 onClick={(e) => { e.preventDefault(); scrollTo("hero"); }}
-                style={{ display: "inline-flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "14px", marginBottom: "18px" }}
               >
                 <img
-                  src="/img/novity-logo.jpg"
-                  alt="Novity Tech Logo"
+                  src="/img/novity-emblem.png"
+                  alt="Novity Tech Emblem"
                   style={{
-                    height: "44px",
-                    width: "auto",
-                    borderRadius: "10px",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
-                    objectFit: "cover",
+                    height: "54px",
+                    width: "54px",
+                    objectFit: "contain",
+                    filter: "drop-shadow(0 0 16px rgba(223, 193, 93, 0.55))",
                   }}
                 />
-                <span>NOVITY<span> TECH</span></span>
+                <span
+                  style={{
+                    fontFamily: "'Phudu', cursive",
+                    fontWeight: 900,
+                    fontSize: "1.6rem",
+                    letterSpacing: "0.08em",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                  }}
+                >
+                  <span style={{ color: "#ffffff" }}>NOVITY</span>
+                  <span
+                    style={{
+                      background: "linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    TECH
+                  </span>
+                </span>
               </a>
               <p className="ft-desc">
                 We&apos;re a digital-first agency that transforms bold ideas into measurable growth. Strategy, design, and technology � all under one roof.

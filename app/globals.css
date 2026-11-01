@@ -165,3 +165,41 @@
 .accordion-collapse.show {
   display: block;
 }
+
+/* ==================== LUXURY LOGO STYLING & ANIMATIONS ==================== */
+.navbar-brand img,
+.ft-logo img {
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
+}
+
+.navbar-brand:hover img,
+.ft-logo:hover img {
+  transform: scale(1.08) rotate(1.5deg);
+  filter: drop-shadow(0 0 20px rgba(223, 193, 93, 0.85)) !important;
+}
+
+@keyframes emblemFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulseGoldGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(223, 193, 93, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 35px rgba(223, 193, 93, 0.85));
+  }
+}
+
+.hero-emblem-card {
+  animation: emblemFloat 6s ease-in-out infinite;
+}
+
+.hero-emblem-img {
+  animation: pulseGoldGlow 4s ease-in-out infinite;
+}

@@ -134,8 +134,40 @@ export default function ReviewsPage() {
   return (
     <div style={{ minHeight: "100vh", padding: "80px 20px" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-        {/* Navigation Breadcrumb */}
-        <div style={{ marginBottom: "28px" }}>
+        {/* Navigation Header */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "44px", flexWrap: "wrap", gap: "16px" }}>
+          <Link
+            href="/"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "12px",
+              textDecoration: "none",
+            }}
+          >
+            <img
+              src="/img/novity-emblem.png"
+              alt="Novity Tech Emblem"
+              style={{
+                height: "48px",
+                width: "48px",
+                objectFit: "contain",
+                filter: "drop-shadow(0 0 14px rgba(223, 193, 93, 0.6))",
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "'Phudu', cursive",
+                fontWeight: 900,
+                fontSize: "1.45rem",
+                letterSpacing: "0.08em",
+                color: "#ffffff",
+              }}
+            >
+              NOVITY <span style={{ color: "var(--primary)" }}>TECH</span>
+            </span>
+          </Link>
+
           <Link
             href="/"
             style={{
@@ -145,9 +177,13 @@ export default function ReviewsPage() {
               color: "var(--primary)",
               fontWeight: 600,
               fontSize: "0.9rem",
+              padding: "8px 18px",
+              borderRadius: "30px",
+              background: "rgba(223, 193, 93, 0.1)",
+              border: "1px solid rgba(223, 193, 93, 0.25)",
             }}
           >
-            <i className="fas fa-arrow-left"></i> Back to Novity Tech Home
+            <i className="fas fa-arrow-left"></i> Back to Home
           </Link>
         </div>
 
