@@ -112,8 +112,8 @@ export default function Footer() {
               <a href="mailto:novitytechh@gmail.com" style={{ color: "var(--primary)", textDecoration: "none", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
                 <i className="fas fa-envelope"></i> novitytechh@gmail.com
               </a>
-              <a href="tel:03291013649" style={{ color: "var(--text2)", textDecoration: "none", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                <i className="fas fa-phone"></i> 03291013649
+              <a href="tel:+923291013649" style={{ color: "var(--text2)", textDecoration: "none", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <i className="fas fa-phone"></i> +92 329 1013649
               </a>
               <div style={{ color: "var(--text3)", fontSize: "0.82rem", lineHeight: "1.5" }}>
                 <i className="fas fa-clock" style={{ marginRight: "6px" }}></i>

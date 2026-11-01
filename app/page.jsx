@@ -1154,7 +1154,7 @@ export default function Home() {
                 <div className="ci-ico"><i className="fas fa-phone"></i></div>
                 <div>
                   <div className="ci-lbl">Call Us</div>
-                  <div className="ci-val"><a href="tel:03291013649">03291013649</a></div>
+                  <div className="ci-val"><a href="tel:+923291013649">+92 329 1013649</a></div>
                 </div>
               </div>
               <div className="ci-item">
@@ -1222,7 +1222,7 @@ export default function Home() {
                         className="form-control"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="03291013649"
+                        placeholder="+92 329 1013649"
                       />
                     </div>
                     <div className="col-md-6">
@@ -1336,13 +1336,13 @@ export default function Home() {
                   Start Free Consultation <i className="fas fa-arrow-right"></i>
                 </a>
                 <a
-                  href="tel:03291013649"
+                  href="tel:+923291013649"
                   className="btn-hs"
                   style={{ borderColor: "rgba(255,255,255,.25)" }}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
-                  <i className="fas fa-phone"></i> Call Us: 03291013649
+                  <i className="fas fa-phone"></i> Call Us: +92 329 1013649
                 </a>
               </div>
             </div>

@@ -315,8 +315,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <div style={{ fontSize: "0.75rem", color: "var(--text3)", textTransform: "uppercase" }}>Phone Direct</div>
-                        <a href="tel:03291013649" style={{ color: "var(--text)", fontWeight: 700, textDecoration: "none" }}>
-                          03291013649
+                        <a href="tel:+923291013649" style={{ color: "var(--text)", fontWeight: 700, textDecoration: "none" }}>
+                          +92 329 1013649
                         </a>
                       </div>
                     </div>
