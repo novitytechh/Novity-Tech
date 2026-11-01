@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { COMPANY_DESCRIPTION } from "@/lib/teamData";
 
 export default function AboutPage() {
   const values = [
@@ -58,7 +59,7 @@ export default function AboutPage() {
                   marginBottom: "28px",
                 }}
               >
-                Founded in 2023, Novity Tech blends bold creative thinking with precision software engineering. We believe great work happens at the intersection of aesthetic distinction and technical resilience — where innovative ideas translate into measurable enterprise growth.
+                {COMPANY_DESCRIPTION.full}
               </p>
               <div className="d-flex gap-3 flex-wrap">
                 <Link href="/contact" className="btn-p">
@@ -149,7 +150,7 @@ export default function AboutPage() {
               Ready to elevate your digital presence?
             </h3>
             <p style={{ color: "var(--text2)", maxWidth: "600px", margin: "0 auto 28px", fontSize: "1.05rem" }}>
-              Partner with Novity Tech to build high-performance web systems and AI applications engineered for measurable growth.
+              Partner with Novity Tech in Gujranwala, Pakistan to build high-performance web systems and AI applications engineered for measurable growth.
             </p>
             <Link href="/contact" className="btn-p">
               Schedule Free Consultation <i className="fas fa-arrow-right"></i>

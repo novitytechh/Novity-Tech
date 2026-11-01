@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { COMPANY_DESCRIPTION } from "@/lib/teamData";
 
 export default function Footer() {
   const openCookieSettings = (e) => {
@@ -56,7 +57,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="ft-desc" style={{ color: "var(--text2)", fontSize: "0.92rem", lineHeight: "1.8", maxWidth: "340px" }}>
-              A digital-first creative engineering agency that transforms bold ideas into scalable enterprise architectures and high-growth digital platforms.
+              {COMPANY_DESCRIPTION.short}
             </p>
             <div className="ft-soc d-flex gap-2 mt-4">
               <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
@@ -103,7 +104,7 @@ export default function Footer() {
               Start a Conversation
             </h5>
             <p style={{ color: "var(--text2)", fontSize: "0.88rem", lineHeight: "1.7" }}>
-              Ready to engineer your next digital platform? Reach out directly to our engineering leads.
+              Ready to engineer your next digital platform? Reach out directly to our engineering leads in Gujranwala, Pakistan.
             </p>
             <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
               <div style={{ color: "var(--text2)", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
