@@ -12,7 +12,6 @@ export default function ContactPage() {
     email: "",
     company: "",
     service: "web-application-development",
-    budget: "$25K - $50K",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
@@ -196,34 +195,6 @@ export default function ContactPage() {
                             </option>
                           ))}
                         </select>
-                      </div>
-                    </div>
-
-                    <div className="mb-4">
-                      <label style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--text)", marginBottom: "8px", display: "block" }}>
-                        Estimated Budget
-                      </label>
-                      <div className="d-flex flex-wrap gap-2">
-                        {["< $15K", "$15K - $30K", "$30K - $60K", "$60K - $120K", "$120K+"].map((b) => (
-                          <button
-                            type="button"
-                            key={b}
-                            onClick={() => setFormState({ ...formState, budget: b })}
-                            style={{
-                              padding: "8px 16px",
-                              borderRadius: "10px",
-                              border: formState.budget === b ? "1px solid var(--primary)" : "1px solid var(--border)",
-                              background: formState.budget === b ? "rgba(223, 193, 93, 0.15)" : "var(--bg)",
-                              color: formState.budget === b ? "var(--primary)" : "var(--text2)",
-                              fontSize: "0.85rem",
-                              fontWeight: 600,
-                              cursor: "pointer",
-                              transition: "all 0.2s ease",
-                            }}
-                          >
-                            {b}
-                          </button>
-                        ))}
                       </div>
                     </div>
 
