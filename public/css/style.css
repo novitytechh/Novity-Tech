@@ -1,4 +1,4 @@
-﻿/* ==================== CSS VARIABLES: LUXURY GOLD & BLACK ==================== */
+/* ==================== CSS VARIABLES: LUXURY GOLD & BLACK ==================== */
 :root {
   --primary: #d4af37;
   --primary-rgb: 212, 175, 55;
@@ -2140,8 +2140,9 @@ textarea.form-control {
 /* ==================== SCROLL TOP ==================== */
 #scrtop {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: 84px;
+  right: 24px;
+  left: auto;
   width: 44px;
   height: 44px;
   background: var(--primary);
@@ -2213,3 +2214,4 @@ textarea.form-control {
     font-size: 0.82rem;
   }
 }
+
