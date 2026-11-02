@@ -329,40 +329,40 @@ textarea,
   border-radius: 24px !important;
 }
 
-/* ==================== SCROLL TO TOP BUTTON DOCKING ==================== */
+/* ==================== SCROLL TO TOP BUTTON (BOTTOM CENTER) ==================== */
 #scrtop {
   position: fixed !important;
-  bottom: 84px !important; /* Floats neatly right above the chatbot toggle */
-  right: 24px !important;
-  left: auto !important;
+  bottom: 28px !important;
+  left: 50% !important;
+  right: auto !important;
   margin: 0 !important;
-  width: 44px !important;
-  height: 44px !important;
+  width: 46px !important;
+  height: 46px !important;
   border-radius: 50% !important;
   background: linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%) !important;
   color: #0b0a0e !important;
-  border: 1px solid rgba(223, 193, 93, 0.4) !important;
+  border: 1px solid rgba(223, 193, 93, 0.45) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  font-size: 1rem !important;
+  font-size: 1.05rem !important;
   cursor: pointer !important;
   z-index: 9990 !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(223, 193, 93, 0.35) !important;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px) !important;
+  transform: translateX(-50%) translateY(12px) !important;
 }
 
 #scrtop.show {
   opacity: 1 !important;
   visibility: visible !important;
-  transform: translateY(0px) !important;
+  transform: translateX(-50%) translateY(0px) !important;
 }
 
 #scrtop:hover {
-  transform: translateY(-4px) scale(1.05) !important;
+  transform: translateX(-50%) translateY(-4px) scale(1.08) !important;
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75), 0 0 30px rgba(223, 193, 93, 0.6) !important;
   color: #000 !important;
 }
