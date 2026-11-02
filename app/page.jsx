@@ -812,109 +812,151 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== TEAM ==================== */}
+      {/* ==================== TEAM & CLIENT ADVISORY ==================== */}
       <section id="team">
         <div className="container">
           <div className="row sec-hd">
-            <div className="col-lg-6">
-              <div className="sec-badge">Our Leadership & Specialists</div>
-              <h2 className="sec-title">Meet the Minds of <span>Novity Tech</span></h2>
+            <div className="col-lg-7">
+              <div className="sec-badge">Client Advisory &amp; Engineering Standards</div>
+              <h2 className="sec-title">Direct Senior Engineering With <span>Zero Middlemen</span></h2>
             </div>
-            <div className="col-lg-6 d-flex align-items-end">
+            <div className="col-lg-5 d-flex align-items-end">
               <p className="sec-desc ms-auto">
-                1 Founder, 2 Co-Founders, and 4 dedicated senior engineers and designers united by high engineering standards.
+                No account managers or junior outsourcing. You collaborate directly with principal architects who write and deploy your code.
               </p>
             </div>
           </div>
-          <div className="row g-4 justify-content-center">
-            {TEAM_MEMBERS.map((member) => (
-              <div key={member.id} className="col-lg-4 col-md-6 col-12">
-                <div
-                  className="tm-card"
-                  onClick={() => setActiveModal(member.id)}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  style={{ cursor: "pointer", height: "100%", display: "flex", flexDirection: "column" }}
+
+          {/* Master Dedicated Paragraph */}
+          <div
+            style={{
+              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.1) 0%, rgba(19, 18, 25, 0.98) 100%)",
+              border: "1px solid rgba(223, 193, 93, 0.35)",
+              borderRadius: "26px",
+              padding: "44px 36px",
+              marginBottom: "40px",
+              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.6)",
+            }}
+          >
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "6px 14px",
+                borderRadius: "100px",
+                background: "rgba(223, 193, 93, 0.12)",
+                border: "1px solid rgba(223, 193, 93, 0.3)",
+                color: "var(--primary)",
+                fontSize: "0.8rem",
+                fontWeight: 800,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                marginBottom: "20px",
+              }}
+            >
+              <i className="fas fa-certificate" /> The Novity Tech Client Commitment
+            </div>
+
+            <p
+              style={{
+                color: "var(--text)",
+                fontSize: "1.2rem",
+                lineHeight: "2",
+                fontWeight: 500,
+                margin: 0,
+              }}
+            >
+              At Novity Tech, we have intentionally eliminated the conventional agency model of sales intermediaries, account managers, and junior outsourcing. When you partner with us, you work directly with our founding architects and principal engineers who personally design your architecture, write your production code, and deploy your infrastructure. Whether you are building an enterprise Next.js full-stack platform, an autonomous AI copilot workflow, or high-availability cloud infrastructure across AWS and Kubernetes, we guarantee sub-second performance, airtight security, and 100% intellectual property ownership from day one. Every engagement begins with a complimentary architectural discovery session under a strict bilateral NDA, followed by transparent 4-to-6 week sprint milestones with fixed-price SLA agreements, weekly interactive demo videos, and shared GitHub repositories. Proudly based in Gujranwala, Pakistan, and collaborating globally, we build software with zero technical debt, predictable fixed costs, and immediate commercial impact for your business.
+            </p>
+
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "12px",
+                marginTop: "28px",
+                paddingTop: "20px",
+                borderTop: "1px solid rgba(223, 193, 93, 0.2)",
+              }}
+            >
+              {[
+                "100% Direct Architect Access",
+                "Full IP & Repository Handover",
+                "Bilateral NDA Guaranteed",
+                "Fixed-Scope Milestones & SLAs",
+                "Sub-Second Performance",
+                "Weekly Interactive Demos",
+              ].map((badge, idx) => (
+                <span
+                  key={idx}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    padding: "6px 14px",
+                    borderRadius: "10px",
+                    background: "rgba(255, 255, 255, 0.04)",
+                    border: "1px solid rgba(223, 193, 93, 0.2)",
+                    color: "var(--primary)",
+                    fontSize: "0.82rem",
+                    fontWeight: 700,
+                  }}
                 >
-                  <div
-                    className="tm-img-wrap"
-                    style={{
-                      height: "220px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      background: "linear-gradient(135deg, rgba(223, 193, 93, 0.16) 0%, rgba(19, 18, 25, 0.98) 100%)",
-                      borderBottom: "1px solid var(--border)",
-                      position: "relative",
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: "80px",
-                        height: "80px",
-                        borderRadius: "24px",
-                        background: "rgba(223, 193, 93, 0.12)",
-                        border: "1px solid rgba(223, 193, 93, 0.35)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "var(--primary)",
-                        fontSize: "2rem",
-                        marginBottom: "12px",
-                        boxShadow: "0 0 25px rgba(223, 193, 93, 0.2)",
-                      }}
-                    >
-                      <i className={`fas ${member.icon}`} />
-                    </div>
-                    <span
-                      style={{
-                        fontSize: "0.74rem",
-                        fontWeight: 800,
-                        color: "var(--primary)",
-                        letterSpacing: "0.08em",
-                        textTransform: "uppercase",
-                        padding: "3px 12px",
-                        borderRadius: "100px",
-                        background: "rgba(11, 10, 14, 0.8)",
-                        border: "1px solid rgba(223, 193, 93, 0.3)",
-                      }}
-                    >
-                      {member.badge}
-                    </span>
-                    <div className="tm-img-ov">
-                      <div className="tm-view"><i className="fas fa-arrow-right"></i></div>
-                    </div>
+                  <i className="fas fa-check" style={{ fontSize: "0.75rem" }} />
+                  {badge}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick Client Query Resolvers Grid */}
+          <div className="row g-4">
+            {[
+              {
+                icon: "fa-user-shield",
+                title: "Direct Senior Engineering",
+                desc: "Zero junior developers or non-technical intermediaries. You collaborate directly with founding architects from discovery to production deployment.",
+              },
+              {
+                icon: "fa-file-signature",
+                title: "100% IP & Code Ownership",
+                desc: "Complete legal and technical ownership of all Git repositories, infrastructure configurations, and Figma tokens upon milestone sign-off.",
+              },
+              {
+                icon: "fa-calendar-check",
+                title: "Fixed SLAs & Transparent Sprints",
+                desc: "Disciplined 2-to-4 week milestones and 4-to-6 week MVP launches with weekly recorded video demos, live staging URLs, and bilateral NDAs.",
+              },
+            ].map((q, idx) => (
+              <div key={idx} className="col-lg-4 col-md-6">
+                <div
+                  style={{
+                    background: "var(--card)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "20px",
+                    padding: "28px 24px",
+                    height: "100%",
+                  }}
+                >
+                  <div style={{ color: "var(--primary)", fontSize: "1.4rem", marginBottom: "14px" }}>
+                    <i className={`fas ${q.icon}`} />
                   </div>
-                  <div className="tm-info" style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                    <div>
-                      <h5 className="tm-name" style={{ fontSize: "1.2rem", fontWeight: 800 }}>{member.name}</h5>
-                      <div className="tm-role" style={{ fontSize: "0.8rem", color: "var(--primary)", marginBottom: "10px" }}>{member.role}</div>
-                      <p style={{ color: "var(--text2)", fontSize: "0.85rem", lineHeight: "1.6", margin: 0 }}>
-                        {member.bio}
-                      </p>
-                    </div>
-                    <div className="d-flex flex-wrap gap-1 mt-3">
-                      {member.skills.slice(0, 3).map((sk, idx) => (
-                        <span
-                          key={idx}
-                          style={{
-                            padding: "2px 8px",
-                            borderRadius: "6px",
-                            background: "rgba(255, 255, 255, 0.04)",
-                            border: "1px solid var(--border)",
-                            color: "var(--text3)",
-                            fontSize: "0.72rem",
-                          }}
-                        >
-                          {sk}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  <h4 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--text)", marginBottom: "10px" }}>
+                    {q.title}
+                  </h4>
+                  <p style={{ color: "var(--text2)", fontSize: "0.9rem", lineHeight: "1.7", margin: 0 }}>
+                    {q.desc}
+                  </p>
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-5">
+            <Link href="/team" className="btn-p">
+              Read Complete Client Advisory &amp; FAQs <i className="fas fa-arrow-right" />
+            </Link>
           </div>
         </div>
       </section>

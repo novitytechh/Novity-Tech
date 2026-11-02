@@ -4,156 +4,249 @@ import React from "react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { TEAM_MEMBERS, COMPANY_DESCRIPTION } from "@/lib/teamData";
+
+const CLIENT_QUERIES = [
+  {
+    icon: "fa-user-shield",
+    query: "Who actually builds and architects my software?",
+    answer:
+      "You work directly with our founding architects and senior engineers with zero junior delegation, sub-contracting, or non-technical account intermediaries. Your technical lead personally writes your code, architects your database, and leads every sprint demo.",
+  },
+  {
+    icon: "fa-microchip",
+    query: "What technologies and capabilities do you specialize in?",
+    answer:
+      "We engineer production-grade full-stack web applications using Next.js, React, Node.js, TypeScript, and modern PostgreSQL/Neon databases, alongside autonomous AI copilot workflows (Gemini, OpenAI RAG), cloud DevOps (AWS, Docker, Kubernetes), and bespoke luxury design systems.",
+  },
+  {
+    icon: "fa-file-signature",
+    query: "Who owns the intellectual property and code repository?",
+    answer:
+      "You retain 100% complete intellectual property ownership from day one. All clean Git repositories, automated CI/CD deployment scripts, database schemas, and documentation are handed over fully to your organization with zero vendor lock-in.",
+  },
+  {
+    icon: "fa-calendar-check",
+    query: "How do project timelines and sprint delivery work?",
+    answer:
+      "We operate on disciplined 2-to-4 week milestones and rapid 4-to-6 week MVP launches. Clients receive weekly interactive video demos, live staging environment deployments, and continuous real-time communication via dedicated Slack or Discord channels.",
+  },
+  {
+    icon: "fa-scale-balanced",
+    query: "How are pricing, contracts, and NDAs managed?",
+    answer:
+      "We execute a bilateral NDA before discussing proprietary requirements. All proposals feature transparent, milestone-based fixed pricing backed by strict service-level agreements (SLAs)—meaning zero surprise fees, zero hourly runaway, and guaranteed outcomes.",
+  },
+  {
+    icon: "fa-globe",
+    query: "Where is Novity Tech located and how do we begin?",
+    answer:
+      "Novity Tech is proudly headquartered in Gujranwala, Pakistan, collaborating with founders, venture-backed startups, and enterprise brands globally. You can schedule a complimentary architecture discovery call, call us at +92 329 1013649, or email novitytechh@gmail.com.",
+  },
+];
 
 export default function TeamPage() {
-  const team = TEAM_MEMBERS;
-
   return (
     <>
       <Navbar />
 
       <main style={{ minHeight: "100vh", paddingTop: "60px", paddingBottom: "100px" }}>
         {/* Hero Section */}
-        <div className="container text-center" style={{ marginBottom: "60px" }}>
-          <div className="sec-badge" style={{ marginBottom: "16px" }}>The Minds Behind Novity Tech</div>
+        <div className="container text-center" style={{ marginBottom: "50px" }}>
+          <div className="sec-badge" style={{ marginBottom: "16px" }}>
+            Client Guide &amp; Engineering Standards
+          </div>
           <h1
             style={{
-              fontSize: "clamp(2.5rem, 5vw, 4.2rem)",
+              fontSize: "clamp(2.4rem, 4.8vw, 4rem)",
               fontWeight: 900,
               color: "var(--text)",
               lineHeight: 1.15,
-              maxWidth: "880px",
+              maxWidth: "920px",
               margin: "0 auto 20px",
             }}
           >
-            Engineering Leadership With <span className="hl">Uncompromising Standards</span>
+            Direct Senior Engineering With <span className="hl">Zero Middlemen</span>
           </h1>
           <p
             style={{
               color: "var(--text2)",
               fontSize: "1.15rem",
-              lineHeight: "1.85",
-              maxWidth: "820px",
-              margin: "0 auto 36px",
+              lineHeight: "1.8",
+              maxWidth: "800px",
+              margin: "0 auto 10px",
             }}
           >
-            {COMPANY_DESCRIPTION.full}
+            Everything ambitious founders and enterprise leaders need to know before partnering with Novity Tech.
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="container" style={{ marginBottom: "90px" }}>
-          <div className="row g-4">
-            {team.map((member) => (
-              <div key={member.id} className="col-lg-6">
-                <div
+        {/* Dedicated Master Paragraph Section */}
+        <div className="container" style={{ marginBottom: "70px" }}>
+          <div
+            style={{
+              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.1) 0%, rgba(19, 18, 25, 0.98) 100%)",
+              border: "1px solid rgba(223, 193, 93, 0.35)",
+              borderRadius: "28px",
+              padding: "48px 40px",
+              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(223, 193, 93, 0.08)",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Top Eyebrow Tag */}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "6px 14px",
+                borderRadius: "100px",
+                background: "rgba(223, 193, 93, 0.12)",
+                border: "1px solid rgba(223, 193, 93, 0.3)",
+                color: "var(--primary)",
+                fontSize: "0.8rem",
+                fontWeight: 800,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                marginBottom: "20px",
+              }}
+            >
+              <i className="fas fa-certificate" /> The Novity Tech Client Commitment
+            </div>
+
+            {/* The Dedicated Master Paragraph */}
+            <p
+              style={{
+                color: "var(--text)",
+                fontSize: "1.22rem",
+                lineHeight: "2",
+                fontWeight: 500,
+                margin: 0,
+                letterSpacing: "0.01em",
+              }}
+            >
+              At Novity Tech, we have intentionally eliminated the conventional agency model of sales intermediaries, account managers, and junior outsourcing. When you partner with us, you work directly with our founding architects and principal engineers who personally design your architecture, write your production code, and deploy your infrastructure. Whether you are building an enterprise Next.js full-stack platform, an autonomous AI copilot workflow, or high-availability cloud infrastructure across AWS and Kubernetes, we guarantee sub-second performance, airtight security, and 100% intellectual property ownership from day one. Every engagement begins with a complimentary architectural discovery session under a strict bilateral NDA, followed by transparent 4-to-6 week sprint milestones with fixed-price SLA agreements, weekly interactive demo videos, and shared GitHub repositories. Proudly based in Gujranwala, Pakistan, and collaborating globally, we build software with zero technical debt, predictable fixed costs, and immediate commercial impact for your business.
+            </p>
+
+            {/* Highlight Badges */}
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "12px",
+                marginTop: "32px",
+                paddingTop: "24px",
+                borderTop: "1px solid rgba(223, 193, 93, 0.2)",
+              }}
+            >
+              {[
+                "100% Direct Architect Access",
+                "Full IP & Repository Handover",
+                "Bilateral NDA Guaranteed",
+                "Fixed-Scope Milestones & SLAs",
+                "Sub-Second Performance",
+                "Weekly Interactive Demos",
+              ].map((badge, idx) => (
+                <span
+                  key={idx}
                   style={{
-                    background: "var(--card)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "24px",
-                    padding: "32px",
-                    display: "flex",
-                    gap: "24px",
-                    alignItems: "flex-start",
-                    flexWrap: "wrap",
-                    height: "100%",
-                    boxShadow: "0 16px 40px rgba(0,0,0,0.4)",
-                    position: "relative",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    padding: "6px 14px",
+                    borderRadius: "10px",
+                    background: "rgba(255, 255, 255, 0.04)",
+                    border: "1px solid rgba(223, 193, 93, 0.2)",
+                    color: "var(--primary)",
+                    fontSize: "0.82rem",
+                    fontWeight: 700,
                   }}
                 >
-                  {/* Luxury Monogram Avatar / Badge */}
-                  <div
-                    style={{
-                      width: "100px",
-                      height: "100px",
-                      borderRadius: "20px",
-                      background: "linear-gradient(135deg, rgba(223, 193, 93, 0.18) 0%, rgba(19, 18, 25, 0.95) 100%)",
-                      border: "1px solid rgba(223, 193, 93, 0.35)",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "var(--primary)",
-                      boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <i className={`fas ${member.icon}`} style={{ fontSize: "2rem", marginBottom: "4px" }} />
-                    <span style={{ fontSize: "0.72rem", fontWeight: 800, letterSpacing: "0.08em" }}>
-                      {member.badge}
-                    </span>
-                  </div>
-
-                  <div style={{ flex: 1, minWidth: "240px" }}>
-                    <div style={{ display: "inline-block", padding: "3px 10px", borderRadius: "100px", background: "rgba(223, 193, 93, 0.1)", border: "1px solid rgba(223, 193, 93, 0.3)", color: "var(--primary)", fontSize: "0.74rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "8px" }}>
-                      {member.badge}
-                    </div>
-                    <div style={{ color: "var(--text3)", fontSize: "0.82rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em" }}>
-                      {member.role}
-                    </div>
-                    <h3 style={{ fontSize: "1.45rem", fontWeight: 800, color: "var(--text)", marginTop: "4px", marginBottom: "12px" }}>
-                      {member.name}
-                    </h3>
-                    <p style={{ color: "var(--text2)", fontSize: "0.92rem", lineHeight: "1.7", marginBottom: "16px" }}>
-                      {member.bio}
-                    </p>
-                    <div className="d-flex flex-wrap gap-2">
-                      {member.skills.map((s, i) => (
-                        <span
-                          key={i}
-                          style={{
-                            padding: "4px 11px",
-                            borderRadius: "8px",
-                            background: "rgba(255, 255, 255, 0.04)",
-                            color: "var(--text2)",
-                            fontSize: "0.76rem",
-                            fontWeight: 600,
-                            border: "1px solid var(--border)",
-                          }}
-                        >
-                          {s}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+                  <i className="fas fa-check" style={{ fontSize: "0.75rem" }} />
+                  {badge}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Engineering Philosophy */}
+        {/* Clear All Client Queries Section */}
         <div className="container" style={{ marginBottom: "80px" }}>
-          <div className="text-center" style={{ maxWidth: "700px", margin: "0 auto 50px" }}>
-            <div className="sec-badge">Engineering Culture</div>
-            <h2 className="sec-title">How Our Team <span>Works With You</span></h2>
+          <div className="text-center" style={{ maxWidth: "750px", margin: "0 auto 46px" }}>
+            <div className="sec-badge">Client Knowledge Base</div>
+            <h2 className="sec-title">
+              Clear Answers To <span>All Your Queries</span>
+            </h2>
+            <p style={{ color: "var(--text2)", fontSize: "1.05rem", lineHeight: "1.7" }}>
+              Straightforward answers to the most common questions clients have before starting their software engagement.
+            </p>
           </div>
 
           <div className="row g-4">
-            {[
-              { title: "Direct Architect Access", desc: "No layers of account managers. You collaborate directly with the engineers and designers building your software." },
-              { title: "Full Code Ownership", desc: "Clean Git repositories, automated CI/CD scripts, and comprehensive architectural documentation delivered directly to your organization." },
-              { title: "Transparent Sprints", desc: "Weekly demo videos, live deployment staging environments, and daily Slack/Discord alignment." },
-            ].map((item, i) => (
-              <div key={i} className="col-lg-4 col-md-6">
+            {CLIENT_QUERIES.map((item, idx) => (
+              <div key={idx} className="col-lg-4 col-md-6">
                 <div
                   style={{
                     background: "var(--card)",
                     border: "1px solid var(--border)",
-                    borderRadius: "var(--r)",
+                    borderRadius: "22px",
                     padding: "32px 26px",
                     height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.35)",
+                    transition: "transform 0.25s ease, border-color 0.25s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-4px)";
+                    e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.4)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.borderColor = "var(--border)";
                   }}
                 >
-                  <div style={{ color: "var(--primary)", fontSize: "1.5rem", marginBottom: "14px" }}>
-                    <i className="fas fa-check-circle" />
+                  <div
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "14px",
+                      background: "rgba(223, 193, 93, 0.12)",
+                      border: "1px solid rgba(223, 193, 93, 0.3)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--primary)",
+                      fontSize: "1.25rem",
+                      marginBottom: "18px",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <i className={`fas ${item.icon}`} />
                   </div>
-                  <h4 style={{ fontSize: "1.2rem", fontWeight: 800, color: "var(--text)", marginBottom: "10px" }}>
-                    {item.title}
-                  </h4>
-                  <p style={{ color: "var(--text2)", fontSize: "0.9rem", lineHeight: "1.7", margin: 0 }}>
-                    {item.desc}
+
+                  <h3
+                    style={{
+                      fontSize: "1.15rem",
+                      fontWeight: 800,
+                      color: "var(--text)",
+                      lineHeight: "1.4",
+                      marginBottom: "12px",
+                    }}
+                  >
+                    {item.query}
+                  </h3>
+
+                  <p
+                    style={{
+                      color: "var(--text2)",
+                      fontSize: "0.92rem",
+                      lineHeight: "1.75",
+                      margin: 0,
+                      flex: 1,
+                    }}
+                  >
+                    {item.answer}
                   </p>
                 </div>
               </div>
@@ -161,11 +254,11 @@ export default function TeamPage() {
           </div>
         </div>
 
-        {/* CTA */}
+        {/* CTA Section */}
         <div className="container">
           <div
             style={{
-              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.15) 0%, rgba(11, 10, 14, 0.95) 100%)",
+              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.16) 0%, rgba(11, 10, 14, 0.96) 100%)",
               border: "1px solid rgba(223, 193, 93, 0.35)",
               borderRadius: "28px",
               padding: "60px 40px",
@@ -173,14 +266,27 @@ export default function TeamPage() {
             }}
           >
             <h3 style={{ fontSize: "2.2rem", fontWeight: 800, color: "var(--text)", marginBottom: "16px" }}>
-              Ready to work with our technical team?
+              Ready to Discuss Your Product Architecture?
             </h3>
-            <p style={{ color: "var(--text2)", maxWidth: "600px", margin: "0 auto 28px", fontSize: "1.05rem" }}>
-              Schedule a discovery session with our engineering leadership in Gujranwala, Pakistan to discuss requirements, architecture, and sprint timelines.
+            <p style={{ color: "var(--text2)", maxWidth: "620px", margin: "0 auto 28px", fontSize: "1.05rem" }}>
+              Book an architectural discovery session with our engineering leads in Gujranwala, Pakistan. We will evaluate requirements, recommend the ideal tech stack, and deliver a fixed-scope milestone timeline.
             </p>
-            <Link href="/contact" className="btn-p">
-              Schedule Architecture Call <i className="fas fa-arrow-right"></i>
-            </Link>
+            <div style={{ display: "flex", justifyContent: "center", gap: "16px", flexWrap: "wrap" }}>
+              <Link href="/contact" className="btn-p">
+                Schedule Architecture Call <i className="fas fa-arrow-right" />
+              </Link>
+              <a
+                href="tel:+923291013649"
+                className="btn-p"
+                style={{
+                  background: "transparent",
+                  border: "1px solid rgba(223, 193, 93, 0.4)",
+                  color: "var(--primary)",
+                }}
+              >
+                Call +92 329 1013649
+              </a>
+            </div>
           </div>
         </div>
       </main>
