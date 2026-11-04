@@ -95,6 +95,7 @@ export default function Footer() {
               <li><Link href="/reviews" style={{ color: "var(--text2)", textDecoration: "none" }}>Client Reviews</Link></li>
               <li><Link href="/blog" style={{ color: "var(--text2)", textDecoration: "none" }}>Insights & Blog</Link></li>
               <li><Link href="/contact" style={{ color: "var(--text2)", textDecoration: "none" }}>Contact</Link></li>
+              <li><Link href="/email-card" style={{ color: "var(--primary)", textDecoration: "none" }}>Email Signature Card</Link></li>
             </ul>
           </div>
 

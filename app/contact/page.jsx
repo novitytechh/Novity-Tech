@@ -14,11 +14,34 @@ export default function ContactPage() {
     service: "web-application-development",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to send consultation inquiry.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setErrorMessage(err.message || "Failed to deliver message. Please contact us directly at novitytechh@gmail.com.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -221,8 +244,29 @@ export default function ContactPage() {
                       />
                     </div>
 
-                    <button type="submit" className="btn-p" style={{ width: "100%", padding: "14px", fontSize: "1rem" }}>
-                      Submit Inquiry & Request NDA <i className="fas fa-arrow-right ms-2"></i>
+                    {errorMessage && (
+                      <div className="mb-3 p-3 rounded-2 text-danger" style={{ background: "rgba(220, 53, 69, 0.1)", border: "1px solid rgba(220, 53, 69, 0.3)", fontSize: "0.85rem" }}>
+                        <i className="fas fa-exclamation-triangle me-2" />
+                        {errorMessage}
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="btn-p"
+                      style={{ width: "100%", padding: "14px", fontSize: "1rem", opacity: loading ? 0.7 : 1, cursor: loading ? "not-allowed" : "pointer" }}
+                    >
+                      {loading ? (
+                        <>
+                          <i className="fas fa-spinner fa-spin me-2" />
+                          Sending via Resend...
+                        </>
+                      ) : (
+                        <>
+                          Submit Inquiry & Request NDA <i className="fas fa-arrow-right ms-2"></i>
+                        </>
+                      )}
                     </button>
                   </form>
                 )}
