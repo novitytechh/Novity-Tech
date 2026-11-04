@@ -5,9 +5,10 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-// Public fast CDN URL of the emblem from the official Novity-Tech repository.
+// Public fast CDN URLs from the official Novity-Tech repository.
 // Keeps total signature size ~3,000 characters (well within Gmail's 10,000-character limit).
 const OFFICIAL_EMBLEM_URL = "https://raw.githubusercontent.com/novitytechh/Novity-Tech/main/public/img/novity-emblem.png";
+const OFFICIAL_FULL_LOGO_URL = "https://raw.githubusercontent.com/novitytechh/Novity-Tech/main/public/img/novity-logo-full.jpg";
 
 export default function EmailCardPage() {
   const [themeMode, setThemeMode] = useState("dark"); // "dark" | "light"
@@ -36,8 +37,8 @@ export default function EmailCardPage() {
     linkedin: "https://linkedin.com",
     twitter: "https://x.com",
     github: "https://github.com/novitytechh",
-    avatarType: "emblem", // 'emblem' | 'url'
-    avatarUrl: OFFICIAL_EMBLEM_URL,
+    avatarType: "fullLogo", // 'fullLogo' | 'emblem'
+    avatarUrl: OFFICIAL_FULL_LOGO_URL,
   });
 
   // Build bulletproof HTML table for email clients - Lightweight & Gmail compliant (<4KB)
@@ -55,26 +56,33 @@ export default function EmailCardPage() {
     const iconBg = isDark ? "#1c1a24" : "#f4efe4";
     const iconBorder = isDark ? "rgba(223, 193, 93, 0.45)" : "#dfc15d";
 
-    const imageSource = cardData.avatarType === "emblem" ? OFFICIAL_EMBLEM_URL : cardData.avatarUrl;
+    const isFullLogo = cardData.avatarType === "fullLogo";
+    const imageSource = isFullLogo
+      ? OFFICIAL_FULL_LOGO_URL
+      : cardData.avatarType === "emblem"
+      ? OFFICIAL_EMBLEM_URL
+      : cardData.avatarUrl;
 
     return `
 <table cellpadding="0" cellspacing="0" border="0" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: ${bg}; ${withBorder ? `border: ${cardBorder};` : ''} border-radius: 14px; max-width: 530px; width: 100%; box-shadow: 0 10px 25px rgba(0,0,0,0.25); overflow: hidden; color: ${textColor}; margin: 8px 0;">
   <tr>
-    <td style="padding: 22px 18px 22px 22px; vertical-align: top; width: 135px; text-align: center; border-right: 1px solid ${dividerColor};">
-      <!-- Emblem (No Box Border, Globally CDN Hosted) -->
-      <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto 10px auto;">
+    <td style="padding: 22px 18px 22px 22px; vertical-align: top; width: ${isFullLogo ? '145px' : '135px'}; text-align: center; border-right: 1px solid ${dividerColor};">
+      <!-- Official Brand Logo -->
+      <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto ${isFullLogo ? '14px' : '10px'} auto;">
         <tr>
-          <td style="width: 74px; height: 74px; text-align: center; vertical-align: middle; padding: 0; border: none; background: transparent;">
-            <img src="${imageSource}" alt="${cardData.company}" width="70" height="70" style="border-radius: 50%; display: block; object-fit: contain; width: 70px; height: 70px; border: none; outline: none; margin: 0 auto;" />
+          <td style="${isFullLogo ? 'width: 105px; text-align: center; vertical-align: middle; padding: 0; border: none; background: transparent;' : 'width: 74px; height: 74px; text-align: center; vertical-align: middle; padding: 0; border: none; background: transparent;'}">
+            <img src="${imageSource}" alt="${cardData.company}" width="${isFullLogo ? 100 : 70}" ${isFullLogo ? '' : 'height="70"'} style="${isFullLogo ? 'border-radius: 10px; display: block; object-fit: contain; width: 100px; height: auto; max-height: 125px; border: none; outline: none; margin: 0 auto;' : 'border-radius: 50%; display: block; object-fit: contain; width: 70px; height: 70px; border: none; outline: none; margin: 0 auto;'}" />
           </td>
         </tr>
       </table>
 
+      ${!isFullLogo ? `
       <!-- Company Wordmark -->
       <div style="font-weight: 800; font-size: 13px; letter-spacing: 1.8px; text-transform: uppercase; line-height: 1.2; margin-bottom: 10px;">
         <span style="color: ${logoNovityColor};">NOVITY</span>
         <span style="color: ${primaryGold};"> TECH</span>
       </div>
+      ` : ''}
 
       <!-- Social Media Badges -->
       <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
@@ -321,6 +329,51 @@ export default function EmailCardPage() {
                       }}
                     >
                       Light Gold
+                    </button>
+                  </div>
+                </div>
+
+                {/* Logo Display Style Toggle */}
+                <div className="mb-3 p-2 rounded-3" style={{ background: "var(--bg2)", border: "1px solid var(--border)" }}>
+                  <label style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--primary)", marginBottom: "6px", display: "block" }}>
+                    <i className="fas fa-image me-1" /> Brand Logo Presentation
+                  </label>
+                  <div style={{ display: "flex", gap: "6px" }}>
+                    <button
+                      type="button"
+                      onClick={() => setCardData({ ...cardData, avatarType: "fullLogo" })}
+                      style={{
+                        flex: 1,
+                        background: cardData.avatarType === "fullLogo" ? "var(--primary)" : "transparent",
+                        color: cardData.avatarType === "fullLogo" ? "#000" : "var(--text2)",
+                        border: cardData.avatarType === "fullLogo" ? "1px solid var(--primary)" : "1px solid var(--border)",
+                        borderRadius: "8px",
+                        padding: "6px 10px",
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        transition: "all 0.2s ease",
+                      }}
+                    >
+                      Full 3D Artwork
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCardData({ ...cardData, avatarType: "emblem" })}
+                      style={{
+                        flex: 1,
+                        background: cardData.avatarType === "emblem" ? "var(--primary)" : "transparent",
+                        color: cardData.avatarType === "emblem" ? "#000" : "var(--text2)",
+                        border: cardData.avatarType === "emblem" ? "1px solid var(--primary)" : "1px solid var(--border)",
+                        borderRadius: "8px",
+                        padding: "6px 10px",
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        transition: "all 0.2s ease",
+                      }}
+                    >
+                      Winged Emblem
                     </button>
                   </div>
                 </div>
