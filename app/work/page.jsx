@@ -160,9 +160,9 @@ export default function WorkPage() {
                                 style={{
                                   padding: "4px 10px",
                                   borderRadius: "8px",
-                                  background: "rgba(255, 255, 255, 0.05)",
+                                  background: "var(--pill-bg)",
                                   border: "1px solid var(--border)",
-                                  color: "var(--text3)",
+                                  color: "var(--text2)",
                                   fontSize: "0.76rem",
                                   fontWeight: 600,
                                 }}
@@ -228,9 +228,8 @@ export default function WorkPage() {
         {/* Bottom CTA */}
         <div className="container">
           <div
+            className="brand-banner-block"
             style={{
-              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.15) 0%, rgba(11, 10, 14, 0.95) 100%)",
-              border: "1px solid rgba(223, 193, 93, 0.35)",
               borderRadius: "28px",
               padding: "60px 40px",
               textAlign: "center",

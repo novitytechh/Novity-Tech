@@ -44,7 +44,7 @@ export default function Footer() {
                   gap: "6px",
                 }}
               >
-                <span style={{ color: "#ffffff" }}>NOVITY</span>
+                <span style={{ color: "var(--text)" }}>NOVITY</span>
                 <span
                   style={{
                     background: "linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%)",
@@ -69,7 +69,7 @@ export default function Footer() {
 
           {/* Core Services */}
           <div className="col-lg-3 col-md-6">
-            <h5 className="ft-col-title" style={{ color: "#ffffff", fontWeight: 700, fontSize: "1.05rem", marginBottom: "22px" }}>
+            <h5 className="ft-col-title" style={{ color: "var(--text)", fontWeight: 700, fontSize: "1.05rem", marginBottom: "22px" }}>
               Core Capabilities
             </h5>
             <ul className="ft-links" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -84,7 +84,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="col-lg-2 col-md-6">
-            <h5 className="ft-col-title" style={{ color: "#ffffff", fontWeight: 700, fontSize: "1.05rem", marginBottom: "22px" }}>
+            <h5 className="ft-col-title" style={{ color: "var(--text)", fontWeight: 700, fontSize: "1.05rem", marginBottom: "22px" }}>
               Company
             </h5>
             <ul className="ft-links" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -101,7 +101,7 @@ export default function Footer() {
 
           {/* Contact & Consultation */}
           <div className="col-lg-3 col-md-6">
-            <h5 className="ft-col-title" style={{ color: "#ffffff", fontWeight: 700, fontSize: "1.05rem", marginBottom: "22px" }}>
+            <h5 className="ft-col-title" style={{ color: "var(--text)", fontWeight: 700, fontSize: "1.05rem", marginBottom: "22px" }}>
               Start a Conversation
             </h5>
             <p style={{ color: "var(--text2)", fontSize: "0.88rem", lineHeight: "1.7" }}>

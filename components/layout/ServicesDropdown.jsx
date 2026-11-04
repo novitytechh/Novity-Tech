@@ -159,6 +159,7 @@ export default function ServicesDropdown({ isOpen, onClose }) {
       }}
     >
       <div
+        className="services-mega-menu"
         style={{
           position: "relative",
           borderRadius: "20px",
@@ -378,6 +379,7 @@ export default function ServicesDropdown({ isOpen, onClose }) {
 
         {/* Bottom Bar Call-to-Action */}
         <div
+          className="smm-bottom-bar"
           style={{
             position: "relative",
             zIndex: 1,

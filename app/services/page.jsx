@@ -308,9 +308,8 @@ export default function ServicesPage() {
         {/* Bottom CTA */}
         <div className="container">
           <div
+            className="brand-banner-block"
             style={{
-              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.15) 0%, rgba(11, 10, 14, 0.95) 100%)",
-              border: "1px solid rgba(223, 193, 93, 0.35)",
               borderRadius: "28px",
               padding: "60px 40px",
               textAlign: "center",

@@ -432,28 +432,27 @@ export default function ReviewsPage() {
 
         {/* CTA Bottom Banner */}
         <div
+          className="brand-banner-block"
           style={{
-            background: "linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%)",
-            color: "#fff",
             borderRadius: "24px",
             padding: "50px 40px",
             textAlign: "center",
           }}
         >
-          <h2 style={{ fontSize: "2.4rem", fontWeight: 800, color: "#fff", marginBottom: "16px" }}>
+          <h2 style={{ fontSize: "2.4rem", fontWeight: 800, color: "var(--text)", marginBottom: "16px" }}>
             Ready to Build Your Next Digital Product?
           </h2>
-          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "1.1rem", maxWidth: "600px", margin: "0 auto 32px" }}>
+          <p style={{ color: "var(--text2)", fontSize: "1.1rem", maxWidth: "600px", margin: "0 auto 32px" }}>
             Book a discovery call with our engineering leadership to architect your vision with guaranteed sprint delivery.
           </p>
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/#contact" className="btn-p" style={{ padding: "14px 32px", fontSize: "0.95rem" }}>
+            <Link href="/contact" className="btn-p" style={{ padding: "14px 32px", fontSize: "0.95rem" }}>
               Start a Project <i className="fas fa-arrow-right ms-2" />
             </Link>
             <a
               href="mailto:novitytechh@gmail.com"
               className="btn-hs"
-              style={{ borderColor: "rgba(255,255,255,0.3)", color: "#fff", padding: "14px 28px" }}
+              style={{ borderColor: "var(--border)", color: "var(--text)", padding: "14px 28px" }}
             >
               <i className="fas fa-envelope me-2" /> novitytechh@gmail.com
             </a>

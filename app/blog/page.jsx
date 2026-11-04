@@ -195,7 +195,8 @@ export default function BlogPage() {
                               fontSize: "0.72rem",
                               padding: "2px 8px",
                               borderRadius: "6px",
-                              background: "rgba(255,255,255,0.06)",
+                              background: "var(--pill-bg)",
+                              border: "1px solid var(--border)",
                               color: "var(--text2)",
                             }}
                           >
@@ -221,9 +222,8 @@ export default function BlogPage() {
         {/* CTA */}
         <div className="container">
           <div
+            className="brand-banner-block"
             style={{
-              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.15) 0%, rgba(11, 10, 14, 0.95) 100%)",
-              border: "1px solid rgba(223, 193, 93, 0.35)",
               borderRadius: "28px",
               padding: "60px 40px",
               textAlign: "center",
