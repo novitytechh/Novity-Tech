@@ -83,10 +83,13 @@ export default function TeamPage() {
         {/* Dedicated Master Paragraph Section */}
         <div className="container" style={{ marginBottom: "70px" }}>
           <div
-            className="brand-banner-block"
+            className="shaded-banner-block"
             style={{
+              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.1) 0%, rgba(19, 18, 25, 0.98) 100%)",
+              border: "1px solid rgba(223, 193, 93, 0.35)",
               borderRadius: "28px",
               padding: "48px 40px",
+              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(223, 193, 93, 0.08)",
               position: "relative",
               overflow: "hidden",
             }}
@@ -134,7 +137,7 @@ export default function TeamPage() {
                 gap: "12px",
                 marginTop: "32px",
                 paddingTop: "24px",
-                borderTop: "1px solid var(--border)",
+                borderTop: "1px solid rgba(223, 193, 93, 0.2)",
               }}
             >
               {[
@@ -147,7 +150,19 @@ export default function TeamPage() {
               ].map((badge, idx) => (
                 <span
                   key={idx}
-                  className="brand-pill-badge"
+                  className="shaded-badge"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    padding: "6px 14px",
+                    borderRadius: "10px",
+                    background: "rgba(255, 255, 255, 0.04)",
+                    border: "1px solid rgba(223, 193, 93, 0.2)",
+                    color: "var(--primary)",
+                    fontSize: "0.82rem",
+                    fontWeight: 700,
+                  }}
                 >
                   <i className="fas fa-check" style={{ fontSize: "0.75rem" }} />
                   {badge}
@@ -244,8 +259,10 @@ export default function TeamPage() {
         {/* CTA Section */}
         <div className="container">
           <div
-            className="brand-banner-block"
+            className="shaded-banner-block"
             style={{
+              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.16) 0%, rgba(11, 10, 14, 0.96) 100%)",
+              border: "1px solid rgba(223, 193, 93, 0.35)",
               borderRadius: "28px",
               padding: "60px 40px",
               textAlign: "center",

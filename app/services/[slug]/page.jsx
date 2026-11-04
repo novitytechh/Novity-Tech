@@ -262,7 +262,7 @@ export default function ServiceDetailPage() {
                         style={{
                           padding: "6px 14px",
                           borderRadius: "10px",
-                          background: "var(--pill-bg)",
+                          background: "rgba(255, 255, 255, 0.06)",
                           border: "1px solid var(--border)",
                           color: "var(--text)",
                           fontSize: "0.82rem",
@@ -364,8 +364,10 @@ export default function ServiceDetailPage() {
         {/* Bottom CTA */}
         <div className="container">
           <div
-            className="brand-banner-block"
+            className="shaded-banner-block"
             style={{
+              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.15) 0%, rgba(11, 10, 14, 0.95) 100%)",
+              border: "1px solid rgba(223, 193, 93, 0.35)",
               borderRadius: "28px",
               padding: "60px 40px",
               textAlign: "center",

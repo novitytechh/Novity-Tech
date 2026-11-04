@@ -412,12 +412,15 @@ export default function Home() {
                 />
 
                 <div
-                  className="hero-emblem-card brand-banner-block"
+                  className="hero-emblem-card"
                   style={{
                     position: "relative",
                     zIndex: 1,
                     padding: "36px 32px",
                     borderRadius: "28px",
+                    background: "linear-gradient(145deg, rgba(24, 22, 32, 0.88) 0%, rgba(11, 10, 14, 0.96) 100%)",
+                    border: "1px solid rgba(223, 193, 93, 0.38)",
+                    boxShadow: "0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(223, 193, 93, 0.2)",
                     backdropFilter: "blur(14px)",
                     textAlign: "center",
                   }}
@@ -434,13 +437,12 @@ export default function Home() {
                   />
                   <div style={{ marginTop: "18px" }}>
                     <div
-                      className="emblem-title"
                       style={{
                         fontFamily: "'Phudu', cursive",
                         fontSize: "1.55rem",
                         fontWeight: 900,
                         letterSpacing: "0.14em",
-                        color: "var(--text)",
+                        color: "#f8f6f0",
                       }}
                     >
                       NOVITY <span style={{ color: "var(--primary)" }}>TECH</span>
@@ -827,11 +829,14 @@ export default function Home() {
 
           {/* Master Dedicated Paragraph */}
           <div
-            className="brand-banner-block"
+            className="shaded-banner-block"
             style={{
+              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.1) 0%, rgba(19, 18, 25, 0.98) 100%)",
+              border: "1px solid rgba(223, 193, 93, 0.35)",
               borderRadius: "26px",
               padding: "44px 36px",
               marginBottom: "40px",
+              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.6)",
             }}
           >
             <div
@@ -886,7 +891,19 @@ export default function Home() {
               ].map((badge, idx) => (
                 <span
                   key={idx}
-                  className="brand-pill-badge"
+                  className="shaded-badge"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    padding: "6px 14px",
+                    borderRadius: "10px",
+                    background: "rgba(255, 255, 255, 0.04)",
+                    border: "1px solid rgba(223, 193, 93, 0.2)",
+                    color: "var(--primary)",
+                    fontSize: "0.82rem",
+                    fontWeight: 700,
+                  }}
                 >
                   <i className="fas fa-check" style={{ fontSize: "0.75rem" }} />
                   {badge}
