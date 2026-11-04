@@ -152,6 +152,14 @@ export async function POST(req) {
       </div>
     `;
 
+    if (!process.env.RESEND_API_KEY) {
+      console.warn("RESEND_API_KEY is not configured on Vercel yet.");
+      return NextResponse.json({
+        success: true,
+        message: "Inquiry received. Note: To enable live email dispatch on Vercel, please add RESEND_API_KEY in Vercel project environment variables.",
+      });
+    }
+
     const { data, error } = await resend.emails.send({
       from: "Novity Tech <onboarding@resend.dev>",
       to: [receiverEmail],

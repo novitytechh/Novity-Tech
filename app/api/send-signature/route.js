@@ -33,6 +33,13 @@ export async function POST(req) {
       </div>
     `;
 
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: "RESEND_API_KEY is not configured on Vercel. Please add it to your Vercel Project Settings > Environment Variables." },
+        { status: 500 }
+      );
+    }
+
     const { data, error } = await resend.emails.send({
       from: "Novity Tech <onboarding@resend.dev>",
       to: [toEmail],
