@@ -80,47 +80,26 @@ export default function TeamPage() {
     <>
       <Navbar />
 
-      <main style={{ minHeight: "100vh", paddingTop: "60px", paddingBottom: "100px" }}>
-        {/* Hero Section */}
-        <div className="container text-center" style={{ marginBottom: "50px" }}>
-          <div className="sec-badge" style={{ marginBottom: "16px" }}>
-            Leadership &amp; Technical Guild
-          </div>
-          <h1
-            style={{
-              fontSize: "clamp(2.4rem, 4.8vw, 4rem)",
-              fontWeight: 900,
-              color: "var(--text)",
-              lineHeight: 1.15,
-              maxWidth: "920px",
-              margin: "0 auto 20px",
-            }}
-          >
-            Direct Senior Engineering With <span className="hl">Zero Middlemen</span>
-          </h1>
-          <p
-            style={{
-              color: "var(--text2)",
-              fontSize: "1.15rem",
-              lineHeight: "1.8",
-              maxWidth: "800px",
-              margin: "0 auto 10px",
-            }}
-          >
-            Meet the executive chiefs, founding architects, and senior specialists who personally design, code, and deploy your software.
-          </p>
-        </div>
-
-
-
+      <main style={{ minHeight: "100vh", paddingTop: "80px", paddingBottom: "100px" }}>
         {/* ==================== TEAM & CHIEFS CARDS SECTION ==================== */}
         <div className="container" style={{ marginBottom: "90px" }}>
-          <div className="text-center" style={{ maxWidth: "780px", margin: "0 auto 36px" }}>
-            <div className="sec-badge">Executive Chiefs &amp; Senior Guild</div>
-            <h2 className="sec-title">
+          <div className="text-center" style={{ maxWidth: "850px", margin: "0 auto 40px" }}>
+            <div className="sec-badge" style={{ marginBottom: "16px" }}>
+              Executive Chiefs &amp; Senior Guild
+            </div>
+            <h1
+              className="sec-title"
+              style={{
+                fontSize: "clamp(2.4rem, 4.8vw, 3.8rem)",
+                fontWeight: 900,
+                color: "var(--text)",
+                lineHeight: 1.18,
+                marginBottom: "16px",
+              }}
+            >
               Meet Our Chiefs &amp; <span>Principal Specialists</span>
-            </h2>
-            <p style={{ color: "var(--text2)", fontSize: "1.05rem", lineHeight: "1.7" }}>
+            </h1>
+            <p style={{ color: "var(--text2)", fontSize: "1.1rem", lineHeight: "1.75", maxWidth: "720px", margin: "0 auto" }}>
               Explore the dedicated profiles of our C-suite leadership and core full-stack engineers who oversee and execute every technical milestone.
             </p>
 
