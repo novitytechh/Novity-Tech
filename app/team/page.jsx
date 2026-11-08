@@ -186,8 +186,8 @@ export default function TeamPage() {
                     style={{
                       height: "180px",
                       background: member.isChief
-                        ? "linear-gradient(135deg, rgba(223, 193, 93, 0.22) 0%, rgba(15, 14, 20, 0.98) 100%)"
-                        : "linear-gradient(135deg, rgba(223, 193, 93, 0.1) 0%, rgba(15, 14, 20, 0.96) 100%)",
+                        ? "rgba(223, 193, 93, 0.08)"
+                        : "rgba(255, 255, 255, 0.02)",
                       borderBottom: "1px solid var(--border)",
                       display: "flex",
                       flexDirection: "column",
@@ -226,8 +226,8 @@ export default function TeamPage() {
                         height: "74px",
                         borderRadius: "22px",
                         background: member.isChief
-                          ? "linear-gradient(135deg, rgba(223, 193, 93, 0.25) 0%, rgba(22, 21, 29, 0.95) 100%)"
-                          : "rgba(223, 193, 93, 0.12)",
+                          ? "rgba(223, 193, 93, 0.16)"
+                          : "rgba(223, 193, 93, 0.08)",
                         border: "1.5px solid rgba(223, 193, 93, 0.45)",
                         display: "flex",
                         alignItems: "center",
@@ -523,7 +523,7 @@ export default function TeamPage() {
           <div
             className="shaded-banner-block"
             style={{
-              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.16) 0%, rgba(11, 10, 14, 0.96) 100%)",
+              background: "var(--card-bg, #121118)",
               border: "1px solid rgba(223, 193, 93, 0.35)",
               borderRadius: "28px",
               padding: "60px 40px",
@@ -610,7 +610,7 @@ export default function TeamPage() {
                       width: "80px",
                       height: "80px",
                       borderRadius: "24px",
-                      background: "linear-gradient(135deg, rgba(223, 193, 93, 0.22) 0%, rgba(18, 17, 24, 0.98) 100%)",
+                      background: "rgba(223, 193, 93, 0.12)",
                       border: "1.5px solid rgba(223, 193, 93, 0.45)",
                       display: "flex",
                       alignItems: "center",

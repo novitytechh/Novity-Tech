@@ -45,15 +45,7 @@ export default function Footer() {
                 }}
               >
                 <span style={{ color: "#ffffff" }}>NOVITY</span>
-                <span
-                  style={{
-                    background: "linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  TECH
-                </span>
+                <span style={{ color: "var(--primary, #dfc15d)" }}>TECH</span>
               </span>
             </Link>
             <p className="ft-desc" style={{ color: "var(--text2)", fontSize: "0.92rem", lineHeight: "1.8", maxWidth: "340px" }}>

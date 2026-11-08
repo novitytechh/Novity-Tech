@@ -148,7 +148,7 @@
 .tst-dot.active {
   width: 28px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #f5e8ba, #d4af37) !important;
+  background: #dfc15d !important;
   box-shadow: 0 0 12px rgba(212, 175, 55, 0.6) !important;
 }
 
@@ -306,9 +306,9 @@ textarea,
 }
 
 .chatbot-toggle {
-  background: linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%) !important;
+  background: #dfc15d !important;
   color: #0b0a0e !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(223, 193, 93, 0.45) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(223, 193, 93, 0.3) !important;
   font-weight: 800 !important;
   border-radius: 9999px !important;
   letter-spacing: 0.02em;
@@ -316,7 +316,8 @@ textarea,
 
 .chatbot-toggle:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(223, 193, 93, 0.65) !important;
+  background: #ecd379 !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 28px rgba(223, 193, 93, 0.45) !important;
 }
 
 .chatbot-toggle-dot {
@@ -361,7 +362,7 @@ textarea,
   width: 46px !important;
   height: 46px !important;
   border-radius: 50% !important;
-  background: linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%) !important;
+  background: #dfc15d !important;
   color: #0b0a0e !important;
   border: 1px solid rgba(223, 193, 93, 0.45) !important;
   display: flex !important;
@@ -385,6 +386,7 @@ textarea,
 
 #scrtop:hover {
   transform: translateX(-50%) translateY(-4px) scale(1.08) !important;
+  background: #ecd379 !important;
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75), 0 0 30px rgba(223, 193, 93, 0.6) !important;
   color: #000 !important;
 }
@@ -435,16 +437,37 @@ textarea,
 
 .ftab.active,
 .tab-btn.active {
-  background: linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%) !important;
+  background: #dfc15d !important;
   border-color: #dfc15d !important;
   color: #0b0a0e !important;
   font-weight: 800 !important;
   transform: translateY(-2px) scale(1.03) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 25px rgba(223, 193, 93, 0.45) !important;
+  box-shadow: 0 6px 20px rgba(223, 193, 93, 0.35) !important;
 }
 
 .ftab:focus-visible,
 .tab-btn:focus-visible {
   outline: 2px solid #dfc15d !important;
   outline-offset: 2px !important;
+}
+
+/* ==================== GLOBAL GRADIENT REMOVAL ENFORCEMENT ==================== */
+.sec-title span,
+.hero-title .hl {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+.btn-p {
+  background: #dfc15d !important;
+  border-color: #dfc15d !important;
+  color: #0b0a0e !important;
+}
+
+.btn-p:hover {
+  background: #ecd379 !important;
+  border-color: #ecd379 !important;
+  color: #000000 !important;
 }

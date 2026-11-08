@@ -213,9 +213,10 @@ section {
   letter-spacing: -0.02em;
 }
 .sec-title span {
-  background: linear-gradient(135deg, #FFF0B3 0%, #E5C365 30%, #D4AF37 60%, #AA8022 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary);
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
   display: inline-block;
 }
 .sec-desc {
@@ -233,21 +234,22 @@ section {
   align-items: center;
   gap: 10px;
   padding: 14px 32px;
-  background: linear-gradient(135deg, #f5e8ba 0%, #dfc15d 50%, #b8922c 100%);
+  background: #dfc15d;
   color: #0b0a0e !important;
   border-radius: 100px;
   font-weight: 700;
   font-size: 0.95rem;
-  border: 1px solid #f5e8ba;
-  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.28);
+  border: 1px solid #dfc15d;
+  box-shadow: 0 4px 16px rgba(223, 193, 93, 0.25);
   transition: var(--tr);
   cursor: pointer;
 }
 .btn-p:hover {
   color: #000 !important;
-  background: linear-gradient(135deg, #fff3c4 0%, #dfc15d 50%, #c49422 100%);
+  background: #ecd379;
+  border-color: #ecd379;
   transform: translateY(-3px);
-  box-shadow: 0 14px 36px rgba(212, 175, 55, 0.45);
+  box-shadow: 0 8px 24px rgba(223, 193, 93, 0.35);
 }
 .btn-o {
   display: inline-flex;
@@ -447,12 +449,7 @@ section {
 .hero-ov {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(10, 10, 14, 0.93) 0%,
-    rgba(28, 28, 34, 0.78) 55%,
-    rgba(var(--primary-rgb), 0.12) 100%
-  );
+  background: rgba(10, 10, 14, 0.9);
 }
 .hero-grain {
   position: absolute;
@@ -462,15 +459,7 @@ section {
   background-size: 200px;
 }
 .hero-glow {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(
-    circle,
-    rgba(var(--primary-rgb), 0.12) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
+  display: none;
 }
 .hero-content {
   position: relative;
@@ -519,9 +508,10 @@ section {
   margin-bottom: 24px;
 }
 .hero-title .hl {
-  background: linear-gradient(135deg, #FFF0B3 0%, #E5C365 30%, #D4AF37 60%, #AA8022 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary);
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
   display: inline-block;
 }
 .hero-desc {
@@ -949,7 +939,7 @@ section {
 }
 .prog-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  background: var(--primary);
   border-radius: 10px;
   transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -1209,12 +1199,12 @@ section {
 }
 .ftab.active,
 .tab-btn.active {
-  background: linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%);
+  background: #dfc15d;
   border-color: #dfc15d;
   color: #0b0a0e;
   font-weight: 800;
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 25px rgba(223, 193, 93, 0.45);
+  box-shadow: 0 6px 20px rgba(223, 193, 93, 0.35);
 }
 .pf-item {
   border-radius: var(--r);
@@ -1234,11 +1224,7 @@ section {
 .pf-ov {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(20, 20, 26, 0.9) 0%,
-    transparent 60%
-  );
+  background: rgba(20, 20, 26, 0.85);
   opacity: 0;
   transition: opacity 0.3s;
   display: flex;
@@ -1457,7 +1443,7 @@ section {
   box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.1), var(--sh3);
 }
 [data-theme="dark"] .pr-card.feat {
-  background: linear-gradient(135deg, #1a1a30, #0f0f1a);
+  background: #15141c;
 }
 .pr-popular {
   position: absolute;
@@ -1883,14 +1869,7 @@ textarea.form-control {
   overflow: hidden;
 }
 .cta-pat {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(
-      circle at 15% 50%,
-      rgba(255, 255, 255, 0.1) 0%,
-      transparent 50%
-    ),
-    radial-gradient(circle at 85% 50%, rgba(0, 0, 0, 0.08) 0%, transparent 50%);
+  display: none;
 }
 .cta-cnt {
   position: relative;
@@ -2241,7 +2220,7 @@ textarea.form-control {
 
 /* ==================== LIGHT MODE OVERRIDE FOR DARK-SHADED BANNERS ONLY ==================== */
 [data-theme="light"] .shaded-banner-block {
-  background: linear-gradient(135deg, rgba(223, 193, 93, 0.16) 0%, #ffffff 100%) !important;
+  background: #fdfaf0 !important;
   box-shadow: 0 16px 45px rgba(0, 0, 0, 0.06) !important;
   border: 1px solid rgba(184, 146, 44, 0.35) !important;
 }

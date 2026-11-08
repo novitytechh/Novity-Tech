@@ -48,21 +48,6 @@ export default function NotFound() {
         background: "var(--bg)",
       }}
     >
-      {/* Ambient background glow accents */}
-      <div
-        style={{
-          position: "absolute",
-          top: "20%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "500px",
-          height: "500px",
-          background: "radial-gradient(circle, rgba(var(--primary-rgb), 0.15) 0%, transparent 70%)",
-          filter: "blur(60px)",
-          pointerEvents: "none",
-        }}
-      />
-
       <div style={{ maxWidth: "700px", width: "100%", textAlign: "center", position: "relative", zIndex: 10 }}>
         {/* Status Badge */}
         <div

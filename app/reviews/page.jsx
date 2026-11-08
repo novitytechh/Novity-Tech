@@ -433,7 +433,7 @@ export default function ReviewsPage() {
         {/* CTA Bottom Banner */}
         <div
           style={{
-            background: "linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%)",
+            background: "var(--card-bg, #121118)",
             color: "#fff",
             borderRadius: "24px",
             padding: "50px 40px",

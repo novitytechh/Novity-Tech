@@ -230,7 +230,7 @@ export default function WorkPage() {
           <div
             className="shaded-banner-block"
             style={{
-              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.15) 0%, rgba(11, 10, 14, 0.95) 100%)",
+              background: "var(--card-bg, #121118)",
               border: "1px solid rgba(223, 193, 93, 0.35)",
               borderRadius: "28px",
               padding: "60px 40px",

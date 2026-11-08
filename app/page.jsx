@@ -396,29 +396,13 @@ export default function Home() {
             <div className="col-lg-5 d-none d-lg-block text-center mt-5 mt-lg-0">
               <div className="hero-emblem-showcase" style={{ position: "relative", display: "inline-block" }}>
                 <div
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: "360px",
-                    height: "360px",
-                    borderRadius: "50%",
-                    background: "radial-gradient(circle, rgba(223, 193, 93, 0.3) 0%, rgba(212, 175, 55, 0.1) 45%, transparent 70%)",
-                    filter: "blur(32px)",
-                    pointerEvents: "none",
-                    zIndex: 0,
-                  }}
-                />
-
-                <div
                   className="hero-emblem-card"
                   style={{
                     position: "relative",
                     zIndex: 1,
                     padding: "36px 32px",
                     borderRadius: "28px",
-                    background: "linear-gradient(145deg, rgba(24, 22, 32, 0.88) 0%, rgba(11, 10, 14, 0.96) 100%)",
+                    background: "#15141c",
                     border: "1px solid rgba(223, 193, 93, 0.38)",
                     boxShadow: "0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(223, 193, 93, 0.2)",
                     backdropFilter: "blur(14px)",
@@ -831,7 +815,7 @@ export default function Home() {
           <div
             className="shaded-banner-block"
             style={{
-              background: "linear-gradient(135deg, rgba(223, 193, 93, 0.1) 0%, rgba(19, 18, 25, 0.98) 100%)",
+              background: "var(--card-bg, #121118)",
               border: "1px solid rgba(223, 193, 93, 0.35)",
               borderRadius: "26px",
               padding: "44px 36px",

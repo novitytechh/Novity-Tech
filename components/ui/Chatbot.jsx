@@ -277,8 +277,7 @@ export default function Chatbot() {
                   width: "40px",
                   height: "40px",
                   borderRadius: "12px",
-                  background:
-                    "linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%)",
+                  background: "#dfc15d",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -683,7 +682,7 @@ export default function Chatbot() {
                   title="Send message"
                   style={{
                     background: input.trim()
-                      ? "linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%)"
+                      ? "#dfc15d"
                       : "rgba(223, 193, 93, 0.2)",
                     color: input.trim() ? "#0b0a0e" : "rgba(255,255,255,0.3)",
                     border: "none",

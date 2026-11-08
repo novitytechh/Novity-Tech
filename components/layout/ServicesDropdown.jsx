@@ -162,7 +162,7 @@ export default function ServicesDropdown({ isOpen, onClose }) {
         style={{
           position: "relative",
           borderRadius: "20px",
-          background: "linear-gradient(165deg, #16141c 0%, #0d0c10 100%)",
+          background: "#121118",
           color: "#ffffff",
           border: "1px solid rgba(223, 193, 93, 0.35)",
           boxShadow: "0 25px 70px rgba(0, 0, 0, 0.92), 0 0 35px rgba(223, 193, 93, 0.16)",
@@ -172,21 +172,6 @@ export default function ServicesDropdown({ isOpen, onClose }) {
           overflowY: "auto",
         }}
       >
-        {/* Subtle decorative gold blur glow */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            right: "20%",
-            width: "300px",
-            height: "300px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(223, 193, 93, 0.15) 0%, transparent 70%)",
-            filter: "blur(40px)",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-        />
 
         {/* Top Header */}
         <div

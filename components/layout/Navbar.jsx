@@ -81,15 +81,7 @@ export default function Navbar() {
             }}
           >
             <span style={{ color: "var(--text, #ffffff)" }}>NOVITY</span>
-            <span
-              style={{
-                background: "linear-gradient(135deg, #fdf6d8 0%, #dfc15d 50%, #b8922c 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              TECH
-            </span>
+            <span style={{ color: "var(--primary, #dfc15d)" }}>TECH</span>
           </span>
         </Link>
 
