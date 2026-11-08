@@ -1,5 +1,6 @@
 import "./globals.css";
 import CookieBanner from "../components/ui/CookieBanner";
+import Chatbot from "../components/ui/Chatbot";
 
 export const metadata = {
   title: "Novity Tech — Engineering Digital Excellence for Ambitious Brands",
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
       <body>
         {children}
         <CookieBanner />
+        <Chatbot />
       </body>
     </html>
   );
