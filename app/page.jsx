@@ -957,7 +957,7 @@ export default function Home() {
 
           <div className="text-center mt-5">
             <Link href="/team" className="btn-p">
-              Read Complete Client Advisory &amp; FAQs <i className="fas fa-arrow-right" />
+              Meet Our Chiefs &amp; Engineering Guild <i className="fas fa-arrow-right" />
             </Link>
           </div>
         </div>
