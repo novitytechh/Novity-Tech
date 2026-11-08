@@ -74,10 +74,7 @@ function getFallbackAnswer(userText, knowledge) {
     q.includes("who is the head") ||
     q.includes("leadership")
   ) {
-    return (
-      "Novity Tech was founded and is led by **Muhammad Faseeh Altaf**, who serves as the **Founder & Chief Executive Officer (CEO)** and leads Business Development.\n\n" +
-      "Our core executive team also includes our Co-Founders (CTO & COO) and principal engineers across Full-Stack Web Development, Cloud DevOps, AI Systems, and UI/UX Architecture. You can reach out directly to Muhammad Faseeh Altaf and our leads at **+92 329 1013649** or **novitytechh@gmail.com**."
-    );
+    return "**Muhammad Faseeh Altaf** is the Founder & Chief Executive Officer (CEO) of Novity Tech.";
   }
 
   // 2. Contact / Phone / Email / Location queries
@@ -93,15 +90,7 @@ function getFallbackAnswer(userText, knowledge) {
     q.includes("office") ||
     q.includes("hours")
   ) {
-    return (
-      "You can connect directly with Novity Tech:\n\n" +
-      "• **Founder & CEO:** Muhammad Faseeh Altaf\n" +
-      "• **Phone / WhatsApp:** +92 329 1013649 (Alt: +92 303 5696807)\n" +
-      "• **Email:** novitytechh@gmail.com\n" +
-      "• **Headquarters:** Gujranwala, Pakistan (serving clients globally)\n" +
-      "• **Business Hours:** Mon – Fri: 9:00 AM – 6:00 PM | Sat: 10:00 AM – 2:00 PM (PKT)\n\n" +
-      "Feel free to request a complimentary architectural discovery session on our contact page!"
-    );
+    return "You can reach Novity Tech directly:\n• **Email:** novitytechh@gmail.com\n• **Phone / WhatsApp:** +92 329 1013649\n• **Location:** Gujranwala, Pakistan";
   }
 
   // 3. Services / Capabilities
@@ -117,15 +106,7 @@ function getFallbackAnswer(userText, knowledge) {
     q.includes("devops") ||
     q.includes("mvp")
   ) {
-    return (
-      "Novity Tech specializes in five core digital engineering pillars:\n\n" +
-      "1. **Full-Stack Web Platforms:** Enterprise Next.js, React, Node.js, TypeScript with sub-second performance.\n" +
-      "2. **Custom AI Agents & Copilots:** Autonomous LLM workflows, RAG knowledge systems, and multi-agent integrations.\n" +
-      "3. **Cloud & DevOps Resilience:** AWS, GCP, Docker, Kubernetes with zero-downtime CI/CD deployment.\n" +
-      "4. **MVP Acceleration:** Rapid 4-to-6 week sprint delivery for high-growth startups.\n" +
-      "5. **Design Systems & UI/UX:** Luxury typography, Figma design systems, and conversion-focused interfaces.\n\n" +
-      "Every project includes direct senior architect collaboration and 100% intellectual property ownership from day one."
-    );
+    return "Novity Tech specializes in: Enterprise Next.js Platforms, Custom AI Agents & Copilots, Cloud & DevOps (AWS/Docker/K8s), 4–6 week MVP Launches, and UI/UX Design Systems.";
   }
 
   // 4. Starting a project / Hire / Pricing / NDA
@@ -138,22 +119,11 @@ function getFallbackAnswer(userText, knowledge) {
     q.includes("proposal") ||
     q.includes("nda")
   ) {
-    return (
-      "Starting a project with Novity Tech is seamless:\n\n" +
-      "1. **Complimentary Discovery Session:** We evaluate your technical requirements and product goals under a strict bilateral NDA.\n" +
-      "2. **Fixed-Scope Roadmap:** We define transparent sprint milestones with guaranteed fixed SLAs.\n" +
-      "3. **Direct Senior Engineering:** You work directly with our founding engineers—no middlemen or junior outsourcing.\n" +
-      "4. **Full IP Handover:** You own 100% of all code, architecture, and GitHub repositories.\n\n" +
-      "Ready to start? Reach out at **novitytechh@gmail.com** or call **+92 329 1013649**!"
-    );
+    return "To start a project, email **novitytechh@gmail.com** or visit **/contact**. We operate on fixed-price milestones with guaranteed SLAs and strict bilateral NDAs.";
   }
 
   // General fallback
-  return (
-    "Novity Tech is a premier digital engineering and AI agency based in Gujranwala, Pakistan, led by Founder & CEO **Muhammad Faseeh Altaf**.\n\n" +
-    "We build high-performance full-stack web platforms, custom AI copilot workflows, and resilient cloud systems for startups and enterprises worldwide.\n\n" +
-    "How can I assist you with your project? You can also reach our leadership directly at **+92 329 1013649** or **novitytechh@gmail.com**."
-  );
+  return "How can I assist you today? Feel free to ask about our engineering capabilities, tech stack, or starting a project.";
 }
 
 export async function POST(req) {
@@ -174,31 +144,21 @@ export async function POST(req) {
       .map((k) => `### ${k.title}\n${k.content}`)
       .join("\n\n");
 
-    const systemPrompt = `You are the versatile, highly intelligent AI Assistant representing Novity Tech (novitytech.com), an elite digital engineering and custom AI agency based in Gujranwala, Pakistan.
+    const systemPrompt = `You are the concise, intelligent AI Assistant for Novity Tech (novitytech.com), an elite engineering & custom AI agency led by Founder & CEO Muhammad Faseeh Altaf.
 
-YOUR MISSION:
-You must answer ALL user queries with high intelligence, depth, and helpfulness—whether the user asks about Novity Tech, web development, or completely non-web topics (such as general programming, Python, databases, algorithms, math, science, business ideas, general advice, or conversational questions).
-
-1. FOR GENERAL & NON-WEB TOPICS:
-- Always answer the user's question completely, accurately, and thoroughly first (e.g. provide code snippets, clear explanations, step-by-step guidance, or creative thoughts).
-- Do NOT refuse to answer general questions or force a sales pitch.
-- Where naturally relevant, you may add: "If you ever need production software, AI copilots, or scalable systems built, our engineering leads at Novity Tech are ready to collaborate."
-
-2. FOR NOVITY TECH & WEB DEVELOPMENT TOPICS:
-- Deliver authoritative, senior-architect level answers.
-- Founder & CEO: Muhammad Faseeh Altaf (Chief Executive Officer & Business Development).
-- Leadership: Muhammad Faseeh Altaf (CEO), Co-Founders (CTO & COO), and Principal Architects.
-- Location: Gujranwala, Pakistan (collaborating with startups and enterprise brands globally).
-- Direct Contact: Phone/WhatsApp +92 329 1013649 (Alt: +92 303 5696807) | Email novitytechh@gmail.com | Website https://novitytech.com
-- Core Expertise: Full-Stack Web Development (Next.js, React, Node.js, TypeScript), Custom AI Copilots & Autonomous Agents (Gemini & OpenAI), Cloud & DevOps Resilience (AWS, Docker, Kubernetes), MVP Sprint Acceleration (4-6 weeks), and UI/UX Design Systems.
-- Client Model: 100% Direct Architect Access (zero middlemen, zero junior outsourcing), Full IP & Repository Ownership from day one, Bilateral NDA Guaranteed, Fixed-Scope Milestones & SLAs.
+STRICT RULE — BE HIGHLY CONCISE & DIRECT:
+- Answer ONLY what the user asks. Do NOT provide extra unsolicited information, lengthy preambles, marketing fluff, or long background stories.
+- Keep responses short, clear, and direct (typically 1 to 3 sentences or concise bullet points).
+- For coding / technical questions: Provide the clean code snippet directly with a 1-sentence explanation. No essays.
+- For non-web / general questions: Answer the question accurately and concisely. Do not inject sales pitches.
+- For Novity Tech questions:
+  • CEO / Founder: "Muhammad Faseeh Altaf is the Founder & CEO of Novity Tech."
+  • Location: "Headquartered in Gujranwala, Pakistan, serving clients globally."
+  • Contact: "Email: novitytechh@gmail.com | Phone: +92 329 1013649."
+  • Services: Briefly state: Full-Stack Next.js, Custom AI Agents, Cloud & DevOps, 4–6 week MVP Launches, and UI/UX Design Systems.
 
 VERIFIED COMPANY KNOWLEDGE:
-${knowledgeText}
-
-BEHAVIORAL RULES:
-1. When asked who the CEO, founder, or owner is, ALWAYS state clearly that Muhammad Faseeh Altaf is the Founder & CEO of Novity Tech.
-2. Format responses cleanly using markdown, bold headers, and bullet points.`;
+${knowledgeText}`;
 
     const apiKey =
       process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
