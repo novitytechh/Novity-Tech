@@ -1174,13 +1174,21 @@ export default function Home() {
           </div>
           <div className="row g-5 align-items-start">
             <div className="col-lg-4">
-              <div className="ci-item">
+              <a
+                href="https://maps.google.com/?q=Gujranwala,+Pakistan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ci-item"
+                style={{ textDecoration: "none", color: "inherit", cursor: "pointer", display: "flex" }}
+              >
                 <div className="ci-ico"><i className="fas fa-map-marker-alt"></i></div>
                 <div>
                   <div className="ci-lbl">Our Office</div>
-                  <div className="ci-val">Gujranwala, Pakistan</div>
+                  <div className="ci-val">
+                    Gujranwala, Pakistan <i className="fas fa-arrow-up-right-from-square" style={{ fontSize: "0.75rem", color: "var(--primary)", marginLeft: "4px" }}></i>
+                  </div>
                 </div>
-              </div>
+              </a>
               <div className="ci-item">
                 <div className="ci-ico"><i className="fas fa-phone"></i></div>
                 <div>

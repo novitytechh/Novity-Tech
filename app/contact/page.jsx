@@ -360,7 +360,15 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    <div className="d-flex align-items-center gap-3">
+                    <a
+                      href="https://maps.google.com/?q=Gujranwala,+Pakistan"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="d-flex align-items-center gap-3"
+                      style={{ textDecoration: "none", color: "inherit", cursor: "pointer", transition: "transform 0.2s ease" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.transform = "translateX(4px)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.transform = "translateX(0)")}
+                    >
                       <div
                         style={{
                           width: "44px",
@@ -378,11 +386,12 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <div style={{ fontSize: "0.75rem", color: "var(--text3)", textTransform: "uppercase" }}>Location</div>
-                        <div style={{ color: "var(--text)", fontWeight: 700 }}>
+                        <div style={{ color: "var(--text)", fontWeight: 700, display: "flex", alignItems: "center", gap: "6px" }}>
                           Gujranwala, Pakistan
+                          <i className="fas fa-arrow-up-right-from-square" style={{ fontSize: "0.75rem", color: "var(--primary)" }} />
                         </div>
                       </div>
-                    </div>
+                    </a>
 
                     <div className="d-flex align-items-center gap-3">
                       <div
@@ -428,6 +437,94 @@ export default function ContactPage() {
                     <i className="fas fa-shield-alt" /> Enterprise Security Standards Compliant
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive Google Map Section */}
+          <div style={{ marginTop: "60px" }}>
+            <div
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--border)",
+                borderRadius: "26px",
+                padding: "24px",
+                position: "relative",
+                overflow: "hidden",
+                boxShadow: "0 14px 40px rgba(0, 0, 0, 0.35)",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", marginBottom: "18px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      borderRadius: "10px",
+                      background: "rgba(223, 193, 93, 0.12)",
+                      border: "1px solid rgba(223, 193, 93, 0.3)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--primary)",
+                      fontSize: "1.1rem",
+                    }}
+                  >
+                    <i className="fas fa-map-marked-alt" />
+                  </div>
+                  <div>
+                    <h4 style={{ margin: 0, fontSize: "1.15rem", fontWeight: 800, color: "var(--text)" }}>
+                      Headquarters: Gujranwala, Pakistan
+                    </h4>
+                    <div style={{ fontSize: "0.82rem", color: "var(--text3)" }}>
+                      Collaborating globally across US, UK, Middle East, and Asia-Pacific
+                    </div>
+                  </div>
+                </div>
+                <a
+                  href="https://maps.google.com/?q=Gujranwala,+Pakistan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-p"
+                  style={{ padding: "8px 20px", fontSize: "0.85rem", textDecoration: "none" }}
+                >
+                  Open in Google Maps <i className="fas fa-arrow-up-right-from-square" style={{ fontSize: "0.75rem" }} />
+                </a>
+              </div>
+
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  height: "360px",
+                  borderRadius: "18px",
+                  overflow: "hidden",
+                  border: "1px solid var(--border)",
+                }}
+              >
+                <iframe
+                  title="Novity Tech Headquarters Location in Gujranwala, Pakistan"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) contrast(90%)" }}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108253.39832261973!2d74.11663484833215!3d32.187692120038865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391f2983d520eb29%3A0x6fb242408b61e220!2sGujranwala%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+                />
+                <a
+                  href="https://maps.google.com/?q=Gujranwala,+Pakistan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Click to open Gujranwala in Google Maps"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "transparent",
+                    zIndex: 2,
+                    cursor: "pointer",
+                  }}
+                />
               </div>
             </div>
           </div>

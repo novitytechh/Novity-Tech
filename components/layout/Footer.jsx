@@ -108,9 +108,22 @@ export default function Footer() {
               Ready to engineer your next digital platform? Reach out directly to our engineering leads in Gujranwala, Pakistan.
             </p>
             <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
-              <div style={{ color: "var(--text2)", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+              <a
+                href="https://maps.google.com/?q=Gujranwala,+Pakistan"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "var(--text2)",
+                  textDecoration: "none",
+                  fontSize: "0.88rem",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  transition: "color 0.2s ease",
+                }}
+              >
                 <i className="fas fa-map-marker-alt" style={{ color: "var(--primary)" }}></i> Gujranwala, Pakistan
-              </div>
+              </a>
               <a href="mailto:novitytechh@gmail.com" style={{ color: "var(--primary)", textDecoration: "none", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "8px" }}>
                 <i className="fas fa-envelope"></i> novitytechh@gmail.com
               </a>

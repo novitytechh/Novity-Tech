@@ -563,14 +563,19 @@ export default function TeamPage() {
               </Link>
               <a
                 href="tel:+923291013649"
-                className="btn-p"
+                className="btn-o"
                 style={{
-                  background: "transparent",
-                  border: "1px solid rgba(223, 193, 93, 0.4)",
+                  background: "rgba(223, 193, 93, 0.08)",
+                  border: "1.5px solid rgba(223, 193, 93, 0.45)",
                   color: "var(--primary)",
+                  fontWeight: 700,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  textDecoration: "none",
                 }}
               >
-                Call +92 329 1013649
+                <i className="fas fa-phone-alt" /> Call +92 329 1013649
               </a>
             </div>
           </div>
@@ -646,9 +651,25 @@ export default function TeamPage() {
                     <div style={{ color: "var(--primary)", fontSize: "0.92rem", fontWeight: 700 }}>
                       {selectedMember.role}
                     </div>
-                    <div style={{ color: "var(--text3)", fontSize: "0.82rem", marginTop: "2px" }}>
-                      Headquarters: Gujranwala, Pakistan · Global Delivery
-                    </div>
+                    <a
+                      href="https://maps.google.com/?q=Gujranwala,+Pakistan"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: "var(--text3)",
+                        fontSize: "0.82rem",
+                        marginTop: "4px",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        textDecoration: "none",
+                        transition: "color 0.2s ease",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--primary)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text3)")}
+                    >
+                      <i className="fas fa-map-marker-alt" style={{ color: "var(--primary)" }} /> Headquarters: Gujranwala, Pakistan · Global Delivery
+                    </a>
                   </div>
                 </div>
 
@@ -730,16 +751,20 @@ export default function TeamPage() {
                         href={selectedMember.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-p"
+                        className="btn-o"
                         style={{
-                          background: "transparent",
+                          background: "rgba(255, 255, 255, 0.05)",
                           border: "1px solid var(--border)",
                           color: "var(--text)",
                           fontSize: "0.88rem",
-                          padding: "10px 16px",
+                          padding: "10px 18px",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "8px",
+                          textDecoration: "none",
                         }}
                       >
-                        <i className="fab fa-linkedin-in" style={{ marginRight: "6px", color: "var(--primary)" }} /> LinkedIn
+                        <i className="fab fa-linkedin-in" style={{ color: "var(--primary)" }} /> LinkedIn
                       </a>
                     )}
                     <button
