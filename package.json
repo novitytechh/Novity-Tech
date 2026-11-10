@@ -13,6 +13,7 @@
     "@ai-sdk/react": "^4.0.163",
     "@chat-adapter/slack": "^4.44.0",
     "@neondatabase/serverless": "^1.2.0",
+    "@vercel/analytics": "^2.0.1",
     "ai": "^7.0.159",
     "chat": "^4.44.0",
     "next": "^14.2.15",

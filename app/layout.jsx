@@ -1,6 +1,7 @@
 import "./globals.css";
 import CookieBanner from "../components/ui/CookieBanner";
 import Chatbot from "../components/ui/Chatbot";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   metadataBase: new URL("https://novitytech.com"),
@@ -202,6 +203,7 @@ export default function RootLayout({ children }) {
         {children}
         <CookieBanner />
         <Chatbot />
+        <Analytics />
       </body>
     </html>
   );
