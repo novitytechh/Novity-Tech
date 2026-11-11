@@ -353,8 +353,8 @@ export default function Home() {
             </div>
 
             {/* Prominent Majestic Golden Wings Emblem Showcase */}
-            <div className="col-lg-5 d-none d-lg-block text-center mt-5 mt-lg-0">
-              <div className="hero-emblem-showcase" style={{ position: "relative", display: "inline-block" }}>
+            <div className="col-lg-5 d-none d-lg-block text-center align-self-lg-start mt-5 mt-lg-0">
+              <div className="hero-emblem-showcase" style={{ position: "relative", display: "inline-block", marginTop: "6px" }}>
                 <div
                   className="hero-emblem-card"
                   style={{
