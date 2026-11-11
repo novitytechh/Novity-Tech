@@ -179,7 +179,7 @@ export default function Navbar() {
               margin: 0,
               padding: "7px 14px",
               border: "1px solid var(--border)",
-              borderRadius: "var(--rp)",
+              borderRadius: "9999px",
               background: "var(--card)",
             }}
           >
