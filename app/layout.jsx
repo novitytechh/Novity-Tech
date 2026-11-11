@@ -1,6 +1,5 @@
 import "./globals.css";
-import CookieBanner from "../components/ui/CookieBanner";
-import Chatbot from "../components/ui/Chatbot";
+import DeferredWidgets from "../components/ui/DeferredWidgets";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
@@ -186,12 +185,7 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Phudu:wght@300;400;500;600;700;800;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
           rel="stylesheet"
         />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
+        <link rel="stylesheet" href="/css/all.min.css" />
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/style.css" />
         <script
@@ -201,8 +195,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         {children}
-        <CookieBanner />
-        <Chatbot />
+        <DeferredWidgets />
         <Analytics />
       </body>
     </html>

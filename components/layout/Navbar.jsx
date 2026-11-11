@@ -14,9 +14,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      const nextScrolled = window.scrollY > 40;
+      setScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     // Initial theme setup
     const saved = localStorage.getItem("novity_theme") || "dark";
@@ -45,6 +46,8 @@ export default function Navbar() {
     { name: "Services", href: "/services", isServices: true },
     { name: "Work", href: "/work" },
     { name: "Team", href: "/team" },
+    { name: "Reviews", href: "/reviews" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
 

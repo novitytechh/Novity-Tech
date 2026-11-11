@@ -191,37 +191,31 @@ export default function Chatbot() {
             zIndex: 99999,
           }}
         >
-          {/* Sparkle / Bot Icon */}
+          {/* Company Logo */}
           <span
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: "28px",
-              height: "28px",
+              width: "30px",
+              height: "30px",
               borderRadius: "50%",
               background: "#0b0a0e",
-              color: "#dfc15d",
-              fontSize: "14px",
+              overflow: "hidden",
+              padding: "3px",
+              flexShrink: 0,
             }}
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 8V4H8" />
-              <rect width="16" height="12" x="4" y="8" rx="2" />
-              <path d="M2 14h2" />
-              <path d="M20 14h2" />
-              <path d="M15 13v2" />
-              <path d="M9 13v2" />
-            </svg>
+            <img
+              src="/img/novity-emblem.png"
+              alt="Novity Tech Logo"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                display: "block",
+              }}
+            />
           </span>
           <span style={{ fontSize: "14px", fontWeight: 700, color: "#0b0a0e" }}>
             Chat with us

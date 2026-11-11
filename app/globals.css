@@ -79,6 +79,7 @@
 .feat-card,
 .svc-card,
 .tm-card,
+.news-card,
 .pr-card {
   transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
   border: 1px solid var(--border) !important;
@@ -88,6 +89,7 @@
 .feat-card:hover,
 .svc-card:hover,
 .tm-card:hover,
+.news-card:hover,
 .pr-card:hover {
   border-color: rgba(212, 175, 55, 0.45) !important;
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.75), 0 0 25px rgba(212, 175, 55, 0.14) !important;
@@ -185,10 +187,12 @@
 .feat-card,
 .svc-card,
 .tm-card,
+.news-card,
 .pr-card,
 .pf-item,
 .cf-wrap,
 .ci-item,
+.tst-card,
 .accordion-item,
 .modal-content,
 .hero-emblem-card,
@@ -197,6 +201,8 @@
 .stat-card,
 .service-card,
 .team-card,
+.review-card,
+.blog-card,
 .dropdown-menu,
 .sec-box,
 .card {

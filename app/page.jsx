@@ -8,8 +8,6 @@ import { PROJECTS_DATA } from "@/lib/projectsData";
 import { TEAM_MEMBERS, COMPANY_DESCRIPTION } from "@/lib/teamData";
 
 export default function Home() {
-  // Loading state
-  const [loading, setLoading] = useState(true);
   // Theme state
   const [theme, setTheme] = useState("dark");
   // Navbar & scroll state
@@ -17,7 +15,7 @@ export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeNav, setActiveNav] = useState("hero");
   const [navOpen, setNavOpen] = useState(false);
-    // Portfolio filter
+  // Portfolio filter
   const [portfolioFilter, setPortfolioFilter] = useState("all");
   // FAQ accordion
   const [activeFaq, setActiveFaq] = useState(0);
@@ -36,10 +34,14 @@ export default function Home() {
   });
   const [formStatus, setFormStatus] = useState("idle"); // idle | sending | sent
 
-  // Custom cursor state
-  const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
-  const [ringPos, setRingPos] = useState({ x: -100, y: -100 });
-  const [isHovered, setIsHovered] = useState(false);
+  // Custom cursor refs (avoid React re-renders on mousemove/rAF)
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
+  const setIsHovered = (hovered) => {
+    if (ringRef.current) {
+      ringRef.current.classList.toggle("big", hovered);
+    }
+  };
 
   // Counter numbers
   const [counters, setCounters] = useState({
@@ -48,17 +50,11 @@ export default function Home() {
     experience: 0,
   });
 
-  // Handle Initial Load & Theme
+  // Handle Initial Theme
   useEffect(() => {
     const savedTheme = localStorage.getItem("nxTheme") || "dark";
     setTheme(savedTheme);
     document.documentElement.setAttribute("data-theme", savedTheme);
-
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1200);
-
-    return () => clearTimeout(timer);
   }, []);
 
   // Theme switch handler
@@ -71,9 +67,8 @@ export default function Home() {
 
   // Animated counters trigger
   useEffect(() => {
-    if (loading) return;
-    const duration = 1800;
-    const steps = 60;
+    const duration = 1200;
+    const steps = 45;
     const intervalTime = duration / steps;
     let step = 0;
 
@@ -93,54 +88,84 @@ export default function Home() {
     }, intervalTime);
 
     return () => clearInterval(timer);
-  }, [loading]);
+  }, []);
 
-  // Cursor tracking
+  // Cursor tracking via direct DOM transforms & on-demand rAF
   useEffect(() => {
-    let animId;
+    if (typeof window === "undefined") return;
+    if (!window.matchMedia("(pointer: fine)").matches || window.innerWidth <= 1024) {
+      return;
+    }
+
+    let animId = null;
     let mx = -100, my = -100;
     let rx = -100, ry = -100;
+
+    const animLoop = () => {
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
+      }
+
+      if (Math.abs(mx - rx) > 0.25 || Math.abs(my - ry) > 0.25) {
+        animId = requestAnimationFrame(animLoop);
+      } else {
+        animId = null;
+      }
+    };
 
     const handleMouseMove = (e) => {
       mx = e.clientX;
       my = e.clientY;
-      setCursorPos({ x: mx, y: my });
-    };
-
-    const animLoop = () => {
-      rx += (mx - rx) * 0.15;
-      ry += (my - ry) * 0.15;
-      setRingPos({ x: rx, y: ry });
-      animId = requestAnimationFrame(animLoop);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    animId = requestAnimationFrame(animLoop);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(animId);
-    };
-  }, []);
-
-  // Scroll listener for sticky navbar, active nav links, and scroll-to-top
-  useEffect(() => {
-    const handleScroll = () => {
-      const st = window.scrollY;
-      setScrolled(st > 50);
-      setShowScrollTop(st > 300);
-
-      const sections = ["hero", "about", "services", "portfolio", "team", "pricing", "contact"];
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && st >= el.offsetTop - 140) {
-          setActiveNav(sections[i]);
-          break;
-        }
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
+      }
+      if (!animId) {
+        animId = requestAnimationFrame(animLoop);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (animId) cancelAnimationFrame(animId);
+    };
+  }, []);
+
+  // Throttled scroll listener for sticky navbar, active nav links, and scroll-to-top
+  useEffect(() => {
+    let ticking = false;
+    const sections = ["hero", "about", "services", "portfolio", "team", "pricing", "news", "contact"];
+
+    const updateScroll = () => {
+      const st = window.scrollY;
+      const nextScrolled = st > 50;
+      const nextScrollTop = st > 300;
+      setScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
+      setShowScrollTop((prev) => (prev === nextScrollTop ? prev : nextScrollTop));
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el && st >= el.offsetTop - 140) {
+          const nextNav = sections[i];
+          setActiveNav((prev) => (prev === nextNav ? prev : nextNav));
+          break;
+        }
+      }
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateScroll);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -238,41 +263,18 @@ export default function Home() {
 
   return (
     <>
-      {/* LOADER */}
-      {loading && (
-        <div id="loader" className={!loading ? "gone" : ""}>
-          <div className="ld-logo" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
-            <img
-              src="/img/novity-emblem.png"
-              alt="Novity Tech Emblem"
-              style={{
-                height: "96px",
-                width: "96px",
-                objectFit: "contain",
-                filter: "drop-shadow(0 0 35px rgba(223, 193, 93, 0.8))",
-                animation: "pulseGoldGlow 2.5s infinite ease-in-out",
-              }}
-            />
-            <div style={{ fontFamily: "'Phudu', cursive", fontSize: "1.75rem", fontWeight: 800, letterSpacing: "0.12em", color: "#ffffff" }}>
-              NOVITY<span style={{ color: "var(--primary)" }}> TECH</span>
-            </div>
-          </div>
-          <div className="ld-bar">
-            <div className="ld-fill"></div>
-          </div>
-        </div>
-      )}
-
       {/* CURSOR */}
       <div
+        ref={dotRef}
         className="c-dot"
         id="cDot"
-        style={{ left: `${cursorPos.x}px`, top: `${cursorPos.y}px` }}
+        style={{ left: 0, top: 0, transform: "translate3d(-100px, -100px, 0) translate(-50%, -50%)", willChange: "transform" }}
       ></div>
       <div
-        className={`c-ring ${isHovered ? "big" : ""}`}
+        ref={ringRef}
+        className="c-ring"
         id="cRing"
-        style={{ left: `${ringPos.x}px`, top: `${ringPos.y}px` }}
+        style={{ left: 0, top: 0, transform: "translate3d(-100px, -100px, 0) translate(-50%, -50%)", willChange: "transform" }}
       ></div>
 
       {/* SCROLL TOP BUTTON */}
@@ -479,16 +481,16 @@ export default function Home() {
           <div className="row align-items-center g-5">
             <div className="col-lg-5">
               <div className="about-img-wrap">
-                <img className="about-img" src="/img/about-img.jpg" alt="About Novity Tech" />
+                <img className="about-img" src="/img/about-img.jpg" alt="About Novity Tech" loading="lazy" decoding="async" />
                 <div className="about-exp">
                   <div className="about-exp-n">3+</div>
                   <div className="about-exp-l">Years of Excellence</div>
                 </div>
                 <div className="about-clients">
                   <div className="cl-avs">
-                    <img className="cl-av" src="/img/ab1.jpg" alt="Client 1" />
-                    <img className="cl-av" src="/img/ab2.jpg" alt="Client 2" />
-                    <img className="cl-av" src="/img/ab3.jpg" alt="Client 3" />
+                    <img className="cl-av" src="/img/ab1.jpg" alt="Client 1" loading="lazy" decoding="async" />
+                    <img className="cl-av" src="/img/ab2.jpg" alt="Client 2" loading="lazy" decoding="async" />
+                    <img className="cl-av" src="/img/ab3.jpg" alt="Client 3" loading="lazy" decoding="async" />
                   </div>
                   <div className="cl-cnt">20+ Happy Clients</div>
                   <div className="cl-lbl">98% satisfaction rate</div>
@@ -699,7 +701,7 @@ export default function Home() {
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                   >
-                    <img className="pf-img" src={item.img || item.image} alt={item.name || item.title} />
+                    <img className="pf-img" src={item.img || item.image} alt={item.name || item.title} loading="lazy" decoding="async" />
                     <div className="pf-ov">
                       <div>
                         <div className="pf-cat">{item.catLabel || item.categoryLabel}</div>
@@ -905,6 +907,45 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ==================== TESTIMONIALS ==================== */}
+      <section id="testimonials">
+        <div className="tst-bg"></div>
+        <div className="container position-relative" style={{ zIndex: 1 }}>
+          <div className="row sec-hd">
+            <div className="col-lg-6">
+              <div className="sec-badge">Testimonials</div>
+              <h2 className="sec-title" style={{ color: "#fff" }}>What Our <span>Clients Say</span></h2>
+            </div>
+            <div className="col-lg-6 d-flex align-items-end">
+              <p className="sec-desc ms-auto" style={{ color: "rgba(255,255,255,.55)" }}>
+                Verified client reviews and feedback will appear here as projects are published.
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="tst-card"
+            style={{
+              textAlign: "center",
+              padding: "48px 28px",
+              maxWidth: "680px",
+              margin: "0 auto",
+            }}
+          >
+            <div style={{ fontSize: "1.8rem", color: "var(--primary)", marginBottom: "12px" }}>
+              <i className="fas fa-comments"></i>
+            </div>
+            <h4 style={{ color: "#fff", fontWeight: 700, marginBottom: "8px" }}>No Client Reviews Yet</h4>
+            <p className="tst-txt" style={{ marginBottom: "22px" }}>
+              We are setting up verified client endorsements. Visit our reviews page or reach out directly to speak with our engineering team.
+            </p>
+            <Link href="/reviews" className="btn-o">
+              View Reviews Page <i className="fas fa-arrow-right"></i>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ==================== FAQ ==================== */}
       <section id="faq">
         <div className="container">
@@ -943,6 +984,44 @@ export default function Home() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== LATEST NEWS ==================== */}
+      <section id="news">
+        <div className="container">
+          <div className="row sec-hd align-items-end">
+            <div className="col-lg-6">
+              <div className="sec-badge">Blog &amp; Resources</div>
+              <h2 className="sec-title">Latest <span>Insights</span></h2>
+            </div>
+            <div className="col-lg-6 text-lg-end">
+              <Link href="/blog" className="btn-o">
+                View All Posts <i className="fas fa-arrow-right"></i>
+              </Link>
+            </div>
+          </div>
+
+          <div
+            className="news-card"
+            style={{
+              textAlign: "center",
+              padding: "48px 28px",
+              maxWidth: "680px",
+              margin: "0 auto",
+            }}
+          >
+            <div style={{ fontSize: "1.8rem", color: "var(--primary)", marginBottom: "12px" }}>
+              <i className="fas fa-pen-nib"></i>
+            </div>
+            <h4 className="news-title" style={{ marginBottom: "8px" }}>No Blog Posts Yet</h4>
+            <p className="news-ex" style={{ marginBottom: "22px" }}>
+              New engineering articles and insights will be published here soon.
+            </p>
+            <Link href="/blog" className="btn-o">
+              Visit Blog <i className="fas fa-arrow-right"></i>
+            </Link>
           </div>
         </div>
       </section>

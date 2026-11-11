@@ -41,7 +41,16 @@ const DEFAULT_KNOWLEDGE = [
   },
 ];
 
+const KNOWLEDGE_CACHE_TTL_MS = 5 * 60 * 1000;
+let cachedKnowledge = null;
+let cachedKnowledgeExpiresAt = 0;
+
 async function getKnowledgeBase() {
+  const now = Date.now();
+  if (cachedKnowledge && now < cachedKnowledgeExpiresAt) {
+    return cachedKnowledge;
+  }
+
   if (process.env.DATABASE_URL) {
     try {
       const sql = neon(process.env.DATABASE_URL);
@@ -51,6 +60,8 @@ async function getKnowledgeBase() {
         ORDER BY id ASC;
       `;
       if (rows && rows.length > 0) {
+        cachedKnowledge = rows;
+        cachedKnowledgeExpiresAt = now + KNOWLEDGE_CACHE_TTL_MS;
         return rows;
       }
     } catch (dbErr) {
