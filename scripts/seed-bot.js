@@ -59,10 +59,6 @@ const knowledgeChunks = [
     content: "Core Services offered by Novity Tech: 1. Web Application Development (Next.js, React, Node.js). 2. Custom AI Agents & Copilots. 3. Cloud & DevOps Infrastructure (Docker, Kubernetes, AWS). 4. MVP Development for Startups. 5. UI/UX Design Systems. 6. IT Staff Augmentation with dedicated senior engineers.",
     metadata: { title: "Services & Capabilities", url: "https://novitytech.com/services" },
   },
-  {
-    content: "Client satisfaction rate at Novity Tech is 4.7 out of 5.0 with 4+ verified client reviews. We operate on transparent agile sprint milestones with weekly video demos, live staging deployments, and SLA performance guarantees.",
-    metadata: { title: "Client Reviews & Metrics", url: "https://novitytech.com/reviews" },
-  },
 ];
 
 async function seed() {

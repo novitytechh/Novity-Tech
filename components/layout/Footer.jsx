@@ -84,8 +84,6 @@ export default function Footer() {
               <li><Link href="/about" style={{ color: "var(--text2)", textDecoration: "none" }}>About Novity Tech</Link></li>
               <li><Link href="/work" style={{ color: "var(--text2)", textDecoration: "none" }}>Featured Work</Link></li>
               <li><Link href="/team" style={{ color: "var(--text2)", textDecoration: "none" }}>Leadership Team</Link></li>
-              <li><Link href="/reviews" style={{ color: "var(--text2)", textDecoration: "none" }}>Client Reviews</Link></li>
-              <li><Link href="/blog" style={{ color: "var(--text2)", textDecoration: "none" }}>Insights & Blog</Link></li>
               <li><Link href="/contact" style={{ color: "var(--text2)", textDecoration: "none" }}>Contact</Link></li>
               <li><Link href="/email-card" style={{ color: "var(--primary)", textDecoration: "none" }}>Email Signature Card</Link></li>
             </ul>

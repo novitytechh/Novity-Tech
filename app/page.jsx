@@ -23,8 +23,6 @@ export default function Home() {
   const [activeFaq, setActiveFaq] = useState(0);
   // Active modal
   const [activeModal, setActiveModal] = useState(null);
-  // Testimonial slider index
-  const [activeSlide, setActiveSlide] = useState(0);
   // Contact form state
   const [formData, setFormData] = useState({
     firstName: "",
@@ -132,7 +130,7 @@ export default function Home() {
       setScrolled(st > 50);
       setShowScrollTop(st > 300);
 
-      const sections = ["hero", "about", "services", "portfolio", "team", "pricing", "news", "contact"];
+      const sections = ["hero", "about", "services", "portfolio", "team", "pricing", "contact"];
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && st >= el.offsetTop - 140) {
@@ -144,14 +142,6 @@ export default function Home() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Testimonials Auto-Slide
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % 4);
-    }, 4500);
-    return () => clearInterval(interval);
   }, []);
 
   // Close modal on ESC key
@@ -217,38 +207,6 @@ export default function Home() {
 
   const activePortfolioModalItem = portfolioItems.find((item) => item.id === activeModal);
   const activeTeamMember = TEAM_MEMBERS.find((item) => item.id === activeModal);
-
-  // Testimonials data
-  const testimonials = [
-    {
-      quote: "Novity Tech completely transformed our digital presence. Their data-driven SEO approach helped us achieve a 3x increase in organic traffic within just six months. Incredibly talented and deeply invested in our success.",
-      name: "Alex Thompson",
-      role: "CEO, TechFlow Inc.",
-      img: "/img/testimonial/1.jpg",
-      rating: 5,
-    },
-    {
-      quote: "Working with Novity Tech on our brand relaunch was a game-changer. They truly understood our values and crafted a brand identity that resonates perfectly with our audience. Revenue doubled in the first year.",
-      name: "Priya Sharma",
-      role: "Founder, Blooma Wellness",
-      img: "/img/testimonial/2.jpg",
-      rating: 5,
-    },
-    {
-      quote: "The social media strategy Novity Tech developed is exceptional. We grew from 10K to 250K followers in 8 months, and more importantly, our engagement and conversions have never been higher. Highly recommend.",
-      name: "Marcus Williams",
-      role: "CMO, SportEdge",
-      img: "/img/testimonial/3.jpg",
-      rating: 5,
-    },
-    {
-      quote: "From PPC campaigns to our new website, every deliverable from Novity Tech exceeded expectations. Their attention to detail and strategic thinking set them apart from every agency we've worked with before.",
-      name: "Rachel Kim",
-      role: "Director, NovaBuild",
-      img: "/img/testimonial/4.jpg",
-      rating: 4.5,
-    },
-  ];
 
   // FAQ items data
   const faqs = [
@@ -947,66 +905,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== TESTIMONIALS ==================== */}
-      <section id="testimonials">
-        <div className="tst-bg"></div>
-        <div className="container position-relative" style={{ zIndex: 1 }}>
-          <div className="row sec-hd">
-            <div className="col-lg-6">
-              <div className="sec-badge">Testimonials</div>
-              <h2 className="sec-title" style={{ color: "#fff" }}>What Our <span>Clients Say</span></h2>
-            </div>
-            <div className="col-lg-6 d-flex align-items-end">
-              <p className="sec-desc ms-auto" style={{ color: "rgba(255,255,255,.55)" }}>
-                Don&apos;t take our word for it � hear from the brands we&apos;ve helped grow significantly.
-              </p>
-            </div>
-          </div>
-
-          {/* Testimonial Interactive Carousel */}
-          <div className="tst-slider-container">
-            <div
-              className="tst-slider-track"
-              style={{
-                transform: `translateX(-${activeSlide * 100}%)`,
-              }}
-            >
-              {testimonials.map((t, idx) => (
-                <div key={idx} className="tst-slide-item">
-                  <div className="tst-card h-100">
-                    <span className="tst-q">&ldquo;</span>
-                    <div className="tst-stars">
-                      {Array.from({ length: Math.floor(t.rating) }).map((_, i) => (
-                        <i key={i} className="fas fa-star"></i>
-                      ))}
-                      {t.rating % 1 !== 0 && <i className="fas fa-star-half-alt"></i>}
-                    </div>
-                    <p className="tst-txt">{t.quote}</p>
-                    <div className="tst-auth">
-                      <img className="tst-av" src={t.img} alt={t.name} />
-                      <div>
-                        <div className="tst-name">{t.name}</div>
-                        <div className="tst-co">{t.role}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="tst-dots">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  className={`tst-dot ${activeSlide === i ? "active" : ""}`}
-                  onClick={() => setActiveSlide(i)}
-                  aria-label={`Slide ${i + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ==================== FAQ ==================== */}
       <section id="faq">
         <div className="container">
@@ -1043,103 +941,6 @@ export default function Home() {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== LATEST NEWS ==================== */}
-      <section id="news">
-        <div className="container">
-          <div className="row sec-hd align-items-end">
-            <div className="col-lg-6">
-              <div className="sec-badge">Blog &amp; Resources</div>
-              <h2 className="sec-title">Latest <span>Insights</span></h2>
-            </div>
-            <div className="col-lg-6 text-lg-end">
-              <a
-                href="#news"
-                className="btn-o"
-                onClick={(e) => { e.preventDefault(); setActiveModal("newsM1"); }}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                View All Posts <i className="fas fa-arrow-right"></i>
-              </a>
-            </div>
-          </div>
-          <div className="row g-4">
-            {/* Post 1 */}
-            <div className="col-lg-4 col-md-6">
-              <div
-                className="news-card"
-                onClick={() => setActiveModal("newsM1")}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="news-img-wrap">
-                  <img className="news-img" src="/img/blog/1.jpg" alt="Post 1" />
-                </div>
-                <div className="news-body">
-                  <span className="news-cat">SEO Strategy</span>
-                  <h4 className="news-title">10 SEO Trends That Will Define Search Rankings in 2026</h4>
-                  <p className="news-ex">AI-driven search, E-E-A-T signals, and Core Web Vitals are reshaping how Google ranks content. Here&apos;s what you need to know.</p>
-                  <div className="news-meta">
-                    <span><i className="fas fa-calendar"></i> May 14, 2026</span>
-                    <span><i className="fas fa-clock"></i> 5 min read</span>
-                  </div>
-                  <div className="news-rm">Read Article <i className="fas fa-arrow-right"></i></div>
-                </div>
-              </div>
-            </div>
-            {/* Post 2 */}
-            <div className="col-lg-4 col-md-6">
-              <div
-                className="news-card"
-                onClick={() => setActiveModal("newsM2")}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="news-img-wrap">
-                  <img className="news-img" src="/img/blog/2.jpg" alt="Post 2" />
-                </div>
-                <div className="news-body">
-                  <span className="news-cat">Brand Strategy</span>
-                  <h4 className="news-title">Why Brand Positioning Is the Foundation of Every Marketing Win</h4>
-                  <p className="news-ex">Great marketing doesn&apos;t start with tactics � it starts with a clear, compelling position in the market. Learn how to build yours.</p>
-                  <div className="news-meta">
-                    <span><i className="fas fa-calendar"></i> May 8, 2026</span>
-                    <span><i className="fas fa-clock"></i> 7 min read</span>
-                  </div>
-                  <div className="news-rm">Read Article <i className="fas fa-arrow-right"></i></div>
-                </div>
-              </div>
-            </div>
-            {/* Post 3 */}
-            <div className="col-lg-4 col-md-6">
-              <div
-                className="news-card"
-                onClick={() => setActiveModal("newsM3")}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="news-img-wrap">
-                  <img className="news-img" src="/img/blog/3.jpg" alt="Post 3" />
-                </div>
-                <div className="news-body">
-                  <span className="news-cat">Social Media</span>
-                  <h4 className="news-title">The Social Media Algorithm Changes You Need to Know About</h4>
-                  <p className="news-ex">Instagram, LinkedIn, and TikTok have all updated their algorithms recently. We break down what changed and how to adapt.</p>
-                  <div className="news-meta">
-                    <span><i className="fas fa-calendar"></i> Apr 30, 2026</span>
-                    <span><i className="fas fa-clock"></i> 6 min read</span>
-                  </div>
-                  <div className="news-rm">Read Article <i className="fas fa-arrow-right"></i></div>
-                </div>
               </div>
             </div>
           </div>
@@ -1702,78 +1503,6 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* BLOG MODALS */}
-      {activeModal === "newsM1" && (
-        <div className="modal fade show" tabIndex="-1" onClick={() => setActiveModal(null)}>
-          <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">10 SEO Trends That Will Define Search Rankings in 2026</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
-              </div>
-              <div className="modal-body">
-                <img src="/img/blog/1.jpg" style={{ width: "100%", height: "280px", objectFit: "cover", borderRadius: "var(--r)", marginBottom: "22px" }} alt="SEO Trends" />
-                <div className="d-flex align-items-center gap-3" style={{ marginBottom: "18px" }}>
-                  <span className="news-cat" style={{ position: "static" }}>SEO Strategy</span>
-                  <span style={{ fontSize: ".8rem", color: "var(--text3)" }}><i className="fas fa-calendar" style={{ color: "var(--primary)", marginRight: "5px" }}></i>May 14, 2026</span>
-                  <span style={{ fontSize: ".8rem", color: "var(--text3)" }}><i className="fas fa-clock" style={{ color: "var(--primary)", marginRight: "5px" }}></i>5 min read</span>
-                </div>
-                <p style={{ color: "var(--text2)", lineHeight: "1.85", fontSize: ".92rem", marginBottom: "16px" }}>
-                  AI-driven search, E-E-A-T signals, and Core Web Vitals are reshaping how Google ranks content in 2026. Staying ahead of these shifts is no longer optional � it&apos;s survival for any brand that relies on organic traffic.
-                </p>
-                <h6 style={{ fontWeight: 700, marginBottom: "10px" }}>1. AI-Powered Search Generative Experience (SGE)</h6>
-                <p style={{ color: "var(--text2)", lineHeight: "1.85", fontSize: ".9rem", marginBottom: "14px" }}>
-                  Google&apos;s SGE is fundamentally changing how search results are displayed. AI-generated summaries now appear above traditional links.
-                </p>
-                <div style={{ background: "rgba(var(--primary-rgb),.07)", borderLeft: "3px solid var(--primary)", borderRadius: "0 var(--rs) var(--rs) 0", padding: "14px 18px", marginTop: "16px" }}>
-                  <p style={{ margin: 0, fontSize: ".9rem", color: "var(--text2)" }}>
-                    <strong>Key Takeaway:</strong> 2026 SEO is about building genuine authority through quality content, technical excellence, and a seamless user experience.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {activeModal === "newsM2" && (
-        <div className="modal fade show" tabIndex="-1" onClick={() => setActiveModal(null)}>
-          <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Why Brand Positioning Is the Foundation of Every Marketing Win</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
-              </div>
-              <div className="modal-body">
-                <img src="/img/blog/2.jpg" style={{ width: "100%", height: "280px", objectFit: "cover", borderRadius: "var(--r)", marginBottom: "22px" }} alt="Brand Positioning" />
-                <p style={{ color: "var(--text2)", lineHeight: "1.85", fontSize: ".92rem", marginBottom: "16px" }}>
-                  Most marketing fails not because of poor execution, but because of a weak or undefined brand position. Before you write a single ad, design a logo, or publish a post � you need to know exactly where you stand.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {activeModal === "newsM3" && (
-        <div className="modal fade show" tabIndex="-1" onClick={() => setActiveModal(null)}>
-          <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">The Social Media Algorithm Changes You Need to Know About</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
-              </div>
-              <div className="modal-body">
-                <img src="/img/blog/3.jpg" style={{ width: "100%", height: "280px", objectFit: "cover", borderRadius: "var(--r)", marginBottom: "22px" }} alt="Social Media Algorithm" />
-                <p style={{ color: "var(--text2)", lineHeight: "1.85", fontSize: ".92rem", marginBottom: "16px" }}>
-                  Instagram, LinkedIn, and TikTok have all rolled out significant algorithm updates in early 2026. If your social media performance has dipped recently, these changes are almost certainly why.
-                </p>
               </div>
             </div>
           </div>

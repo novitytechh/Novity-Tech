@@ -69,13 +69,6 @@ const KNOWLEDGE_ITEMS = [
     tags: ["services", "web", "ai", "cloud", "devops", "mvp", "design", "nextjs", "react", "capabilities", "offer"]
   },
   {
-    category: "metrics",
-    title: "Track Record & Client Endorsements",
-    content: "Novity Tech holds a 4.7 / 5.0 client satisfaction rating backed by 4+ verified client reviews. We operate on fixed-scope SLA commitments, weekly interactive video demos, shared GitHub repositories, and 100% full repository handover upon milestone delivery.",
-    url: "/reviews",
-    tags: ["reviews", "satisfaction", "rating", "metrics", "feedback", "clients", "testimonials"]
-  },
-  {
     category: "process",
     title: "How to Start a Project",
     content: "To initiate a software project with Novity Tech, submit an inquiry on our contact page or call +92 329 1013649. We begin with a complimentary architectural discovery call to map technical requirements, sprint milestones, and SLA guarantees before writing a single line of code.",

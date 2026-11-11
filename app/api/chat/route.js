@@ -32,7 +32,7 @@ const DEFAULT_KNOWLEDGE = [
   {
     title: "Client Commitment & Working Standards",
     content:
-      "Novity Tech guarantees:\n• 100% Direct Architect Access (no sales middlemen or junior delegation)\n• Full IP & GitHub Repository Ownership from Day 1\n• Strict Bilateral Non-Disclosure Agreement (NDA) on every project\n• Fixed-Scope Milestones & SLA Commitments with zero technical debt\n• Weekly interactive video demos & transparent progress reporting\n• 4.7 / 5.0 client satisfaction rating backed by verified global reviews.",
+      "Novity Tech guarantees:\n• 100% Direct Architect Access (no sales middlemen or junior delegation)\n• Full IP & GitHub Repository Ownership from Day 1\n• Strict Bilateral Non-Disclosure Agreement (NDA) on every project\n• Fixed-Scope Milestones & SLA Commitments with zero technical debt\n• Weekly interactive video demos & transparent progress reporting",
   },
   {
     title: "How to Start a Project",

@@ -154,9 +154,6 @@ export default function NotFound() {
             Popular Destinations
           </span>
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap", fontSize: "0.88rem" }}>
-            <Link href="/reviews" style={{ color: "var(--text)", fontWeight: 600 }}>
-              <i className="fas fa-star" style={{ color: "var(--primary)", marginRight: "6px" }}></i> Client Reviews
-            </Link>
             <Link href="/#services" style={{ color: "var(--text)", fontWeight: 600 }}>
               <i className="fas fa-cubes" style={{ color: "var(--primary)", marginRight: "6px" }}></i> Our Services
             </Link>

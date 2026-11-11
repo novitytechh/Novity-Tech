@@ -79,7 +79,6 @@
 .feat-card,
 .svc-card,
 .tm-card,
-.news-card,
 .pr-card {
   transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
   border: 1px solid var(--border) !important;
@@ -89,67 +88,10 @@
 .feat-card:hover,
 .svc-card:hover,
 .tm-card:hover,
-.news-card:hover,
 .pr-card:hover {
   border-color: rgba(212, 175, 55, 0.45) !important;
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.75), 0 0 25px rgba(212, 175, 55, 0.14) !important;
   transform: translateY(-4px);
-}
-
-/* Swiper custom overrides */
-.tst-slider-container {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-
-.tst-slider-track {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: transform;
-}
-
-.tst-slide-item {
-  flex: 0 0 100%;
-  padding: 0 12px;
-  box-sizing: border-box;
-}
-
-@media (min-width: 768px) {
-  .tst-slide-item {
-    flex: 0 0 50%;
-  }
-}
-
-@media (min-width: 1024px) {
-  .tst-slide-item {
-    flex: 0 0 33.333333%;
-  }
-}
-
-.tst-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 28px;
-}
-
-.tst-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-}
-
-.tst-dot.active {
-  width: 28px;
-  border-radius: 10px;
-  background: #dfc15d !important;
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.6) !important;
 }
 
 /* Accordion React Transitions */
@@ -243,12 +185,10 @@
 .feat-card,
 .svc-card,
 .tm-card,
-.news-card,
 .pr-card,
 .pf-item,
 .cf-wrap,
 .ci-item,
-.tst-card,
 .accordion-item,
 .modal-content,
 .hero-emblem-card,
@@ -257,8 +197,6 @@
 .stat-card,
 .service-card,
 .team-card,
-.review-card,
-.blog-card,
 .dropdown-menu,
 .sec-box,
 .card {
@@ -277,7 +215,6 @@ textarea,
 
 /* Sub-card image headers */
 .tm-img-wrap,
-.news-img-wrap,
 .pf-item img {
   border-radius: 20px 20px 0 0 !important;
 }
