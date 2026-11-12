@@ -796,6 +796,163 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Core Leadership & Engineering Boxes */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
+              gap: "20px",
+              marginBottom: "40px",
+            }}
+          >
+            {TEAM_MEMBERS.slice(0, 5).map((member) => (
+              <div
+                key={member.id}
+                className="tm-card"
+                onClick={() => setActiveModal(member.id)}
+                style={{
+                  background: "var(--card)",
+                  border: member.isChief
+                    ? "1px solid rgba(223, 193, 93, 0.45)"
+                    : "1px solid var(--border)",
+                  borderRadius: "22px",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  display: "flex",
+                  flexDirection: "column",
+                  transition: "all 0.3s cubic-bezier(0.23, 1, 0.32, 1)",
+                }}
+              >
+                {/* Photo Header */}
+                <div
+                  style={{
+                    height: "240px",
+                    position: "relative",
+                    overflow: "hidden",
+                    background: "rgba(223, 193, 93, 0.05)",
+                  }}
+                >
+                  {member.image ? (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        objectPosition: "top center",
+                        transition: "transform 0.4s ease",
+                      }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "2rem",
+                        color: "var(--primary)",
+                      }}
+                    >
+                      <i className={`fas ${member.icon}`} />
+                    </div>
+                  )}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background:
+                        "linear-gradient(to top, rgba(16, 15, 21, 0.9) 0%, rgba(16, 15, 21, 0.1) 60%, rgba(0,0,0,0.3) 100%)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "12px",
+                      right: "12px",
+                      fontSize: "0.7rem",
+                      fontWeight: 800,
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                      padding: "4px 10px",
+                      borderRadius: "100px",
+                      background: "rgba(11, 10, 14, 0.85)",
+                      backdropFilter: "blur(8px)",
+                      color: member.isChief ? "var(--primary)" : "#ffffff",
+                      border: "1px solid rgba(223, 193, 93, 0.45)",
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+                    }}
+                  >
+                    {member.badge}
+                  </span>
+                </div>
+
+                {/* Body */}
+                <div
+                  style={{
+                    padding: "20px 18px",
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div>
+                    <h4
+                      style={{
+                        fontSize: "1.08rem",
+                        fontWeight: 800,
+                        color: "var(--text)",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      {member.name}
+                    </h4>
+                    <div
+                      style={{
+                        fontSize: "0.8rem",
+                        fontWeight: 700,
+                        color: "var(--primary)",
+                        marginBottom: "10px",
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {member.role}
+                    </div>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      paddingTop: "12px",
+                      borderTop: "1px solid var(--border)",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "0.78rem",
+                        fontWeight: 700,
+                        color: "var(--primary)",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                      }}
+                    >
+                      View Profile <i className="fas fa-arrow-right" style={{ fontSize: "0.7rem" }} />
+                    </span>
+                    <i className={`fas ${member.icon}`} style={{ color: "var(--text3)", fontSize: "0.85rem" }} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
           {/* Master Dedicated Paragraph */}
           <div
             className="shaded-banner-block"
@@ -1643,23 +1800,40 @@ export default function Home() {
               </div>
               <div className="modal-body">
                 <div className="tm-mod-hd" style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "20px" }}>
-                  <div
-                    style={{
-                      width: "64px",
-                      height: "64px",
-                      borderRadius: "18px",
-                      background: "rgba(223, 193, 93, 0.15)",
-                      border: "1px solid rgba(223, 193, 93, 0.4)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "var(--primary)",
-                      fontSize: "1.6rem",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <i className={`fas ${activeTeamMember.icon}`}></i>
-                  </div>
+                  {activeTeamMember.image ? (
+                    <img
+                      src={activeTeamMember.image}
+                      alt={activeTeamMember.name}
+                      style={{
+                        width: "68px",
+                        height: "68px",
+                        borderRadius: "18px",
+                        objectFit: "cover",
+                        objectPosition: "top center",
+                        border: "2px solid rgba(223, 193, 93, 0.6)",
+                        boxShadow: "0 0 20px rgba(223, 193, 93, 0.25)",
+                        flexShrink: 0,
+                      }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: "64px",
+                        height: "64px",
+                        borderRadius: "18px",
+                        background: "rgba(223, 193, 93, 0.15)",
+                        border: "1px solid rgba(223, 193, 93, 0.4)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "var(--primary)",
+                        fontSize: "1.6rem",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <i className={`fas ${activeTeamMember.icon}`}></i>
+                    </div>
+                  )}
                   <div>
                     <h4 style={{ fontWeight: 800, marginBottom: "4px" }}>{activeTeamMember.name}</h4>
                     <div className="tm-mod-role" style={{ color: "var(--primary)", fontSize: "0.85rem", fontWeight: 700 }}>

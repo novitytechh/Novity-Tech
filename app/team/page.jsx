@@ -181,10 +181,10 @@ export default function TeamPage() {
                     e.currentTarget.style.boxShadow = "none";
                   }}
                 >
-                  {/* Card Visual Header / Monogram */}
+                  {/* Card Visual Header / Photo or Monogram */}
                   <div
                     style={{
-                      height: "180px",
+                      height: member.image ? "260px" : "180px",
                       background: member.isChief
                         ? "rgba(223, 193, 93, 0.08)"
                         : "rgba(255, 255, 255, 0.02)",
@@ -194,9 +194,70 @@ export default function TeamPage() {
                       alignItems: "center",
                       justifyContent: "center",
                       position: "relative",
-                      padding: "20px",
+                      overflow: "hidden",
                     }}
                   >
+                    {member.image ? (
+                      <>
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            objectPosition: "top center",
+                            transition: "transform 0.4s ease",
+                          }}
+                        />
+                        <div
+                          style={{
+                            position: "absolute",
+                            inset: 0,
+                            background:
+                              "linear-gradient(to top, rgba(16, 15, 21, 0.85) 0%, rgba(16, 15, 21, 0.1) 60%, rgba(0,0,0,0.3) 100%)",
+                            pointerEvents: "none",
+                          }}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        {/* Monogram / Icon Avatar */}
+                        <div
+                          style={{
+                            width: "74px",
+                            height: "74px",
+                            borderRadius: "22px",
+                            background: member.isChief
+                              ? "rgba(223, 193, 93, 0.16)"
+                              : "rgba(223, 193, 93, 0.08)",
+                            border: "1.5px solid rgba(223, 193, 93, 0.45)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "var(--primary)",
+                            fontSize: "1.8rem",
+                            boxShadow: "0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(223, 193, 93, 0.2)",
+                            marginBottom: "6px",
+                          }}
+                        >
+                          <i className={`fas ${member.icon}`} />
+                        </div>
+
+                        {/* Monogram Tag */}
+                        <div
+                          style={{
+                            fontSize: "0.75rem",
+                            fontWeight: 800,
+                            color: "var(--primary)",
+                            letterSpacing: "0.1em",
+                          }}
+                        >
+                          {member.initials}
+                        </div>
+                      </>
+                    )}
+
                     {/* Category / Chief Pill Badge */}
                     <span
                       style={{
@@ -207,51 +268,18 @@ export default function TeamPage() {
                         fontWeight: 800,
                         letterSpacing: "0.06em",
                         textTransform: "uppercase",
-                        padding: "3px 10px",
+                        padding: "4px 12px",
                         borderRadius: "100px",
-                        background: member.isChief
-                          ? "rgba(223, 193, 93, 0.22)"
-                          : "rgba(255, 255, 255, 0.06)",
-                        color: member.isChief ? "var(--primary)" : "var(--text2)",
-                        border: "1px solid rgba(223, 193, 93, 0.35)",
+                        background: "rgba(11, 10, 14, 0.82)",
+                        backdropFilter: "blur(8px)",
+                        color: member.isChief ? "var(--primary)" : "#ffffff",
+                        border: "1px solid rgba(223, 193, 93, 0.45)",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+                        zIndex: 2,
                       }}
                     >
                       {member.badge}
                     </span>
-
-                    {/* Monogram / Icon Avatar */}
-                    <div
-                      style={{
-                        width: "74px",
-                        height: "74px",
-                        borderRadius: "22px",
-                        background: member.isChief
-                          ? "rgba(223, 193, 93, 0.16)"
-                          : "rgba(223, 193, 93, 0.08)",
-                        border: "1.5px solid rgba(223, 193, 93, 0.45)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "var(--primary)",
-                        fontSize: "1.8rem",
-                        boxShadow: "0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(223, 193, 93, 0.2)",
-                        marginBottom: "6px",
-                      }}
-                    >
-                      <i className={`fas ${member.icon}`} />
-                    </div>
-
-                    {/* Monogram Tag */}
-                    <div
-                      style={{
-                        fontSize: "0.75rem",
-                        fontWeight: 800,
-                        color: "var(--primary)",
-                        letterSpacing: "0.1em",
-                      }}
-                    >
-                      {member.initials}
-                    </div>
                   </div>
 
                   {/* Card Info Body */}
@@ -605,24 +633,41 @@ export default function TeamPage() {
               <div className="modal-body" style={{ padding: "26px 20px" }}>
                 {/* Header profile row */}
                 <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "24px" }}>
-                  <div
-                    style={{
-                      width: "80px",
-                      height: "80px",
-                      borderRadius: "24px",
-                      background: "rgba(223, 193, 93, 0.12)",
-                      border: "1.5px solid rgba(223, 193, 93, 0.45)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "var(--primary)",
-                      fontSize: "2rem",
-                      flexShrink: 0,
-                      boxShadow: "0 0 25px rgba(223, 193, 93, 0.2)",
-                    }}
-                  >
-                    <i className={`fas ${selectedMember.icon}`} />
-                  </div>
+                  {selectedMember.image ? (
+                    <img
+                      src={selectedMember.image}
+                      alt={selectedMember.name}
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                        borderRadius: "24px",
+                        objectFit: "cover",
+                        objectPosition: "top center",
+                        border: "2px solid rgba(223, 193, 93, 0.6)",
+                        boxShadow: "0 0 25px rgba(223, 193, 93, 0.3)",
+                        flexShrink: 0,
+                      }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                        borderRadius: "24px",
+                        background: "rgba(223, 193, 93, 0.12)",
+                        border: "1.5px solid rgba(223, 193, 93, 0.45)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "var(--primary)",
+                        fontSize: "2rem",
+                        flexShrink: 0,
+                        boxShadow: "0 0 25px rgba(223, 193, 93, 0.2)",
+                      }}
+                    >
+                      <i className={`fas ${selectedMember.icon}`} />
+                    </div>
+                  )}
                   <div>
                     <h3 style={{ fontWeight: 800, fontSize: "1.45rem", color: "var(--text)", marginBottom: "4px" }}>
                       {selectedMember.name}
