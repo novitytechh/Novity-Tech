@@ -23,8 +23,8 @@ export default function EmailCardPage() {
 
   // Synchronized credentials
   const [cardData, setCardData] = useState({
-    name: "Muhammad Faseeh Altaf",
-    role: "CEO & Business Development",
+    name: "Ali Haider",
+    role: "Founder & Chief Executive Officer (CEO)",
     company: "Novity Tech",
     subCompany: "Digital Engineering & AI Agency",
     email: "novitytechh@gmail.com",
@@ -263,7 +263,7 @@ export default function EmailCardPage() {
               margin: "0 auto",
             }}
           >
-            Optimized for Gmail (<strong>&lt; 4,000 characters</strong> — strictly complies with Gmail&apos;s 10,000-char limit). Featuring <strong>Muhammad Faseeh Altaf</strong> &amp; Novity Tech credentials.
+            Optimized for Gmail (<strong>&lt; 4,000 characters</strong> — strictly complies with Gmail&apos;s 10,000-char limit). Featuring <strong>Ali Haider</strong> &amp; Novity Tech credentials.
           </p>
         </div>
 

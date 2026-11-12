@@ -3,7 +3,7 @@ import { resend } from "@/lib/resend";
 
 const OFFICIAL_EMBLEM_URL = "https://raw.githubusercontent.com/novitytechh/Novity-Tech/main/public/img/novity-emblem.png";
 
-// Official Email Signature Card HTML (Muhammad Faseeh Altaf & Novity Tech)
+// Official Email Signature Card HTML (Ali Haider & Novity Tech)
 const EMAIL_CARD_HTML = `
 <table cellpadding="0" cellspacing="0" border="0" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0e0d13; border: 1px solid rgba(223, 193, 93, 0.45); border-radius: 14px; max-width: 530px; width: 100%; box-shadow: 0 10px 25px rgba(0,0,0,0.25); overflow: hidden; color: #ffffff; margin: 24px auto 0 auto;">
   <tr>
@@ -45,10 +45,10 @@ const EMAIL_CARD_HTML = `
     <!-- Details Column -->
     <td style="padding: 22px 22px 22px 18px; vertical-align: middle;">
       <div style="font-size: 19px; font-weight: 800; color: #ffffff; letter-spacing: 0.3px; line-height: 1.2; margin-bottom: 4px;">
-        Muhammad Faseeh Altaf
+        Ali Haider
       </div>
       <div style="font-size: 13px; font-weight: 700; color: #dfc15d; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 2px;">
-        CEO & Business Development
+        Founder & CEO
       </div>
       <div style="font-size: 11.5px; color: #b8b3a8; font-weight: 500; margin-bottom: 10px;">
         Digital Engineering & AI Agency
