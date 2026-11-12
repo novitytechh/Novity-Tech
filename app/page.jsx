@@ -49,6 +49,31 @@ export default function Home() {
     satisfaction: 0,
     experience: 0,
   });
+  const [googleReviews, setGoogleReviews] = useState({
+    rating: null,
+    totalReviews: 0,
+    writeReviewUri: null,
+    reviews: [],
+  });
+
+  useEffect(() => {
+    let active = true;
+    fetch("/api/google-reviews")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!active) return;
+        setGoogleReviews({
+          rating: data.rating ?? null,
+          totalReviews: data.totalReviews ?? 0,
+          writeReviewUri: data.writeReviewUri ?? null,
+          reviews: Array.isArray(data.reviews) ? data.reviews : [],
+        });
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
 
   // Handle Initial Theme
   useEffect(() => {
@@ -923,26 +948,107 @@ export default function Home() {
             </div>
           </div>
 
-          <div
-            className="tst-card"
-            style={{
-              textAlign: "center",
-              padding: "48px 28px",
-              maxWidth: "680px",
-              margin: "0 auto",
-            }}
-          >
-            <div style={{ fontSize: "1.8rem", color: "var(--primary)", marginBottom: "12px" }}>
-              <i className="fas fa-comments"></i>
+          {googleReviews.reviews.length > 0 ? (
+            <>
+              <div className="row g-4 mb-4">
+                {googleReviews.reviews.slice(0, 3).map((rev) => (
+                  <div className="col-lg-4 col-md-6" key={rev.id}>
+                    <div
+                      className="tst-card h-100 d-flex flex-column justify-content-between"
+                      style={{ padding: "28px" }}
+                    >
+                      <div>
+                        <div className="d-flex justify-content-between align-items-center mb-3">
+                          <div style={{ color: "#f59e0b", display: "flex", gap: "4px", fontSize: "0.9rem" }}>
+                            {Array.from({ length: rev.rating }).map((_, i) => (
+                              <i key={i} className="fas fa-star"></i>
+                            ))}
+                          </div>
+                          <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.5)" }}>
+                            {rev.relativeTime}
+                          </span>
+                        </div>
+                        <p className="tst-txt" style={{ marginBottom: "20px" }}>
+                          {rev.quote ? <>&ldquo;{rev.quote}&rdquo;</> : "Rated 5 stars on Google."}
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-3 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                        {rev.avatar ? (
+                          <img
+                            src={rev.avatar}
+                            alt={rev.author}
+                            referrerPolicy="no-referrer"
+                            style={{ width: "42px", height: "42px", borderRadius: "50%", objectFit: "cover" }}
+                          />
+                        ) : (
+                          <div
+                            style={{
+                              width: "42px",
+                              height: "42px",
+                              borderRadius: "50%",
+                              background: "rgba(223,193,93,0.18)",
+                              color: "#dfc15d",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              fontWeight: 800,
+                            }}
+                          >
+                            {rev.author.charAt(0).toUpperCase()}
+                          </div>
+                        )}
+                        <div className="flex-grow-1">
+                          <div style={{ color: "#fff", fontWeight: 700, fontSize: "0.95rem" }}>
+                            {rev.author}
+                          </div>
+                          <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.78rem" }}>
+                            Verified Google Review
+                          </div>
+                        </div>
+                        <i className="fas fa-check-circle" style={{ color: "#22c55e" }}></i>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="text-center d-flex justify-content-center gap-3 flex-wrap">
+                <Link href="/reviews" className="btn-o">
+                  View All Google Reviews <i className="fas fa-arrow-right"></i>
+                </Link>
+                {googleReviews.writeReviewUri && (
+                  <a
+                    href={googleReviews.writeReviewUri}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-p"
+                  >
+                    <i className="fas fa-star"></i> Leave a Review
+                  </a>
+                )}
+              </div>
+            </>
+          ) : (
+            <div
+              className="tst-card"
+              style={{
+                textAlign: "center",
+                padding: "48px 28px",
+                maxWidth: "680px",
+                margin: "0 auto",
+              }}
+            >
+              <div style={{ fontSize: "1.8rem", color: "var(--primary)", marginBottom: "12px" }}>
+                <i className="fas fa-comments"></i>
+              </div>
+              <h4 style={{ color: "#fff", fontWeight: 700, marginBottom: "8px" }}>No Client Reviews Yet</h4>
+              <p className="tst-txt" style={{ marginBottom: "22px" }}>
+                We are setting up verified Google Reviews. Visit our reviews page or reach out directly to speak with our engineering team.
+              </p>
+              <Link href="/reviews" className="btn-o">
+                View Reviews Page <i className="fas fa-arrow-right"></i>
+              </Link>
             </div>
-            <h4 style={{ color: "#fff", fontWeight: 700, marginBottom: "8px" }}>No Client Reviews Yet</h4>
-            <p className="tst-txt" style={{ marginBottom: "22px" }}>
-              We are setting up verified client endorsements. Visit our reviews page or reach out directly to speak with our engineering team.
-            </p>
-            <Link href="/reviews" className="btn-o">
-              View Reviews Page <i className="fas fa-arrow-right"></i>
-            </Link>
-          </div>
+          )}
         </div>
       </section>
 

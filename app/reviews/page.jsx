@@ -3,10 +3,8 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-
-const REVIEWS_DATA = [];
 
 const COLLABORATION_PILLARS = [
   {
@@ -36,12 +34,47 @@ const COLLABORATION_PILLARS = [
 ];
 
 export default function ReviewsPage() {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [ratingFilter, setRatingFilter] = useState("all");
+  const [reviewsData, setReviewsData] = useState({
+    loading: true,
+    configured: false,
+    rating: null,
+    totalReviews: 0,
+    googleMapsUri: null,
+    writeReviewUri: null,
+    reviews: [],
+  });
 
-  const filteredReviews =
-    activeCategory === "all"
-      ? REVIEWS_DATA
-      : REVIEWS_DATA.filter((r) => r.category === activeCategory);
+  useEffect(() => {
+    let active = true;
+    fetch("/api/google-reviews")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!active) return;
+        setReviewsData({
+          loading: false,
+          configured: Boolean(data.configured),
+          rating: data.rating ?? null,
+          totalReviews: data.totalReviews ?? 0,
+          googleMapsUri: data.googleMapsUri ?? null,
+          writeReviewUri: data.writeReviewUri ?? null,
+          reviews: Array.isArray(data.reviews) ? data.reviews : [],
+        });
+      })
+      .catch(() => {
+        if (!active) return;
+        setReviewsData((prev) => ({ ...prev, loading: false }));
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const filteredReviews = reviewsData.reviews.filter((r) => {
+    if (ratingFilter === "5") return r.rating === 5;
+    if (ratingFilter === "4") return r.rating >= 4;
+    return true;
+  });
 
   return (
     <>
@@ -117,13 +150,13 @@ export default function ReviewsPage() {
               }}
             >
               <div style={{ fontFamily: "Phudu, cursive", fontSize: "2.4rem", fontWeight: 800, color: "var(--primary)" }}>
-                —
+                {reviewsData.rating ? `${reviewsData.rating.toFixed(1)} ★` : "—"}
               </div>
               <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--text)", marginTop: "4px" }}>
-                Client Satisfaction
+                Google Rating
               </div>
               <div style={{ fontSize: "0.8rem", color: "var(--text3)", marginTop: "4px" }}>
-                Verified client feedback
+                Verified Google Business rating
               </div>
             </div>
 
@@ -137,13 +170,13 @@ export default function ReviewsPage() {
               }}
             >
               <div style={{ fontFamily: "Phudu, cursive", fontSize: "2.4rem", fontWeight: 800, color: "var(--primary)" }}>
-                0
+                {reviewsData.totalReviews}
               </div>
               <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--text)", marginTop: "4px" }}>
-                Verified Reviews
+                Google Reviews
               </div>
               <div style={{ fontSize: "0.8rem", color: "var(--text3)", marginTop: "4px" }}>
-                Zero fake endorsements
+                Synced from Google Maps
               </div>
             </div>
 
@@ -189,29 +222,84 @@ export default function ReviewsPage() {
           </div>
         </div>
 
-        {/* Category Filters */}
-        <div style={{ display: "flex", justifyContent: "center", gap: "10px", flexWrap: "wrap", marginBottom: "40px" }}>
-          {[
-            { id: "all", label: "All Reviews" },
-            { id: "web", label: "Web Platforms" },
-            { id: "cloud", label: "Cloud & Architecture" },
-            { id: "ai", label: "AI Agents & Automation" },
-            { id: "design", label: "Design Systems & UX" },
-          ].map((cat) => (
-            <button
-              key={cat.id}
-              type="button"
-              onClick={() => setActiveCategory(cat.id)}
-              className={`tab-btn ftab ${activeCategory === cat.id ? "active" : ""}`}
-              style={{ padding: "10px 20px", fontSize: "0.88rem" }}
-            >
-              {cat.label}
-            </button>
-          ))}
+        {/* Rating Filters & Google Actions */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "14px",
+            flexWrap: "wrap",
+            marginBottom: "40px",
+          }}
+        >
+          <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+            {[
+              { id: "all", label: "All Google Reviews" },
+              { id: "5", label: "5 Stars" },
+              { id: "4", label: "4+ Stars" },
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setRatingFilter(cat.id)}
+                className={`tab-btn ftab ${ratingFilter === cat.id ? "active" : ""}`}
+                style={{ padding: "10px 20px", fontSize: "0.88rem" }}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          {(reviewsData.writeReviewUri || reviewsData.googleMapsUri) && (
+            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+              {reviewsData.writeReviewUri && (
+                <a
+                  href={reviewsData.writeReviewUri}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-p"
+                  style={{ padding: "10px 20px", fontSize: "0.88rem" }}
+                >
+                  <i className="fas fa-star me-2" /> Leave a Google Review
+                </a>
+              )}
+              {reviewsData.googleMapsUri && (
+                <a
+                  href={reviewsData.googleMapsUri}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-o"
+                  style={{ padding: "10px 18px", fontSize: "0.88rem" }}
+                >
+                  View on Google <i className="fas fa-arrow-up-right-from-square ms-2" />
+                </a>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Reviews Grid */}
-        {filteredReviews.length === 0 ? (
+        {reviewsData.loading ? (
+          <div
+            style={{
+              background: "var(--card)",
+              border: "1px solid var(--border)",
+              borderRadius: "20px",
+              padding: "56px 28px",
+              textAlign: "center",
+              marginBottom: "72px",
+              boxShadow: "var(--sh1)",
+            }}
+          >
+            <div style={{ fontSize: "1.8rem", color: "var(--primary)", marginBottom: "12px" }}>
+              <i className="fas fa-spinner fa-spin" />
+            </div>
+            <p style={{ color: "var(--text2)", fontSize: "0.95rem", margin: 0 }}>
+              Loading verified Google Reviews...
+            </p>
+          </div>
+        ) : filteredReviews.length === 0 ? (
           <div
             style={{
               background: "var(--card)",
@@ -227,10 +315,12 @@ export default function ReviewsPage() {
               <i className="fas fa-comments" />
             </div>
             <h3 style={{ fontSize: "1.35rem", fontWeight: 700, color: "var(--text)", marginBottom: "8px" }}>
-              No Client Reviews Yet
+              {reviewsData.configured ? "No Google Reviews Found Yet" : "Connect Google Business Profile"}
             </h3>
-            <p style={{ color: "var(--text2)", fontSize: "0.95rem", maxWidth: "480px", margin: "0 auto" }}>
-              Verified client reviews will appear here as projects are published.
+            <p style={{ color: "var(--text2)", fontSize: "0.95rem", maxWidth: "520px", margin: "0 auto" }}>
+              {reviewsData.configured
+                ? "Verified Google Reviews for Novity Tech will appear here automatically."
+                : "Set GOOGLE_PLACES_API_KEY and GOOGLE_PLACE_ID in your environment variables to display live Google Reviews."}
             </p>
           </div>
         ) : (
@@ -258,7 +348,7 @@ export default function ReviewsPage() {
               }}
             >
               <div>
-                {/* Header: Stars & Metric Pill */}
+                {/* Header: Stars & Relative Time */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
                   <div style={{ color: "#f59e0b", display: "flex", gap: "4px", fontSize: "0.9rem" }}>
                     {Array.from({ length: rev.rating }).map((_, i) => (
@@ -275,37 +365,58 @@ export default function ReviewsPage() {
                       borderRadius: "20px",
                     }}
                   >
-                    {rev.metric}
+                    {rev.relativeTime}
                   </span>
                 </div>
 
-                {/* Project Tag */}
+                {/* Source Tag */}
                 <div style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text3)", marginBottom: "12px" }}>
-                  {rev.project}
+                  Verified Google Review
                 </div>
 
                 {/* Quote */}
                 <p style={{ color: "var(--text)", fontSize: "0.96rem", lineHeight: 1.7, fontStyle: "italic", marginBottom: "24px" }}>
-                  &ldquo;{rev.quote}&rdquo;
+                  {rev.quote ? <>&ldquo;{rev.quote}&rdquo;</> : "Rated 5 stars on Google."}
                 </p>
               </div>
 
               {/* Author Info */}
               <div style={{ display: "flex", alignItems: "center", gap: "14px", borderTop: "1px solid var(--border)", paddingTop: "18px" }}>
-                <img
-                  src={rev.avatar}
-                  alt={rev.author}
-                  style={{ width: "46px", height: "46px", borderRadius: "50%", objectFit: "cover" }}
-                />
+                {rev.avatar ? (
+                  <img
+                    src={rev.avatar}
+                    alt={rev.author}
+                    referrerPolicy="no-referrer"
+                    style={{ width: "46px", height: "46px", borderRadius: "50%", objectFit: "cover" }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: "46px",
+                      height: "46px",
+                      borderRadius: "50%",
+                      background: "rgba(var(--primary-rgb), 0.18)",
+                      color: "var(--primary)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontWeight: 800,
+                      fontSize: "1rem",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {rev.author.charAt(0).toUpperCase()}
+                  </div>
+                )}
                 <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: 700, color: "var(--text)", fontSize: "0.95rem" }}>
                     {rev.author}
                   </div>
                   <div style={{ fontSize: "0.8rem", color: "var(--text3)" }}>
-                    {rev.role} • <strong style={{ color: "var(--text2)" }}>{rev.company}</strong>
+                    Google Maps Reviewer
                   </div>
                 </div>
-                <span title="Verified Client" style={{ color: "#22c55e", fontSize: "1.1rem" }}>
+                <span title="Verified Google Review" style={{ color: "#22c55e", fontSize: "1.1rem" }}>
                   <i className="fas fa-check-circle" />
                 </span>
               </div>
