@@ -444,6 +444,11 @@ textarea,
   }
 }
 
+/* Hide section pill badges above headings */
+.sec-badge {
+  display: none !important;
+}
+
 /* Disable accidental text selection across the site while preserving form inputs */
 html,
 body,
