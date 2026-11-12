@@ -1181,10 +1181,11 @@ export default function Home() {
                 </div>
               </div>
               <div className="ft-soc" style={{ marginTop: "16px" }}>
-                <a href="#" style={{ background: "var(--bg3)", border: "1px solid var(--border)", color: "var(--text2)" }}><i className="fab fa-twitter"></i></a>
-                <a href="#" style={{ background: "var(--bg3)", border: "1px solid var(--border)", color: "var(--text2)" }}><i className="fab fa-linkedin-in"></i></a>
-                <a href="#" style={{ background: "var(--bg3)", border: "1px solid var(--border)", color: "var(--text2)" }}><i className="fab fa-instagram"></i></a>
-                <a href="#" style={{ background: "var(--bg3)", border: "1px solid var(--border)", color: "var(--text2)" }}><i className="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/NovityTech" target="_blank" rel="noreferrer" aria-label="Twitter" style={{ background: "var(--bg3)", border: "1px solid var(--border)", color: "var(--text2)" }}><i className="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn" style={{ background: "var(--bg3)", border: "1px solid var(--border)", color: "var(--text2)" }}><i className="fab fa-linkedin-in"></i></a>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" style={{ background: "var(--bg3)", border: "1px solid var(--border)", color: "var(--text2)" }}><i className="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61596480181591" target="_blank" rel="noreferrer" aria-label="Facebook" style={{ background: "var(--bg3)", border: "1px solid var(--border)", color: "var(--text2)" }}><i className="fab fa-facebook-f"></i></a>
+                <a href="https://github.com/novitytechh" target="_blank" rel="noreferrer" aria-label="GitHub" style={{ background: "var(--bg3)", border: "1px solid var(--border)", color: "var(--text2)" }}><i className="fab fa-github"></i></a>
               </div>
             </div>
             <div className="col-lg-8">

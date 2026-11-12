@@ -118,6 +118,8 @@ const jsonLd = {
       },
       sameAs: [
         "https://github.com/novitytechh",
+        "https://x.com/NovityTech",
+        "https://www.facebook.com/profile.php?id=61596480181591",
       ],
       contactPoint: {
         "@type": "ContactPoint",

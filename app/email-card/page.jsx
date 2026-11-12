@@ -35,7 +35,7 @@ export default function EmailCardPage() {
     websiteUrl: "https://novitytech.com",
     location: "Gujranwala, Pakistan",
     linkedin: "https://linkedin.com",
-    twitter: "https://x.com",
+    twitter: "https://x.com/NovityTech",
     github: "https://github.com/novitytechh",
     avatarType: "fullLogo", // 'fullLogo' | 'emblem'
     avatarUrl: OFFICIAL_FULL_LOGO_URL,

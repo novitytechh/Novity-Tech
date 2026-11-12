@@ -33,7 +33,7 @@ const EMAIL_CARD_HTML = `
             <a href="https://novitytech.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-block; width: 25px; height: 25px; line-height: 25px; text-align: center; background-color: #1a1822; border: 1px solid rgba(223,193,93,0.45); border-radius: 50%; color: #dfc15d; font-weight: bold; font-size: 10.5px;">&#127760;</a>
           </td>
           <td style="padding: 0 3px;">
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-block; width: 25px; height: 25px; line-height: 25px; text-align: center; background-color: #1a1822; border: 1px solid rgba(223,193,93,0.45); border-radius: 50%; color: #dfc15d; font-weight: bold; font-size: 10.5px;">&#120143;</a>
+            <a href="https://x.com/NovityTech" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-block; width: 25px; height: 25px; line-height: 25px; text-align: center; background-color: #1a1822; border: 1px solid rgba(223,193,93,0.45); border-radius: 50%; color: #dfc15d; font-weight: bold; font-size: 10.5px;">&#120143;</a>
           </td>
           <td style="padding: 0 3px;">
             <a href="https://github.com/novitytechh" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-block; width: 25px; height: 25px; line-height: 25px; text-align: center; background-color: #1a1822; border: 1px solid rgba(223,193,93,0.45); border-radius: 50%; color: #dfc15d; font-weight: bold; font-size: 10px;">GH</a>

@@ -52,7 +52,8 @@ export default function Footer() {
               {COMPANY_DESCRIPTION.short}
             </p>
             <div className="ft-soc d-flex gap-2 mt-4">
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
+              <a href="https://x.com/NovityTech" target="_blank" rel="noreferrer" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
+              <a href="https://www.facebook.com/profile.php?id=61596480181591" target="_blank" rel="noreferrer" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
               <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
               <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
               <a href="https://github.com/novitytechh" target="_blank" rel="noreferrer" aria-label="GitHub"><i className="fab fa-github"></i></a>
