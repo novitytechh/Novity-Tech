@@ -56,7 +56,7 @@ export default function Navbar() {
       <div className="container" style={{ position: "relative" }}>
         {/* Brand Logo */}
         <Link
-          className="navbar-brand"
+          className="navbar-brand order-1 me-auto me-lg-3"
           href="/"
           style={{ display: "inline-flex", alignItems: "center", gap: "14px", textDecoration: "none" }}
         >
@@ -88,7 +88,7 @@ export default function Navbar() {
 
         {/* Mobile Hamburger Toggler */}
         <button
-          className="navbar-toggler"
+          className="navbar-toggler order-3 d-lg-none"
           type="button"
           onClick={() => setNavOpen(!navOpen)}
           aria-label="Toggle navigation"
@@ -101,7 +101,7 @@ export default function Navbar() {
         </button>
 
         {/* Navbar Links */}
-        <div className={`collapse navbar-collapse justify-content-center ${navOpen ? "show" : ""}`} id="navMenu">
+        <div className={`collapse navbar-collapse justify-content-center order-4 order-lg-2 ${navOpen ? "show" : ""}`} id="navMenu">
           <ul className="navbar-nav gap-1">
             {navLinks.map((link) => {
               const isActive =
@@ -169,7 +169,7 @@ export default function Navbar() {
         </div>
 
         {/* Right Actions: Dark Mode Toggle & CTA Button */}
-        <div className="d-flex align-items-center gap-2 gap-sm-3 ms-lg-3">
+        <div className="d-flex align-items-center gap-2 gap-sm-3 order-2 order-lg-3 me-2 me-lg-0 ms-lg-3">
           <button
             className="t-toggle"
             id="themeBtn"

@@ -258,10 +258,20 @@ textarea,
   letter-spacing: 0.02em;
 }
 
+.chatbot-toggle.chatbot-toggle--compact {
+  background: #0b0a0e !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75), 0 0 22px rgba(223, 193, 93, 0.35) !important;
+}
+
 .chatbot-toggle:hover {
   transform: translateY(-3px) scale(1.02);
   background: #ecd379 !important;
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 28px rgba(223, 193, 93, 0.45) !important;
+}
+
+.chatbot-toggle.chatbot-toggle--compact:hover {
+  background: #14121b !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8), 0 0 28px rgba(223, 193, 93, 0.5) !important;
 }
 
 .chatbot-toggle-dot {
@@ -414,4 +424,22 @@ textarea,
   background: #ecd379 !important;
   border-color: #ecd379 !important;
   color: #000000 !important;
+}
+
+/* Mobile navbar compactness so left controls + right brand fit on one row */
+@media (max-width: 575px) {
+  #navbar .navbar-brand {
+    gap: 8px !important;
+  }
+  #navbar .navbar-brand img {
+    height: 38px !important;
+    width: 38px !important;
+  }
+  #navbar .navbar-brand span {
+    font-size: 1.2rem !important;
+    letter-spacing: 0.05em !important;
+  }
+  #navbar .t-toggle {
+    padding: 6px 10px !important;
+  }
 }

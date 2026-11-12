@@ -114,9 +114,17 @@ function formatTextWithMarkdown(text) {
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsCompact(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const {
     messages,
@@ -171,24 +179,32 @@ export default function Chatbot() {
 
   return (
     <div className="novity-chatbot-root" style={{ zIndex: 99999 }}>
-      {/* Floating Toggle Pill */}
+      {/* Floating Toggle Pill -> Collapses to Company Logo after 2s */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="chatbot-toggle"
+          className={`chatbot-toggle ${isCompact ? "chatbot-toggle--compact" : ""}`}
           aria-label="Open Novity Tech AI chat"
+          title="Chat with us"
           style={{
             position: "fixed",
             bottom: "26px",
             right: "26px",
             display: "inline-flex",
             alignItems: "center",
-            gap: "10px",
-            padding: "12px 22px",
-            border: "1px solid rgba(223, 193, 93, 0.45)",
+            justifyContent: "center",
+            gap: isCompact ? "0px" : "10px",
+            height: "54px",
+            width: isCompact ? "54px" : "auto",
+            padding: isCompact ? "4px" : "11px 22px",
+            border: isCompact
+              ? "1.5px solid rgba(223, 193, 93, 0.75)"
+              : "1px solid rgba(223, 193, 93, 0.45)",
             cursor: "pointer",
-            transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+            transition:
+              "width 0.45s cubic-bezier(0.22, 1, 0.36, 1), padding 0.45s cubic-bezier(0.22, 1, 0.36, 1), gap 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s ease, border-color 0.4s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
             zIndex: 99999,
+            overflow: "hidden",
           }}
         >
           {/* Company Logo */}
@@ -197,13 +213,14 @@ export default function Chatbot() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: "30px",
-              height: "30px",
+              width: isCompact ? "44px" : "30px",
+              height: isCompact ? "44px" : "30px",
               borderRadius: "50%",
               background: "#0b0a0e",
               overflow: "hidden",
-              padding: "3px",
+              padding: isCompact ? "4px" : "3px",
               flexShrink: 0,
+              transition: "width 0.45s cubic-bezier(0.22, 1, 0.36, 1), height 0.45s cubic-bezier(0.22, 1, 0.36, 1), padding 0.45s ease",
             }}
           >
             <img
@@ -217,18 +234,33 @@ export default function Chatbot() {
               }}
             />
           </span>
-          <span style={{ fontSize: "14px", fontWeight: 700, color: "#0b0a0e" }}>
-            Chat with us
-          </span>
           <span
-            className="chatbot-toggle-dot"
             style={{
-              width: "8px",
-              height: "8px",
-              borderRadius: "50%",
-              boxShadow: "0 0 8px rgba(0,0,0,0.4)",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              maxWidth: isCompact ? "0px" : "150px",
+              opacity: isCompact ? 0 : 1,
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              transition:
+                "max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease",
             }}
-          />
+          >
+            <span style={{ fontSize: "14px", fontWeight: 700, color: "#0b0a0e" }}>
+              Chat with us
+            </span>
+            <span
+              className="chatbot-toggle-dot"
+              style={{
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                boxShadow: "0 0 8px rgba(0,0,0,0.4)",
+                flexShrink: 0,
+              }}
+            />
+          </span>
         </button>
       )}
 
