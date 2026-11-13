@@ -150,7 +150,7 @@ export default function TeamPage() {
           {/* Cards Grid */}
           <div className="row g-4 justify-content-center">
             {filteredMembers.map((member) => (
-              <div key={member.id} className="col-lg-4 col-md-6 col-12">
+              <div key={member.id} className="col-lg-3 col-md-6 col-12">
                 <div
                   className="tm-card"
                   style={{
