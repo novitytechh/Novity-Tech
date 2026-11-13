@@ -46,7 +46,6 @@ const CLIENT_QUERIES = [
 ];
 
 export default function TeamPage() {
-  const [filter, setFilter] = useState("all");
   const [selectedMember, setSelectedMember] = useState(null);
 
   // Close modal on ESC key
@@ -69,12 +68,6 @@ export default function TeamPage() {
       document.body.style.overflow = "unset";
     };
   }, [selectedMember]);
-
-  const filteredMembers = TEAM_MEMBERS.filter((m) => {
-    if (filter === "all") return true;
-    if (filter === "chief") return m.isChief;
-    return m.category === filter;
-  });
 
   return (
     <>
@@ -102,54 +95,11 @@ export default function TeamPage() {
             <p style={{ color: "var(--text2)", fontSize: "1.1rem", lineHeight: "1.75", maxWidth: "720px", margin: "0 auto" }}>
               Explore the dedicated profiles of our C-suite leadership and core full-stack engineers who oversee and execute every technical milestone.
             </p>
-
-            {/* Filter Tabs */}
-            <div
-              style={{
-                display: "inline-flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                gap: "8px",
-                background: "var(--card)",
-                padding: "6px",
-                borderRadius: "100px",
-                border: "1px solid var(--border)",
-                marginTop: "16px",
-              }}
-            >
-              {[
-                { id: "all", label: "All Members" },
-                { id: "chief", label: "Executive Chiefs" },
-                { id: "engineering", label: "Engineering" },
-              ].map((tab) => {
-                const isActive = filter === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setFilter(tab.id)}
-                    style={{
-                      border: "none",
-                      background: isActive ? "var(--primary)" : "transparent",
-                      color: isActive ? "#000" : "var(--text2)",
-                      fontWeight: isActive ? 800 : 600,
-                      fontSize: "0.85rem",
-                      padding: "8px 20px",
-                      borderRadius: "100px",
-                      cursor: "pointer",
-                      transition: "all 0.25s ease",
-                      outline: "none",
-                    }}
-                  >
-                    {tab.label}
-                  </button>
-                );
-              })}
-            </div>
           </div>
 
           {/* Cards Grid */}
           <div className="row g-4 justify-content-center">
-            {filteredMembers.map((member) => (
+            {TEAM_MEMBERS.map((member) => (
               <div key={member.id} className="col-lg-3 col-md-6 col-12">
                 <div
                   className="tm-card"
