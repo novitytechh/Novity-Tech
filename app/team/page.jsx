@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { TEAM_MEMBERS } from "@/lib/teamData";
+import { TEAM_MEMBERS, TEAM_SECTIONS } from "@/lib/teamData";
 
 const CLIENT_QUERIES = [
   {
@@ -70,22 +70,21 @@ export default function TeamPage() {
     };
   }, [selectedMember]);
 
-  const filteredMembers = TEAM_MEMBERS.filter((m) => {
-    if (filter === "all") return true;
-    if (filter === "chief") return m.isChief;
-    return m.category === filter;
-  });
+  const sectionsToRender =
+    filter === "all"
+      ? TEAM_SECTIONS
+      : TEAM_SECTIONS.filter((s) => s.id === filter);
 
   return (
     <>
       <Navbar />
 
       <main style={{ minHeight: "100vh", paddingTop: "80px", paddingBottom: "100px" }}>
-        {/* ==================== TEAM & CHIEFS CARDS SECTION ==================== */}
-        <div className="container" style={{ marginBottom: "90px" }}>
-          <div className="text-center" style={{ maxWidth: "850px", margin: "0 auto 40px" }}>
+        {/* ==================== TEAM HERO HEADER ==================== */}
+        <div className="container" style={{ marginBottom: "60px" }}>
+          <div className="text-center" style={{ maxWidth: "880px", margin: "0 auto 40px" }}>
             <div className="sec-badge" style={{ marginBottom: "16px" }}>
-              Executive Chiefs &amp; Senior Guild
+              Executive Chiefs &amp; Specialized Engineering Guild
             </div>
             <h1
               className="sec-title"
@@ -97,10 +96,11 @@ export default function TeamPage() {
                 marginBottom: "16px",
               }}
             >
-              Meet Our Chiefs &amp; <span>Principal Specialists</span>
+              Meet Our Chiefs &amp; <span>Engineering Divisions</span>
             </h1>
-            <p style={{ color: "var(--text2)", fontSize: "1.1rem", lineHeight: "1.75", maxWidth: "720px", margin: "0 auto" }}>
-              Explore the dedicated profiles of our C-suite leadership and core full-stack engineers who oversee and execute every technical milestone.
+            <p style={{ color: "var(--text2)", fontSize: "1.1rem", lineHeight: "1.75", maxWidth: "750px", margin: "0 auto" }}>
+              Explore the dedicated profiles of our C-suite leadership and specialized engineering sections: 
+              Executive Directorate, AI Systems &amp; Cloud DevOps (CAIO Section), and Frontend &amp; Product Engineering (FE Section).
             </p>
 
             {/* Filter Tabs */}
@@ -114,14 +114,14 @@ export default function TeamPage() {
                 padding: "6px",
                 borderRadius: "100px",
                 border: "1px solid var(--border)",
-                marginTop: "16px",
+                marginTop: "20px",
               }}
             >
               {[
-                { id: "all", label: "All Members" },
-                { id: "chief", label: "Executive Chiefs" },
-                { id: "engineering", label: "Engineering & Cloud" },
-                { id: "design", label: "Design Systems" },
+                { id: "all", label: "All Members & Sections" },
+                { id: "leadership", label: "Executive Leadership" },
+                { id: "caio", label: "CAIO & Cloud (DE)" },
+                { id: "fe", label: "Frontend & Product (FE, UX, SE)" },
               ].map((tab) => {
                 const isActive = filter === tab.id;
                 return (
@@ -148,321 +148,424 @@ export default function TeamPage() {
             </div>
           </div>
 
-          {/* Cards Grid */}
-          <div className="row g-4">
-            {filteredMembers.map((member) => (
-              <div key={member.id} className="col-lg-3 col-md-6 col-12">
+          {/* ==================== SECTIONS RENDER ==================== */}
+          {sectionsToRender.map((sec) => {
+            const members = TEAM_MEMBERS.filter((m) => m.section === sec.id);
+            const colClass =
+              sec.id === "caio"
+                ? "col-lg-6 col-md-6 col-12"
+                : "col-lg-4 col-md-6 col-12";
+
+            return (
+              <div key={sec.id} style={{ marginBottom: "70px" }}>
+                {/* Section Header Card Banner */}
                 <div
-                  className="tm-card"
                   style={{
-                    background: "var(--card)",
-                    border: member.isChief
-                      ? "1px solid rgba(223, 193, 93, 0.4)"
-                      : "1px solid var(--border)",
-                    borderRadius: "22px",
-                    overflow: "hidden",
-                    height: "100%",
+                    background: "rgba(255, 255, 255, 0.02)",
+                    border: "1px solid var(--border)",
+                    borderLeft: "4px solid var(--primary)",
+                    borderRadius: "18px",
+                    padding: "20px 24px",
+                    marginBottom: "28px",
                     display: "flex",
-                    flexDirection: "column",
-                    position: "relative",
-                    transition: "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-6px)";
-                    e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.65)";
-                    e.currentTarget.style.boxShadow =
-                      "0 18px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(223, 193, 93, 0.15)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.borderColor = member.isChief
-                      ? "rgba(223, 193, 93, 0.4)"
-                      : "var(--border)";
-                    e.currentTarget.style.boxShadow = "none";
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                    gap: "16px",
                   }}
                 >
-                  {/* Card Visual Header / Photo or Monogram */}
-                  <div
-                    style={{
-                      height: member.image ? "260px" : "180px",
-                      background: member.isChief
-                        ? "rgba(223, 193, 93, 0.08)"
-                        : "rgba(255, 255, 255, 0.02)",
-                      borderBottom: "1px solid var(--border)",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      position: "relative",
-                      overflow: "hidden",
-                    }}
-                  >
-                    {member.image ? (
-                      <>
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                            objectPosition: "top center",
-                            transition: "transform 0.4s ease",
-                          }}
-                        />
-                        <div
-                          style={{
-                            position: "absolute",
-                            inset: 0,
-                            background:
-                              "linear-gradient(to top, rgba(16, 15, 21, 0.85) 0%, rgba(16, 15, 21, 0.1) 60%, rgba(0,0,0,0.3) 100%)",
-                            pointerEvents: "none",
-                          }}
-                        />
-                      </>
-                    ) : (
-                      <>
-                        {/* Monogram / Icon Avatar */}
-                        <div
-                          style={{
-                            width: "74px",
-                            height: "74px",
-                            borderRadius: "22px",
-                            background: member.isChief
-                              ? "rgba(223, 193, 93, 0.16)"
-                              : "rgba(223, 193, 93, 0.08)",
-                            border: "1.5px solid rgba(223, 193, 93, 0.45)",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            color: "var(--primary)",
-                            fontSize: "1.8rem",
-                            boxShadow: "0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(223, 193, 93, 0.2)",
-                            marginBottom: "6px",
-                          }}
-                        >
-                          <i className={`fas ${member.icon}`} />
-                        </div>
-
-                        {/* Monogram Tag */}
-                        <div
-                          style={{
-                            fontSize: "0.75rem",
-                            fontWeight: 800,
-                            color: "var(--primary)",
-                            letterSpacing: "0.1em",
-                          }}
-                        >
-                          {member.initials}
-                        </div>
-                      </>
-                    )}
-
-                    {/* Category / Chief Pill Badge */}
-                    <span
+                  <div>
+                    <div
                       style={{
-                        position: "absolute",
-                        top: "14px",
-                        right: "14px",
-                        fontSize: "0.72rem",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        fontSize: "0.76rem",
                         fontWeight: 800,
-                        letterSpacing: "0.06em",
+                        color: "var(--primary)",
                         textTransform: "uppercase",
-                        padding: "4px 12px",
-                        borderRadius: "100px",
-                        background: "rgba(11, 10, 14, 0.82)",
-                        backdropFilter: "blur(8px)",
-                        color: member.isChief ? "var(--primary)" : "#ffffff",
-                        border: "1px solid rgba(223, 193, 93, 0.45)",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
-                        zIndex: 2,
+                        letterSpacing: "0.08em",
+                        marginBottom: "4px",
                       }}
                     >
-                      {member.badge}
-                    </span>
+                      <i className={`fas ${sec.icon}`} /> {sec.badge}
+                    </div>
+                    <h2
+                      style={{
+                        fontSize: "1.5rem",
+                        fontWeight: 800,
+                        color: "var(--text)",
+                        margin: 0,
+                      }}
+                    >
+                      {sec.title}
+                    </h2>
                   </div>
-
-                  {/* Card Info Body */}
-                  <div
+                  <p
                     style={{
-                      padding: "24px 20px",
-                      flex: 1,
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
+                      color: "var(--text2)",
+                      fontSize: "0.92rem",
+                      margin: 0,
+                      maxWidth: "540px",
+                      lineHeight: "1.6",
                     }}
                   >
-                    <div>
-                      <h3
-                        style={{
-                          fontSize: "1.15rem",
-                          fontWeight: 800,
-                          color: "var(--text)",
-                          marginBottom: "4px",
-                          lineHeight: "1.3",
-                        }}
-                      >
-                        {member.name}
-                      </h3>
+                    {sec.subtitle}
+                  </p>
+                </div>
 
+                {/* Section Members Grid */}
+                <div className="row g-4">
+                  {members.map((member) => (
+                    <div key={member.id} className={colClass}>
                       <div
+                        className="tm-card"
                         style={{
-                          fontSize: "0.82rem",
-                          fontWeight: 700,
-                          color: "var(--primary)",
-                          marginBottom: "12px",
-                          lineHeight: "1.4",
-                        }}
-                      >
-                        {member.role}
-                      </div>
-
-                      <p
-                        style={{
-                          color: "var(--text2)",
-                          fontSize: "0.86rem",
-                          lineHeight: "1.65",
-                          marginBottom: "18px",
-                          display: "-webkit-box",
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: "vertical",
+                          background: "var(--card)",
+                          border: member.isChief
+                            ? "1px solid rgba(223, 193, 93, 0.45)"
+                            : "1px solid var(--border)",
+                          borderRadius: "22px",
                           overflow: "hidden",
-                        }}
-                      >
-                        {member.bio}
-                      </p>
-                    </div>
-
-                    <div>
-                      {/* Skills tags */}
-                      <div
-                        style={{
+                          height: "100%",
                           display: "flex",
-                          flexWrap: "wrap",
-                          gap: "6px",
-                          marginBottom: "20px",
+                          flexDirection: "column",
+                          position: "relative",
+                          transition: "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = "translateY(-6px)";
+                          e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.65)";
+                          e.currentTarget.style.boxShadow =
+                            "0 18px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(223, 193, 93, 0.15)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = "translateY(0)";
+                          e.currentTarget.style.borderColor = member.isChief
+                            ? "rgba(223, 193, 93, 0.45)"
+                            : "var(--border)";
+                          e.currentTarget.style.boxShadow = "none";
                         }}
                       >
-                        {member.skills.slice(0, 3).map((sk, sIdx) => (
-                          <span
-                            key={sIdx}
-                            style={{
-                              fontSize: "0.72rem",
-                              fontWeight: 600,
-                              color: "var(--text)",
-                              background: "rgba(255, 255, 255, 0.05)",
-                              border: "1px solid var(--border)",
-                              borderRadius: "6px",
-                              padding: "3px 8px",
-                            }}
-                          >
-                            {sk}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Card Action Row */}
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          paddingTop: "14px",
-                          borderTop: "1px solid var(--border)",
-                        }}
-                      >
-                        <button
-                          onClick={() => setSelectedMember(member)}
+                        {/* Visual Header / Photo or Monogram */}
+                        <div
                           style={{
-                            border: "none",
-                            background: "transparent",
-                            color: "var(--primary)",
-                            fontSize: "0.84rem",
-                            fontWeight: 700,
-                            cursor: "pointer",
-                            padding: 0,
-                            display: "inline-flex",
+                            height: member.image ? "260px" : "190px",
+                            background: member.isChief
+                              ? "rgba(223, 193, 93, 0.08)"
+                              : "rgba(255, 255, 255, 0.02)",
+                            borderBottom: "1px solid var(--border)",
+                            display: "flex",
+                            flexDirection: "column",
                             alignItems: "center",
-                            gap: "6px",
+                            justifyContent: "center",
+                            position: "relative",
+                            overflow: "hidden",
                           }}
                         >
-                          View Profile <i className="fas fa-arrow-right" style={{ fontSize: "0.75rem" }} />
-                        </button>
+                          {member.image ? (
+                            <>
+                              <img
+                                src={member.image}
+                                alt={member.name}
+                                style={{
+                                  width: "100%",
+                                  height: "100%",
+                                  objectFit: "cover",
+                                  objectPosition: "top center",
+                                  transition: "transform 0.4s ease",
+                                }}
+                              />
+                              <div
+                                style={{
+                                  position: "absolute",
+                                  inset: 0,
+                                  background:
+                                    "linear-gradient(to top, rgba(16, 15, 21, 0.85) 0%, rgba(16, 15, 21, 0.1) 60%, rgba(0,0,0,0.3) 100%)",
+                                  pointerEvents: "none",
+                                }}
+                              />
+                            </>
+                          ) : (
+                            <>
+                              {/* Monogram / Icon Avatar */}
+                              <div
+                                style={{
+                                  width: "74px",
+                                  height: "74px",
+                                  borderRadius: "22px",
+                                  background: member.isChief
+                                    ? "rgba(223, 193, 93, 0.16)"
+                                    : "rgba(223, 193, 93, 0.08)",
+                                  border: "1.5px solid rgba(223, 193, 93, 0.45)",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  color: "var(--primary)",
+                                  fontSize: "1.8rem",
+                                  boxShadow: "0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(223, 193, 93, 0.2)",
+                                  marginBottom: "6px",
+                                }}
+                              >
+                                <i className={`fas ${member.icon}`} />
+                              </div>
 
-                        <div style={{ display: "flex", gap: "8px" }}>
-                          {member.linkedin && (
-                            <a
-                              href={member.linkedin}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label="LinkedIn Profile"
-                              style={{
-                                width: "32px",
-                                height: "32px",
-                                borderRadius: "8px",
-                                background: "rgba(255, 255, 255, 0.04)",
-                                border: "1px solid var(--border)",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                color: "var(--text2)",
-                                fontSize: "0.85rem",
-                                textDecoration: "none",
-                                transition: "all 0.2s ease",
-                              }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.color = "var(--primary)";
-                                e.currentTarget.style.borderColor = "var(--primary)";
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.color = "var(--text2)";
-                                e.currentTarget.style.borderColor = "var(--border)";
-                              }}
-                            >
-                              <i className="fab fa-linkedin-in" />
-                            </a>
+                              {/* Monogram Tag */}
+                              <div
+                                style={{
+                                  fontSize: "0.75rem",
+                                  fontWeight: 800,
+                                  color: "var(--primary)",
+                                  letterSpacing: "0.1em",
+                                }}
+                              >
+                                {member.initials}
+                              </div>
+                            </>
                           )}
-                          <a
-                            href={`mailto:${member.email || "novitytechh@gmail.com"}?subject=Direct Engineering Inquiry for ${encodeURIComponent(
-                              member.name
-                            )}`}
-                            aria-label="Send direct email"
+
+                          {/* Category / Chief Pill Badge */}
+                          <span
                             style={{
-                              width: "32px",
-                              height: "32px",
-                              borderRadius: "8px",
-                              background: "rgba(255, 255, 255, 0.04)",
-                              border: "1px solid var(--border)",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              color: "var(--text2)",
-                              fontSize: "0.85rem",
-                              textDecoration: "none",
-                              transition: "all 0.2s ease",
-                            }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.color = "var(--primary)";
-                              e.currentTarget.style.borderColor = "var(--primary)";
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.color = "var(--text2)";
-                              e.currentTarget.style.borderColor = "var(--border)";
+                              position: "absolute",
+                              top: "14px",
+                              right: "14px",
+                              fontSize: "0.72rem",
+                              fontWeight: 800,
+                              letterSpacing: "0.06em",
+                              textTransform: "uppercase",
+                              padding: "4px 12px",
+                              borderRadius: "100px",
+                              background: "rgba(11, 10, 14, 0.85)",
+                              backdropFilter: "blur(8px)",
+                              color: member.isChief ? "var(--primary)" : "#ffffff",
+                              border: "1px solid rgba(223, 193, 93, 0.45)",
+                              boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+                              zIndex: 2,
                             }}
                           >
-                            <i className="fas fa-envelope" />
-                          </a>
+                            {member.badge}
+                          </span>
+                        </div>
+
+                        {/* Card Info Body */}
+                        <div
+                          style={{
+                            padding: "24px 20px",
+                            flex: 1,
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <div>
+                            {/* Alignment or Lead indicator */}
+                            {member.isSectionLead && (
+                              <div
+                                style={{
+                                  fontSize: "0.73rem",
+                                  color: "var(--primary)",
+                                  fontWeight: 700,
+                                  marginBottom: "8px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: "6px",
+                                }}
+                              >
+                                <i className="fas fa-crown" style={{ fontSize: "0.7rem" }} />
+                                {member.subMemberSummary}
+                              </div>
+                            )}
+                            {member.parentLeadName && (
+                              <div
+                                style={{
+                                  fontSize: "0.73rem",
+                                  color: "var(--primary)",
+                                  fontWeight: 700,
+                                  marginBottom: "8px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: "6px",
+                                }}
+                              >
+                                <i className="fas fa-link" style={{ fontSize: "0.7rem" }} />
+                                In {member.section === "caio" ? "CAIO Section" : "FE Section"} • Aligned with {member.parentLeadName}
+                              </div>
+                            )}
+
+                            <h3
+                              style={{
+                                fontSize: "1.15rem",
+                                fontWeight: 800,
+                                color: "var(--text)",
+                                marginBottom: "4px",
+                                lineHeight: "1.3",
+                              }}
+                            >
+                              {member.name}
+                            </h3>
+
+                            <div
+                              style={{
+                                fontSize: "0.82rem",
+                                fontWeight: 700,
+                                color: "var(--primary)",
+                                marginBottom: "12px",
+                                lineHeight: "1.4",
+                              }}
+                            >
+                              {member.role}
+                            </div>
+
+                            <p
+                              style={{
+                                color: "var(--text2)",
+                                fontSize: "0.86rem",
+                                lineHeight: "1.65",
+                                marginBottom: "18px",
+                                display: "-webkit-box",
+                                WebkitLineClamp: 3,
+                                WebkitBoxOrient: "vertical",
+                                overflow: "hidden",
+                              }}
+                            >
+                              {member.bio}
+                            </p>
+                          </div>
+
+                          <div>
+                            {/* Skills tags */}
+                            <div
+                              style={{
+                                display: "flex",
+                                flexWrap: "wrap",
+                                gap: "6px",
+                                marginBottom: "20px",
+                              }}
+                            >
+                              {member.skills.slice(0, 3).map((sk, sIdx) => (
+                                <span
+                                  key={sIdx}
+                                  style={{
+                                    fontSize: "0.72rem",
+                                    fontWeight: 600,
+                                    color: "var(--text)",
+                                    background: "rgba(255, 255, 255, 0.05)",
+                                    border: "1px solid var(--border)",
+                                    borderRadius: "6px",
+                                    padding: "3px 8px",
+                                  }}
+                                >
+                                  {sk}
+                                </span>
+                              ))}
+                            </div>
+
+                            {/* Card Action Row */}
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                paddingTop: "14px",
+                                borderTop: "1px solid var(--border)",
+                              }}
+                            >
+                              <button
+                                onClick={() => setSelectedMember(member)}
+                                style={{
+                                  border: "none",
+                                  background: "transparent",
+                                  color: "var(--primary)",
+                                  fontSize: "0.84rem",
+                                  fontWeight: 700,
+                                  cursor: "pointer",
+                                  padding: 0,
+                                  display: "inline-flex",
+                                  alignItems: "center",
+                                  gap: "6px",
+                                }}
+                              >
+                                View Profile <i className="fas fa-arrow-right" style={{ fontSize: "0.75rem" }} />
+                              </button>
+
+                              <div style={{ display: "flex", gap: "8px" }}>
+                                {member.linkedin && (
+                                  <a
+                                    href={member.linkedin}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="LinkedIn Profile"
+                                    style={{
+                                      width: "32px",
+                                      height: "32px",
+                                      borderRadius: "8px",
+                                      background: "rgba(255, 255, 255, 0.04)",
+                                      border: "1px solid var(--border)",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      color: "var(--text2)",
+                                      fontSize: "0.85rem",
+                                      textDecoration: "none",
+                                      transition: "all 0.2s ease",
+                                    }}
+                                    onMouseEnter={(e) => {
+                                      e.currentTarget.style.color = "var(--primary)";
+                                      e.currentTarget.style.borderColor = "var(--primary)";
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      e.currentTarget.style.color = "var(--text2)";
+                                      e.currentTarget.style.borderColor = "var(--border)";
+                                    }}
+                                  >
+                                    <i className="fab fa-linkedin-in" />
+                                  </a>
+                                )}
+                                <a
+                                  href={`mailto:${member.email || "novitytechh@gmail.com"}?subject=Direct Engineering Inquiry for ${encodeURIComponent(
+                                    member.name
+                                  )}`}
+                                  aria-label="Send direct email"
+                                  style={{
+                                    width: "32px",
+                                    height: "32px",
+                                    borderRadius: "8px",
+                                    background: "rgba(255, 255, 255, 0.04)",
+                                    border: "1px solid var(--border)",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    color: "var(--text2)",
+                                    fontSize: "0.85rem",
+                                    textDecoration: "none",
+                                    transition: "all 0.2s ease",
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.color = "var(--primary)";
+                                    e.currentTarget.style.borderColor = "var(--primary)";
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.color = "var(--text2)";
+                                    e.currentTarget.style.borderColor = "var(--border)";
+                                  }}
+                                >
+                                  <i className="fas fa-envelope" />
+                                </a>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
-        {/* Clear All Client Queries Section */}
+        {/* ==================== CLIENT KNOWLEDGE BASE ==================== */}
         <div className="container" style={{ marginBottom: "80px" }}>
           <div className="text-center" style={{ maxWidth: "750px", margin: "0 auto 46px" }}>
             <div className="sec-badge">Client Knowledge Base</div>
@@ -546,7 +649,7 @@ export default function TeamPage() {
           </div>
         </div>
 
-        {/* CTA Section */}
+        {/* ==================== CTA SECTION ==================== */}
         <div className="container">
           <div
             className="shaded-banner-block"
@@ -594,15 +697,15 @@ export default function TeamPage() {
         <div
           className="modal fade show"
           tabIndex="-1"
-          style={{ display: "block" }}
+          style={{ display: "block", background: "rgba(0,0,0,0.75)", backdropFilter: "blur(4px)" }}
           onClick={() => setSelectedMember(null)}
         >
           <div
             className="modal-dialog modal-dialog-centered"
-            style={{ maxWidth: "650px" }}
+            style={{ maxWidth: "680px" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="modal-content" style={{ padding: "10px" }}>
+            <div className="modal-content" style={{ padding: "10px", background: "var(--card)", border: "1px solid rgba(223, 193, 93, 0.4)", borderRadius: "22px" }}>
               <div className="modal-header" style={{ borderBottom: "1px solid var(--border)", paddingBottom: "16px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   <span
@@ -620,6 +723,21 @@ export default function TeamPage() {
                   >
                     {selectedMember.badge}
                   </span>
+                  {selectedMember.divisionName && (
+                    <span
+                      style={{
+                        fontSize: "0.72rem",
+                        fontWeight: 700,
+                        color: "var(--text2)",
+                        background: "rgba(255, 255, 255, 0.04)",
+                        border: "1px solid var(--border)",
+                        padding: "4px 10px",
+                        borderRadius: "100px",
+                      }}
+                    >
+                      {selectedMember.divisionName}
+                    </span>
+                  )}
                 </div>
                 <button
                   type="button"
@@ -696,6 +814,124 @@ export default function TeamPage() {
                     </a>
                   </div>
                 </div>
+
+                {/* Sub-members or Alignment Box */}
+                {selectedMember.subMemberIds && selectedMember.subMemberIds.length > 0 && (
+                  <div
+                    style={{
+                      marginBottom: "20px",
+                      padding: "14px 16px",
+                      borderRadius: "14px",
+                      background: "rgba(223, 193, 93, 0.08)",
+                      border: "1px solid rgba(223, 193, 93, 0.3)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "0.78rem",
+                        fontWeight: 800,
+                        color: "var(--primary)",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.06em",
+                        marginBottom: "8px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                      }}
+                    >
+                      <i className="fas fa-sitemap" /> {selectedMember.section === "caio" ? "CAIO Division Specialized Team" : "FE Division Specialized Team"}
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                      {selectedMember.subMemberIds.map((subId) => {
+                        const subM = TEAM_MEMBERS.find((m) => m.id === subId);
+                        if (!subM) return null;
+                        return (
+                          <button
+                            key={subId}
+                            type="button"
+                            onClick={() => setSelectedMember(subM)}
+                            style={{
+                              background: "rgba(0,0,0,0.45)",
+                              border: "1px solid rgba(223, 193, 93, 0.45)",
+                              borderRadius: "10px",
+                              padding: "6px 14px",
+                              color: "var(--text)",
+                              fontSize: "0.82rem",
+                              fontWeight: 700,
+                              cursor: "pointer",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "8px",
+                              transition: "all 0.2s ease",
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.borderColor = "var(--primary)";
+                              e.currentTarget.style.color = "var(--primary)";
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.45)";
+                              e.currentTarget.style.color = "var(--text)";
+                            }}
+                          >
+                            <i className={`fas ${subM.icon}`} style={{ color: "var(--primary)", fontSize: "0.75rem" }} />
+                            {subM.badge} <i className="fas fa-arrow-right" style={{ fontSize: "0.68rem", opacity: 0.7 }} />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {selectedMember.parentLeadId && (
+                  <div
+                    style={{
+                      marginBottom: "20px",
+                      padding: "12px 16px",
+                      borderRadius: "14px",
+                      background: "rgba(255, 255, 255, 0.03)",
+                      border: "1px solid var(--border)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      flexWrap: "wrap",
+                      gap: "8px",
+                    }}
+                  >
+                    <div>
+                      <div style={{ fontSize: "0.76rem", color: "var(--text3)", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 700 }}>
+                        Division Alignment
+                      </div>
+                      <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "var(--text)" }}>
+                        {selectedMember.divisionName}
+                      </div>
+                    </div>
+                    {(() => {
+                      const leadM = TEAM_MEMBERS.find((m) => m.id === selectedMember.parentLeadId);
+                      if (!leadM) return null;
+                      return (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedMember(leadM)}
+                          style={{
+                            background: "rgba(223, 193, 93, 0.12)",
+                            border: "1px solid rgba(223, 193, 93, 0.4)",
+                            borderRadius: "100px",
+                            padding: "6px 14px",
+                            color: "var(--primary)",
+                            fontSize: "0.82rem",
+                            fontWeight: 700,
+                            cursor: "pointer",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "6px",
+                          }}
+                        >
+                          View Division Lead: {leadM.name} <i className="fas fa-arrow-right" style={{ fontSize: "0.7rem" }} />
+                        </button>
+                      );
+                    })()}
+                  </div>
+                )}
 
                 {/* Bio */}
                 <h5 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--text)", marginBottom: "8px" }}>

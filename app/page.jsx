@@ -916,12 +916,28 @@ export default function Home() {
                         fontSize: "0.8rem",
                         fontWeight: 700,
                         color: "var(--primary)",
-                        marginBottom: "10px",
+                        marginBottom: member.subMemberSummary ? "6px" : "10px",
                         lineHeight: 1.4,
                       }}
                     >
                       {member.role}
                     </div>
+                    {member.subMemberSummary && (
+                      <div
+                        style={{
+                          fontSize: "0.72rem",
+                          fontWeight: 700,
+                          color: "var(--primary)",
+                          marginBottom: "10px",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "5px",
+                        }}
+                      >
+                        <i className="fas fa-sitemap" style={{ fontSize: "0.68rem" }} />
+                        {member.subMemberSummary}
+                      </div>
+                    )}
                   </div>
 
                   <div
@@ -951,6 +967,30 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Link to Dedicated Team Sections */}
+          <div style={{ textAlign: "center", marginTop: "10px", marginBottom: "40px" }}>
+            <Link
+              href="/team"
+              className="btn-o"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                borderRadius: "100px",
+                padding: "12px 28px",
+                fontSize: "0.92rem",
+                fontWeight: 700,
+                borderColor: "rgba(223, 193, 93, 0.45)",
+                color: "var(--primary)",
+                background: "rgba(223, 193, 93, 0.08)",
+                textDecoration: "none",
+                transition: "all 0.25s ease",
+              }}
+            >
+              Explore Full Engineering Guild &amp; Sections (FE, CAIO, UX, DE, SE) <i className="fas fa-arrow-right" />
+            </Link>
           </div>
 
           {/* Master Dedicated Paragraph */}
@@ -1841,6 +1881,109 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+
+                {/* Sub-members or Alignment Box */}
+                {activeTeamMember.subMemberIds && activeTeamMember.subMemberIds.length > 0 && (
+                  <div
+                    style={{
+                      marginBottom: "18px",
+                      padding: "12px 14px",
+                      borderRadius: "14px",
+                      background: "rgba(223, 193, 93, 0.08)",
+                      border: "1px solid rgba(223, 193, 93, 0.3)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "0.75rem",
+                        fontWeight: 800,
+                        color: "var(--primary)",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.06em",
+                        marginBottom: "8px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                      }}
+                    >
+                      <i className="fas fa-sitemap" /> {activeTeamMember.section === "caio" ? "CAIO Division Specialized Team" : "FE Division Specialized Team"}
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                      {activeTeamMember.subMemberIds.map((subId) => {
+                        const subM = TEAM_MEMBERS.find((m) => m.id === subId);
+                        if (!subM) return null;
+                        return (
+                          <button
+                            key={subId}
+                            type="button"
+                            onClick={() => setActiveModal(subM.id)}
+                            style={{
+                              background: "rgba(0,0,0,0.5)",
+                              border: "1px solid rgba(223, 193, 93, 0.4)",
+                              borderRadius: "8px",
+                              padding: "5px 12px",
+                              color: "var(--text)",
+                              fontSize: "0.78rem",
+                              fontWeight: 700,
+                              cursor: "pointer",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "6px",
+                            }}
+                          >
+                            <i className={`fas ${subM.icon}`} style={{ color: "var(--primary)", fontSize: "0.72rem" }} />
+                            {subM.badge} <i className="fas fa-arrow-right" style={{ fontSize: "0.65rem", opacity: 0.7 }} />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {activeTeamMember.parentLeadId && (
+                  <div
+                    style={{
+                      marginBottom: "18px",
+                      padding: "10px 14px",
+                      borderRadius: "12px",
+                      background: "rgba(255, 255, 255, 0.03)",
+                      border: "1px solid var(--border)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      flexWrap: "wrap",
+                      gap: "8px",
+                    }}
+                  >
+                    <span style={{ fontSize: "0.8rem", color: "var(--text2)" }}>
+                      Division Alignment:
+                    </span>
+                    {(() => {
+                      const leadM = TEAM_MEMBERS.find((m) => m.id === activeTeamMember.parentLeadId);
+                      if (!leadM) return null;
+                      return (
+                        <button
+                          type="button"
+                          onClick={() => setActiveModal(leadM.id)}
+                          style={{
+                            background: "transparent",
+                            border: "none",
+                            color: "var(--primary)",
+                            fontSize: "0.8rem",
+                            fontWeight: 700,
+                            cursor: "pointer",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "5px",
+                            padding: 0,
+                          }}
+                        >
+                          {leadM.name} ({leadM.badge}) <i className="fas fa-arrow-right" style={{ fontSize: "0.68rem" }} />
+                        </button>
+                      );
+                    })()}
+                  </div>
+                )}
                 <p className="tm-mod-bio" style={{ color: "var(--text2)", lineHeight: "1.8", marginBottom: "20px" }}>
                   {activeTeamMember.bio}
                 </p>
