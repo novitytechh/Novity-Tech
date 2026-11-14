@@ -17,7 +17,7 @@ const DEFAULT_KNOWLEDGE = [
   {
     title: "Leadership Team & Founder",
     content:
-      "Novity Tech is founded and led by Ali Haider (Founder & CEO). The executive leadership team features Muhammad Hussain (Co-Founder & CTO), Moiz Waseem (Co-Founder & COO), Arham Ali (Chief AI Officer / CAIO), and Muhammad Faseeh Altaf (Lead Frontend & Full-Stack Engineer), along with our core engineering specialists. Clients work directly with founding architects and engineering leads on every engagement.",
+      "Novity Tech is led by principal engineering leads: Ali Haider (Enterprise Architecture & Strategy Lead), Muhammad Hussain (Cloud DevOps & Backend Infrastructure Lead), Moiz Waseem (Product Delivery & Quality Assurance Lead), Arham Ali (AI & Machine Learning Systems Lead), and Muhammad Faseeh Altaf (Lead Frontend & Multi-Platform Applications Engineer). Clients work directly with founding architects and engineering leads on every engagement with zero middlemen.",
   },
   {
     title: "Contact Details & Office Hours",

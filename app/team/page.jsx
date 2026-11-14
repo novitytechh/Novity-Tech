@@ -78,7 +78,7 @@ export default function TeamPage() {
         <div className="container" style={{ marginBottom: "90px" }}>
           <div className="text-center" style={{ maxWidth: "850px", margin: "0 auto 40px" }}>
             <div className="sec-badge" style={{ marginBottom: "16px" }}>
-              Executive Chiefs &amp; Senior Guild
+              Principal Engineering Leads &amp; Architects
             </div>
             <h1
               className="sec-title"
@@ -90,10 +90,10 @@ export default function TeamPage() {
                 marginBottom: "16px",
               }}
             >
-              Meet Our Chiefs &amp; <span>Principal Specialists</span>
+              Meet Our Principal <span>Engineering Leads</span>
             </h1>
             <p style={{ color: "var(--text2)", fontSize: "1.1rem", lineHeight: "1.75", maxWidth: "720px", margin: "0 auto" }}>
-              Explore the dedicated profiles of our C-suite leadership and core full-stack engineers who oversee and execute every technical milestone.
+              Explore the dedicated domain architects who personally design, engineer, and deploy your software with direct accountability across every service discipline.
             </p>
           </div>
 
@@ -671,6 +671,33 @@ export default function TeamPage() {
                         </li>
                       ))}
                     </ul>
+                  </div>
+                )}
+
+                {/* Services Owned */}
+                {selectedMember.services && (
+                  <div style={{ marginBottom: "20px" }}>
+                    <h5 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--text)", marginBottom: "10px" }}>
+                      Primary Service Disciplines Owned
+                    </h5>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                      {selectedMember.services.map((svc, sIdx) => (
+                        <span
+                          key={sIdx}
+                          style={{
+                            padding: "4px 10px",
+                            borderRadius: "8px",
+                            background: "rgba(223, 193, 93, 0.08)",
+                            border: "1px solid rgba(223, 193, 93, 0.25)",
+                            color: "var(--primary)",
+                            fontSize: "0.8rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {svc}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 )}
 

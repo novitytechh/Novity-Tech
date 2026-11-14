@@ -1330,7 +1330,7 @@ export default function Home() {
 
           <div className="text-center mt-5">
             <Link href="/team" className="btn-p">
-              Meet Our Chiefs &amp; Engineering Guild <i className="fas fa-arrow-right" />
+              Meet Our Principal Engineering Leads <i className="fas fa-arrow-right" />
             </Link>
           </div>
         </div>
@@ -2253,6 +2253,30 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
+
+                {activeTeamMember.services && (
+                  <div style={{ marginTop: "16px" }}>
+                    <h6 style={{ fontWeight: 700, marginBottom: "8px" }}>Primary Services Led</h6>
+                    <div className="d-flex flex-wrap gap-2">
+                      {activeTeamMember.services.map((svc, sIdx) => (
+                        <span
+                          key={sIdx}
+                          style={{
+                            padding: "4px 10px",
+                            borderRadius: "8px",
+                            background: "rgba(223, 193, 93, 0.08)",
+                            border: "1px solid rgba(223, 193, 93, 0.25)",
+                            fontSize: "0.76rem",
+                            color: "var(--primary)",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {svc}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -1,14 +1,14 @@
 export const metadata = {
-  title: "Leadership & Senior Technical Guild",
+  title: "Principal Engineering Guild & Domain Leads",
   description:
-    "Meet the executive chiefs, founding architects, and senior specialists at Novity Tech who personally design, code, and deploy your software.",
+    "Meet the principal engineering leads, founding architects, and domain specialists at Novity Tech who personally design, code, and deploy your software.",
   alternates: {
     canonical: "/team",
   },
   openGraph: {
-    title: "Leadership & Senior Technical Guild | Novity Tech",
+    title: "Principal Engineering Guild & Domain Leads | Novity Tech",
     description:
-      "Meet the executive chiefs, founding architects, and senior specialists at Novity Tech who personally design, code, and deploy your software.",
+      "Meet the principal engineering leads, founding architects, and domain specialists at Novity Tech who personally design, code, and deploy your software.",
     url: "https://novitytech.com/team",
   },
 };
