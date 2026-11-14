@@ -701,15 +701,20 @@ export default function Home() {
             </div>
             <div className="col-lg-6">
               <div className="filter-tabs justify-content-lg-end">
-                {["all", "branding", "digital", "web", "social"].map((tab) => (
+                {[
+                  { id: "all", label: "All Work" },
+                  { id: "app", label: "Mobile Apps" },
+                  { id: "web", label: "Web Platforms" },
+                  { id: "cloud", label: "Cloud & AI" },
+                ].map((tab) => (
                   <button
-                    key={tab}
-                    className={`tab-btn ftab ${portfolioFilter === tab ? "active" : ""}`}
-                    onClick={() => setPortfolioFilter(tab)}
+                    key={tab.id}
+                    className={`tab-btn ftab ${portfolioFilter === tab.id ? "active" : ""}`}
+                    onClick={() => setPortfolioFilter(tab.id)}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                   >
-                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                    {tab.label}
                   </button>
                 ))}
               </div>
@@ -1773,11 +1778,73 @@ export default function Home() {
                 {(activePortfolioModalItem.desc || activePortfolioModalItem.overview) && (
                   <>
                     <h6 style={{ fontWeight: 700, marginBottom: "12px" }}>Project Overview</h6>
-                    <p style={{ color: "var(--text2)", lineHeight: "1.82" }}>
+                    <p style={{ color: "var(--text2)", lineHeight: "1.82", marginBottom: "20px" }}>
                       {activePortfolioModalItem.desc || activePortfolioModalItem.overview}
                     </p>
                   </>
                 )}
+
+                {activePortfolioModalItem.keyFeatures && (
+                  <div style={{ marginBottom: "20px" }}>
+                    <h6 style={{ fontWeight: 700, marginBottom: "10px" }}>Key Capabilities</h6>
+                    <ul style={{ paddingLeft: "20px", margin: 0, color: "var(--text2)", fontSize: "0.9rem", lineHeight: "1.75" }}>
+                      {activePortfolioModalItem.keyFeatures.map((feat, fIdx) => (
+                        <li key={fIdx} style={{ marginBottom: "6px" }}>{feat}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {activePortfolioModalItem.tech && activePortfolioModalItem.tech.length > 0 && (
+                  <div style={{ marginBottom: "20px" }}>
+                    <h6 style={{ fontWeight: 700, marginBottom: "10px" }}>Technology Stack</h6>
+                    <div className="d-flex flex-wrap gap-2">
+                      {activePortfolioModalItem.tech.map((t, idx) => (
+                        <span
+                          key={idx}
+                          style={{
+                            padding: "4px 12px",
+                            borderRadius: "8px",
+                            background: "rgba(223, 193, 93, 0.08)",
+                            border: "1px solid rgba(223, 193, 93, 0.25)",
+                            color: "var(--primary)",
+                            fontSize: "0.8rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {activePortfolioModalItem.gallery && activePortfolioModalItem.gallery.length > 0 && (
+                  <div style={{ marginBottom: "20px" }}>
+                    <h6 style={{ fontWeight: 700, marginBottom: "12px" }}>Application Previews</h6>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "12px" }}>
+                      {activePortfolioModalItem.gallery.map((gImg, gIdx) => (
+                        <div
+                          key={gIdx}
+                          style={{
+                            borderRadius: "14px",
+                            overflow: "hidden",
+                            border: "1px solid var(--border)",
+                            background: "#0c0b10",
+                            height: "220px",
+                          }}
+                        >
+                          <img
+                            src={gImg}
+                            alt={`Preview ${gIdx + 1}`}
+                            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {activePortfolioModalItem.result && (
                   <div className="pf-result">
                     <p><strong>Result:</strong> {activePortfolioModalItem.result}</p>

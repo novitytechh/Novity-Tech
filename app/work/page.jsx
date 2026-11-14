@@ -59,10 +59,10 @@ export default function WorkPage() {
             </button>
             <button
               type="button"
-              className={`tab-btn ftab ${activeFilter === "ecommerce" ? "active" : ""}`}
-              onClick={() => setActiveFilter("ecommerce")}
+              className={`tab-btn ftab ${activeFilter === "app" ? "active" : ""}`}
+              onClick={() => setActiveFilter("app")}
             >
-              E-Commerce
+              Mobile &amp; AI Apps
             </button>
             <button
               type="button"
@@ -76,14 +76,14 @@ export default function WorkPage() {
               className={`tab-btn ftab ${activeFilter === "cloud" ? "active" : ""}`}
               onClick={() => setActiveFilter("cloud")}
             >
-              Cloud & FinTech
+              Cloud &amp; FinTech
             </button>
             <button
               type="button"
-              className={`tab-btn ftab ${activeFilter === "design" ? "active" : ""}`}
-              onClick={() => setActiveFilter("design")}
+              className={`tab-btn ftab ${activeFilter === "ecommerce" ? "active" : ""}`}
+              onClick={() => setActiveFilter("ecommerce")}
             >
-              Design Systems
+              E-Commerce
             </button>
           </div>
         </div>
@@ -106,7 +106,7 @@ export default function WorkPage() {
                       boxShadow: "0 16px 40px rgba(0,0,0,0.4)",
                     }}
                   >
-                    <div style={{ position: "relative", height: "280px", overflow: "hidden" }}>
+                    <div style={{ position: "relative", height: "300px", overflow: "hidden", background: "#0c0b10" }}>
                       <img
                         src={proj.image || proj.img}
                         alt={proj.title || proj.name}
@@ -114,6 +114,7 @@ export default function WorkPage() {
                           width: "100%",
                           height: "100%",
                           objectFit: "cover",
+                          objectPosition: "top center",
                           transition: "transform 0.4s ease",
                         }}
                       />
@@ -149,6 +150,19 @@ export default function WorkPage() {
                         <p style={{ color: "var(--text2)", fontSize: "0.92rem", lineHeight: "1.7", marginBottom: "18px" }}>
                           {proj.desc || proj.overview}
                         </p>
+
+                        {proj.keyFeatures && proj.keyFeatures.length > 0 && (
+                          <div style={{ marginBottom: "18px" }}>
+                            <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--text)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "8px" }}>
+                              Core Highlights:
+                            </div>
+                            <ul style={{ paddingLeft: "18px", margin: 0, color: "var(--text3)", fontSize: "0.84rem", lineHeight: "1.6" }}>
+                              {proj.keyFeatures.slice(0, 3).map((feat, fIdx) => (
+                                <li key={fIdx} style={{ marginBottom: "4px" }}>{feat}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       </div>
 
                       <div>
