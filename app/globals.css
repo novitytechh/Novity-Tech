@@ -551,3 +551,21 @@ select,
 .about-img {
   animation: luxuryPicReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+
+/* ==================== SERIAL PROJECT SLIDESHOW & TIMELAPSE ==================== */
+.project-slideshow-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.project-slideshow-container img {
+  will-change: opacity, transform, filter;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.pf-item:hover .project-slideshow-container img {
+  transform: scale(1.06) !important;
+}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { PROJECTS_DATA } from "@/lib/projectsData";
+import ProjectImageSlideshow from "@/components/ui/ProjectImageSlideshow";
 
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -119,31 +120,46 @@ export default function WorkPage() {
                       if (img) img.style.transform = "scale(1)";
                     }}
                   >
-                    <div style={{ position: "relative", height: "300px", overflow: "hidden", background: "#0c0b10" }}>
-                      <img
-                        src={proj.image || proj.img}
-                        alt={proj.title || proj.name}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          objectPosition: "top center",
-                          transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1.8s ease",
-                        }}
-                      />
+                    <div style={{ position: "relative", height: "340px", overflow: "hidden", background: "#0c0b10" }}>
+                      {proj.screens && proj.screens.length > 0 ? (
+                        <ProjectImageSlideshow
+                          images={proj.screens}
+                          interval={2500}
+                          transitionDuration={1800}
+                          height="100%"
+                          showControls={true}
+                          showIndicators={true}
+                          showBadge={true}
+                          badgePosition="top-left"
+                          pauseOnHover={true}
+                        />
+                      ) : (
+                        <img
+                          src={proj.image || proj.img}
+                          alt={proj.title || proj.name}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            objectPosition: "top center",
+                            transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1.8s ease",
+                          }}
+                        />
+                      )}
                       {proj.metric && (
                         <div
                           style={{
                             position: "absolute",
-                            top: "16px",
-                            right: "16px",
-                            background: "rgba(11, 10, 14, 0.85)",
-                            backdropFilter: "blur(8px)",
+                            top: "14px",
+                            right: "14px",
+                            zIndex: 4,
+                            background: "rgba(11, 10, 14, 0.88)",
+                            backdropFilter: "blur(10px)",
                             border: "1px solid rgba(223, 193, 93, 0.35)",
                             color: "var(--primary)",
                             padding: "4px 12px",
                             borderRadius: "20px",
-                            fontSize: "0.8rem",
+                            fontSize: "0.78rem",
                             fontWeight: 800,
                           }}
                         >
@@ -174,6 +190,36 @@ export default function WorkPage() {
                                 <li key={fIdx} style={{ marginBottom: "4px" }}>{feat}</li>
                               ))}
                             </ul>
+                          </div>
+                        )}
+
+                        {proj.screens && proj.screens.length > 0 && (
+                          <div style={{ marginBottom: "20px" }}>
+                            <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--text)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "10px" }}>
+                              Application Workflow (Serial Order):
+                            </div>
+                            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px" }}>
+                              {proj.screens.map((scr, sIdx) => (
+                                <div
+                                  key={sIdx}
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "8px",
+                                    padding: "6px 10px",
+                                    background: "rgba(255, 255, 255, 0.03)",
+                                    border: "1px solid rgba(223, 193, 93, 0.2)",
+                                    borderRadius: "10px",
+                                    fontSize: "0.78rem",
+                                  }}
+                                >
+                                  <span style={{ color: "var(--primary)", fontWeight: 800 }}>{scr.step}</span>
+                                  <span style={{ color: "var(--text)", fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                    {scr.title}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         )}
                       </div>

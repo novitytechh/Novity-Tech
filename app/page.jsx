@@ -6,6 +6,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { PROJECTS_DATA } from "@/lib/projectsData";
 import { TEAM_MEMBERS, COMPANY_DESCRIPTION } from "@/lib/teamData";
+import ProjectImageSlideshow from "@/components/ui/ProjectImageSlideshow";
 
 export default function Home() {
   // Theme state
@@ -21,6 +22,7 @@ export default function Home() {
   const [activeFaq, setActiveFaq] = useState(0);
   // Active modal
   const [activeModal, setActiveModal] = useState(null);
+  const [activeModalSlideIndex, setActiveModalSlideIndex] = useState(0);
   // Contact form state
   const [formData, setFormData] = useState({
     firstName: "",
@@ -726,12 +728,29 @@ export default function Home() {
                 <div key={item.id} className={`${item.colClass || "col-lg-4"} pf-cat`}>
                   <div
                     className="pf-item"
-                    style={{ height: item.height || "320px", cursor: "pointer" }}
-                    onClick={() => setActiveModal(item.id)}
+                    style={{ height: item.height || "380px", cursor: "pointer", position: "relative" }}
+                    onClick={() => {
+                      setActiveModal(item.id);
+                      setActiveModalSlideIndex(0);
+                    }}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                   >
-                    <img className="pf-img" src={item.img || item.image} alt={item.name || item.title} loading="lazy" decoding="async" />
+                    {item.screens && item.screens.length > 0 ? (
+                      <ProjectImageSlideshow
+                        images={item.screens}
+                        interval={2500}
+                        transitionDuration={1800}
+                        height="100%"
+                        showBadge={true}
+                        badgePosition="top-left"
+                        showIndicators={true}
+                        showControls={false}
+                        pauseOnHover={true}
+                      />
+                    ) : (
+                      <img className="pf-img" src={item.img || item.image} alt={item.name || item.title} loading="lazy" decoding="async" />
+                    )}
                     <div className="pf-ov">
                       <div>
                         <div className="pf-cat">{item.catLabel || item.categoryLabel}</div>
@@ -1752,12 +1771,30 @@ export default function Home() {
                 <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
               </div>
               <div className="modal-body">
-                {(activePortfolioModalItem.img || activePortfolioModalItem.image) && (
-                  <img
-                    className="pf-mod-img"
-                    src={activePortfolioModalItem.img || activePortfolioModalItem.image}
-                    alt={activePortfolioModalItem.name || activePortfolioModalItem.title}
-                  />
+                {activePortfolioModalItem.screens && activePortfolioModalItem.screens.length > 0 ? (
+                  <div style={{ marginBottom: "24px", borderRadius: "18px", overflow: "hidden", border: "1px solid var(--border)", boxShadow: "0 14px 34px rgba(0,0,0,0.5)" }}>
+                    <ProjectImageSlideshow
+                      images={activePortfolioModalItem.screens}
+                      interval={2500}
+                      transitionDuration={1800}
+                      height="400px"
+                      showControls={true}
+                      showIndicators={true}
+                      showBadge={true}
+                      badgePosition="top-left"
+                      pauseOnHover={true}
+                      activeSlideIndex={activeModalSlideIndex}
+                      onSlideChange={setActiveModalSlideIndex}
+                    />
+                  </div>
+                ) : (
+                  (activePortfolioModalItem.img || activePortfolioModalItem.image) && (
+                    <img
+                      className="pf-mod-img"
+                      src={activePortfolioModalItem.img || activePortfolioModalItem.image}
+                      alt={activePortfolioModalItem.name || activePortfolioModalItem.title}
+                    />
+                  )
                 )}
                 <div className="row g-3 mb-4">
                   {activePortfolioModalItem.client && (
@@ -1827,28 +1864,66 @@ export default function Home() {
                   </div>
                 )}
 
-                {activePortfolioModalItem.gallery && activePortfolioModalItem.gallery.length > 0 && (
-                  <div style={{ marginBottom: "20px" }}>
-                    <h6 style={{ fontWeight: 700, marginBottom: "12px" }}>Application Previews</h6>
+                {(activePortfolioModalItem.screens || activePortfolioModalItem.gallery) && (
+                  <div style={{ marginBottom: "24px" }}>
+                    <div className="d-flex align-items-center justify-content-between mb-3">
+                      <h6 style={{ fontWeight: 800, margin: 0, color: "var(--text)" }}>
+                        Serial Application Previews
+                      </h6>
+                      <span style={{ fontSize: "0.78rem", color: "var(--primary)", fontWeight: 700 }}>
+                        Click any screen to view
+                      </span>
+                    </div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "12px" }}>
-                      {activePortfolioModalItem.gallery.map((gImg, gIdx) => (
-                        <div
-                          key={gIdx}
-                          style={{
-                            borderRadius: "14px",
-                            overflow: "hidden",
-                            border: "1px solid var(--border)",
-                            background: "#0c0b10",
-                            height: "220px",
-                          }}
-                        >
-                          <img
-                            src={gImg}
-                            alt={`Preview ${gIdx + 1}`}
-                            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }}
-                          />
-                        </div>
-                      ))}
+                      {(activePortfolioModalItem.screens || activePortfolioModalItem.gallery).map((scr, sIdx) => {
+                        const src = typeof scr === "string" ? scr : scr.src;
+                        const title = typeof scr === "string" ? `Screen 0${sIdx + 1}` : scr.title;
+                        const step = typeof scr === "string" ? `0${sIdx + 1}` : scr.step;
+                        const tag = typeof scr === "string" ? "" : scr.tag;
+                        const isCurrent = activeModalSlideIndex === sIdx;
+
+                        return (
+                          <div
+                            key={sIdx}
+                            onClick={() => setActiveModalSlideIndex(sIdx)}
+                            style={{
+                              borderRadius: "14px",
+                              overflow: "hidden",
+                              border: isCurrent
+                                ? "2px solid var(--primary, #dfc15d)"
+                                : "1px solid var(--border)",
+                              background: "#0c0b10",
+                              cursor: "pointer",
+                              position: "relative",
+                              transition: "all 0.3s ease",
+                              boxShadow: isCurrent ? "0 0 16px rgba(223, 193, 93, 0.35)" : "none",
+                              transform: isCurrent ? "scale(1.02)" : "scale(1)",
+                            }}
+                          >
+                            <div style={{ height: "180px", overflow: "hidden" }}>
+                              <img
+                                src={src}
+                                alt={title}
+                                style={{
+                                  width: "100%",
+                                  height: "100%",
+                                  objectFit: "cover",
+                                  objectPosition: "top center",
+                                  transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1)",
+                                }}
+                              />
+                            </div>
+                            <div style={{ padding: "8px 10px", background: "rgba(18, 17, 24, 0.95)" }}>
+                              <div style={{ fontSize: "0.7rem", color: "var(--primary)", fontWeight: 800 }}>
+                                {step} • {tag || "Step"}
+                              </div>
+                              <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--text)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                {title}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
