@@ -148,8 +148,6 @@ export default function WorkPage() {
                               height="100%"
                               showControls={true}
                               showIndicators={true}
-                              showBadge={true}
-                              badgePosition="top-left"
                               pauseOnHover={true}
                               objectFit="cover"
                               objectPosition="top center"

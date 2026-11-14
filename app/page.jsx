@@ -778,8 +778,6 @@ export default function Home() {
                               interval={2500}
                               transitionDuration={1800}
                               height="100%"
-                              showBadge={true}
-                              badgePosition="top-left"
                               showIndicators={true}
                               showControls={true}
                               pauseOnHover={true}
@@ -2027,8 +2025,6 @@ export default function Home() {
                           height="100%"
                           showControls={true}
                           showIndicators={true}
-                          showBadge={true}
-                          badgePosition="top-left"
                           pauseOnHover={true}
                           activeSlideIndex={activeModalSlideIndex}
                           onSlideChange={setActiveModalSlideIndex}

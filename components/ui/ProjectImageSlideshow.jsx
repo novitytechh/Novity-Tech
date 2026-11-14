@@ -15,8 +15,6 @@ export default function ProjectImageSlideshow({
   height = "100%",
   showControls = false,
   showIndicators = true,
-  showBadge = true,
-  badgePosition = "top-left",
   pauseOnHover = true,
   activeSlideIndex,
   onSlideChange,
@@ -161,48 +159,6 @@ export default function ProjectImageSlideshow({
           </div>
         );
       })}
-
-      {/* Serial Step Badge */}
-      {showBadge && total > 1 && (
-        <div
-          style={{
-            position: "absolute",
-            top: badgePosition.includes("top") ? "10px" : "auto",
-            bottom: badgePosition.includes("bottom") ? "10px" : "auto",
-            left: badgePosition.includes("left") ? "10px" : "auto",
-            right: badgePosition.includes("right") ? "10px" : "auto",
-            zIndex: 4,
-            background: "rgba(10, 9, 14, 0.9)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            border: "1px solid rgba(223, 193, 93, 0.4)",
-            color: "var(--primary, #dfc15d)",
-            borderRadius: "20px",
-            padding: "3px 9px",
-            fontSize: "0.68rem",
-            fontWeight: 800,
-            letterSpacing: "0.04em",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "5px",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.5)",
-          }}
-        >
-          <span
-            style={{
-              width: "5px",
-              height: "5px",
-              borderRadius: "50%",
-              background: "#dfc15d",
-              boxShadow: "0 0 6px #dfc15d",
-              display: "inline-block",
-            }}
-          ></span>
-          <span>
-            {currentImage.step || `0${currentIndex + 1}`} / 0{total} • {currentImage.title}
-          </span>
-        </div>
-      )}
 
       {/* Prev / Next Controls (if enabled) */}
       {showControls && total > 1 && (
