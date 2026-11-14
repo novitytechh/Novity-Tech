@@ -57,7 +57,7 @@ export default function DualFrontBackMockup({
         ...style,
       }}
     >
-      {/* ================= CARD 1: STOREFRONT HERO ================= */}
+      {/* ================= CARD 1: STOREFRONT HERO (FRONT) ================= */}
       <div
         onClick={(e) => {
           e.stopPropagation();
@@ -65,7 +65,7 @@ export default function DualFrontBackMockup({
         }}
         style={{
           position: "absolute",
-          width: "270px",
+          width: "275px",
           height: "360px",
           borderRadius: "18px",
           overflow: "hidden",
@@ -83,60 +83,23 @@ export default function DualFrontBackMockup({
           opacity: isFrontForeground ? 1 : 0.82,
           transition: `all ${transitionDuration}ms cubic-bezier(0.16, 1, 0.3, 1)`,
           cursor: "pointer",
-          display: "flex",
-          flexDirection: "column",
         }}
       >
-        {/* Browser Top Window Bar */}
-        <div
+        <img
+          src={frontSrc}
+          alt={frontTitle}
           style={{
-            height: "26px",
-            background: "rgba(18, 17, 24, 0.95)",
-            borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
-            display: "flex",
-            alignItems: "center",
-            padding: "0 10px",
-            justifyContent: "space-between",
-            flexShrink: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "top center",
+            display: "block",
+            transition: `transform ${transitionDuration}ms cubic-bezier(0.16, 1, 0.3, 1)`,
           }}
-        >
-          <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
-            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#ff5f56" }}></span>
-            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#ffbd2e" }}></span>
-            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#27c93f" }}></span>
-          </div>
-          <span
-            style={{
-              fontSize: "0.64rem",
-              fontWeight: 800,
-              color: isFrontForeground ? "var(--primary, #dfc15d)" : "var(--text3, #888)",
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-            }}
-          >
-            {frontTitle}
-          </span>
-          <div style={{ width: "24px" }}></div>
-        </div>
-
-        {/* Screenshot View */}
-        <div style={{ flex: 1, position: "relative", overflow: "hidden", background: "#050508" }}>
-          <img
-            src={frontSrc}
-            alt={frontTitle}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "top center",
-              display: "block",
-              transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-          />
-        </div>
+        />
       </div>
 
-      {/* ================= CARD 2: PRODUCT DETAIL ================= */}
+      {/* ================= CARD 2: PRODUCT DETAIL (BACK) ================= */}
       <div
         onClick={(e) => {
           e.stopPropagation();
@@ -144,7 +107,7 @@ export default function DualFrontBackMockup({
         }}
         style={{
           position: "absolute",
-          width: "270px",
+          width: "275px",
           height: "360px",
           borderRadius: "18px",
           overflow: "hidden",
@@ -162,75 +125,38 @@ export default function DualFrontBackMockup({
           opacity: !isFrontForeground ? 1 : 0.82,
           transition: `all ${transitionDuration}ms cubic-bezier(0.16, 1, 0.3, 1)`,
           cursor: "pointer",
-          display: "flex",
-          flexDirection: "column",
         }}
       >
-        {/* Browser Top Window Bar */}
-        <div
+        <img
+          src={backSrc}
+          alt={backTitle}
           style={{
-            height: "26px",
-            background: "rgba(18, 17, 24, 0.95)",
-            borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
-            display: "flex",
-            alignItems: "center",
-            padding: "0 10px",
-            justifyContent: "space-between",
-            flexShrink: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "top center",
+            display: "block",
+            transition: `transform ${transitionDuration}ms cubic-bezier(0.16, 1, 0.3, 1)`,
           }}
-        >
-          <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
-            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#ff5f56" }}></span>
-            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#ffbd2e" }}></span>
-            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#27c93f" }}></span>
-          </div>
-          <span
-            style={{
-              fontSize: "0.64rem",
-              fontWeight: 800,
-              color: !isFrontForeground ? "var(--primary, #dfc15d)" : "var(--text3, #888)",
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-            }}
-          >
-            {backTitle}
-          </span>
-          <div style={{ width: "24px" }}></div>
-        </div>
-
-        {/* Screenshot View */}
-        <div style={{ flex: 1, position: "relative", overflow: "hidden", background: "#050508" }}>
-          <img
-            src={backSrc}
-            alt={backTitle}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "top center",
-              display: "block",
-              transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-          />
-        </div>
+        />
       </div>
 
-      {/* Layer Toggle Pills Indicator */}
+      {/* Subtle Bottom Pagination Dots */}
       <div
         style={{
           position: "absolute",
-          bottom: "6px",
+          bottom: "8px",
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 4,
           display: "flex",
           alignItems: "center",
-          gap: "6px",
-          background: "rgba(10, 9, 14, 0.85)",
+          gap: "8px",
+          background: "rgba(10, 9, 14, 0.75)",
           backdropFilter: "blur(6px)",
-          padding: "3px 8px",
+          padding: "4px 10px",
           borderRadius: "16px",
-          border: "1px solid rgba(223, 193, 93, 0.25)",
+          border: "1px solid rgba(223, 193, 93, 0.2)",
         }}
       >
         <button
@@ -239,40 +165,36 @@ export default function DualFrontBackMockup({
             e.stopPropagation();
             setActiveSide("front");
           }}
+          aria-label="Front View"
           style={{
-            background: isFrontForeground ? "var(--primary, #dfc15d)" : "transparent",
-            color: isFrontForeground ? "#000" : "var(--text2)",
+            width: isFrontForeground ? "20px" : "7px",
+            height: "7px",
+            borderRadius: "4px",
+            background: isFrontForeground ? "var(--primary, #dfc15d)" : "rgba(255, 255, 255, 0.3)",
             border: "none",
-            borderRadius: "10px",
-            fontSize: "0.66rem",
-            fontWeight: 800,
-            padding: "2px 8px",
+            padding: 0,
             cursor: "pointer",
-            transition: "all 0.2s ease",
+            transition: "all 0.3s ease",
           }}
-        >
-          Front
-        </button>
+        />
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
             setActiveSide("back");
           }}
+          aria-label="Back View"
           style={{
-            background: !isFrontForeground ? "var(--primary, #dfc15d)" : "transparent",
-            color: !isFrontForeground ? "#000" : "var(--text2)",
+            width: !isFrontForeground ? "20px" : "7px",
+            height: "7px",
+            borderRadius: "4px",
+            background: !isFrontForeground ? "var(--primary, #dfc15d)" : "rgba(255, 255, 255, 0.3)",
             border: "none",
-            borderRadius: "10px",
-            fontSize: "0.66rem",
-            fontWeight: 800,
-            padding: "2px 8px",
+            padding: 0,
             cursor: "pointer",
-            transition: "all 0.2s ease",
+            transition: "all 0.3s ease",
           }}
-        >
-          Back
-        </button>
+        />
       </div>
     </div>
   );
