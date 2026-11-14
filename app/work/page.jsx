@@ -179,7 +179,7 @@ export default function WorkPage() {
                         }}
                       >
                         {/* Top Badges */}
-                        <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                        <div className="d-flex align-items-center mb-2">
                           <span
                             style={{
                               color: "var(--primary)",
@@ -191,21 +191,6 @@ export default function WorkPage() {
                           >
                             {proj.categoryLabel || proj.catLabel || proj.category} • {proj.client || "EdTech"}
                           </span>
-                          {proj.metric && (
-                            <span
-                              style={{
-                                background: "rgba(223, 193, 93, 0.12)",
-                                border: "1px solid rgba(223, 193, 93, 0.35)",
-                                color: "var(--primary)",
-                                padding: "2px 10px",
-                                borderRadius: "14px",
-                                fontSize: "0.72rem",
-                                fontWeight: 800,
-                              }}
-                            >
-                              <i className="fas fa-sparkles me-1"></i> {proj.metric}
-                            </span>
-                          )}
                         </div>
 
                         {/* Title */}
