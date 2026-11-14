@@ -725,40 +725,292 @@ export default function Home() {
           <div className="row g-4" id="pfGrid">
             {filteredPortfolio.length > 0 ? (
               filteredPortfolio.map((item) => (
-                <div key={item.id} className={`${item.colClass || "col-lg-4"} pf-cat`}>
-                  <div
-                    className="pf-item"
-                    style={{ height: item.height || "380px", cursor: "pointer", position: "relative" }}
-                    onClick={() => {
-                      setActiveModal(item.id);
-                      setActiveModalSlideIndex(0);
-                    }}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                  >
-                    {item.screens && item.screens.length > 0 ? (
-                      <ProjectImageSlideshow
-                        images={item.screens}
-                        interval={2500}
-                        transitionDuration={1800}
-                        height="100%"
-                        showBadge={true}
-                        badgePosition="top-left"
-                        showIndicators={true}
-                        showControls={false}
-                        pauseOnHover={true}
-                      />
-                    ) : (
-                      <img className="pf-img" src={item.img || item.image} alt={item.name || item.title} loading="lazy" decoding="async" />
-                    )}
-                    <div className="pf-ov">
-                      <div>
-                        <div className="pf-cat">{item.catLabel || item.categoryLabel}</div>
-                        <h3 className="pf-name">{item.name || item.title}</h3>
+                <div key={item.id} className={`${item.colClass || "col-12"} pf-cat`}>
+                  {item.screens && item.screens.length > 0 ? (
+                    <div
+                      style={{
+                        background: "var(--card)",
+                        border: "1px solid var(--border)",
+                        borderRadius: "28px",
+                        overflow: "hidden",
+                        boxShadow: "0 20px 50px rgba(0,0,0,0.45)",
+                        transition: "transform 0.3s ease, border-color 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = "translateY(-4px)";
+                        e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.45)";
+                        setIsHovered(true);
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = "translateY(0)";
+                        e.currentTarget.style.borderColor = "var(--border)";
+                        setIsHovered(false);
+                      }}
+                    >
+                      <div className="row g-0 align-items-stretch">
+                        {/* LEFT SIDE: ONLY THE PICS (PORTRAIT SMARTPHONE SLIDESHOW) */}
+                        <div
+                          className="col-lg-5 col-md-5 col-12"
+                          style={{
+                            background: "radial-gradient(circle at center, #15141d 0%, #0a090e 100%)",
+                            borderRight: "1px solid var(--border)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            padding: "40px 24px",
+                            position: "relative",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "100%",
+                              maxWidth: "290px",
+                              height: "580px",
+                              borderRadius: "36px",
+                              overflow: "hidden",
+                              border: "2px solid rgba(223, 193, 93, 0.45)",
+                              boxShadow: "0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(223, 193, 93, 0.15)",
+                              position: "relative",
+                              background: "#050508",
+                            }}
+                          >
+                            <ProjectImageSlideshow
+                              images={item.screens}
+                              interval={2500}
+                              transitionDuration={1800}
+                              height="100%"
+                              showBadge={true}
+                              badgePosition="top-left"
+                              showIndicators={true}
+                              showControls={true}
+                              pauseOnHover={true}
+                              objectFit="cover"
+                              objectPosition="top center"
+                            />
+                          </div>
+                        </div>
+
+                        {/* RIGHT SIDE: THE DESCRIPTION */}
+                        <div
+                          className="col-lg-7 col-md-7 col-12"
+                          style={{
+                            padding: "44px 38px",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                            background: "var(--card)",
+                          }}
+                        >
+                          <div>
+                            {/* Badges */}
+                            <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                              <div
+                                style={{
+                                  color: "var(--primary)",
+                                  fontSize: "0.82rem",
+                                  fontWeight: 800,
+                                  textTransform: "uppercase",
+                                  letterSpacing: "0.08em",
+                                }}
+                              >
+                                {item.catLabel || item.categoryLabel} {item.client ? `• ${item.client}` : ""}
+                              </div>
+                              {item.metric && (
+                                <div
+                                  style={{
+                                    background: "rgba(223, 193, 93, 0.12)",
+                                    border: "1px solid rgba(223, 193, 93, 0.4)",
+                                    color: "var(--primary)",
+                                    padding: "4px 14px",
+                                    borderRadius: "20px",
+                                    fontSize: "0.78rem",
+                                    fontWeight: 800,
+                                  }}
+                                >
+                                  {item.metric}
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Title */}
+                            <h3
+                              style={{
+                                fontSize: "clamp(1.45rem, 2.4vw, 2rem)",
+                                fontWeight: 900,
+                                color: "var(--text)",
+                                lineHeight: 1.25,
+                                marginBottom: "16px",
+                              }}
+                            >
+                              {item.name || item.title}
+                            </h3>
+
+                            {/* Description */}
+                            <p style={{ color: "var(--text2)", fontSize: "0.96rem", lineHeight: "1.75", marginBottom: "22px" }}>
+                              {item.desc || item.overview}
+                            </p>
+
+                            {/* Capabilities */}
+                            {item.keyFeatures && item.keyFeatures.length > 0 && (
+                              <div style={{ marginBottom: "20px" }}>
+                                <div
+                                  style={{
+                                    fontSize: "0.78rem",
+                                    fontWeight: 800,
+                                    color: "var(--text)",
+                                    textTransform: "uppercase",
+                                    letterSpacing: "0.08em",
+                                    marginBottom: "10px",
+                                  }}
+                                >
+                                  Core Highlights &amp; Capabilities:
+                                </div>
+                                <ul style={{ paddingLeft: "0", listStyle: "none", margin: 0 }}>
+                                  {item.keyFeatures.slice(0, 4).map((feat, fIdx) => (
+                                    <li
+                                      key={fIdx}
+                                      style={{
+                                        marginBottom: "6px",
+                                        color: "var(--text2)",
+                                        fontSize: "0.88rem",
+                                        display: "flex",
+                                        alignItems: "flex-start",
+                                        gap: "8px",
+                                      }}
+                                    >
+                                      <i className="fas fa-check-circle" style={{ color: "var(--primary)", marginTop: "4px", fontSize: "0.82rem" }}></i>
+                                      <span>{feat}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+
+                            {/* Workflow */}
+                            {item.screens && (
+                              <div style={{ marginBottom: "24px" }}>
+                                <div
+                                  style={{
+                                    fontSize: "0.78rem",
+                                    fontWeight: 800,
+                                    color: "var(--text)",
+                                    textTransform: "uppercase",
+                                    letterSpacing: "0.08em",
+                                    marginBottom: "10px",
+                                  }}
+                                >
+                                  Application Workflow (Serial Order):
+                                </div>
+                                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "10px" }}>
+                                  {item.screens.map((scr, sIdx) => (
+                                    <div
+                                      key={sIdx}
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                        padding: "8px 12px",
+                                        background: "rgba(255, 255, 255, 0.03)",
+                                        border: "1px solid rgba(223, 193, 93, 0.22)",
+                                        borderRadius: "12px",
+                                      }}
+                                    >
+                                      <span
+                                        style={{
+                                          width: "26px",
+                                          height: "26px",
+                                          borderRadius: "50%",
+                                          background: "rgba(223, 193, 93, 0.15)",
+                                          color: "var(--primary)",
+                                          display: "inline-flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          fontSize: "0.74rem",
+                                          fontWeight: 800,
+                                          flexShrink: 0,
+                                        }}
+                                      >
+                                        {scr.step}
+                                      </span>
+                                      <div style={{ overflow: "hidden" }}>
+                                        <div style={{ color: "var(--text)", fontSize: "0.8rem", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                          {scr.title}
+                                        </div>
+                                        <div style={{ color: "var(--text3)", fontSize: "0.7rem" }}>
+                                          {scr.tag || "Serial Screen"}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Tech & Buttons */}
+                          <div>
+                            {item.tech && item.tech.length > 0 && (
+                              <div className="d-flex flex-wrap gap-2 mb-4">
+                                {item.tech.map((t, idx) => (
+                                  <span
+                                    key={idx}
+                                    style={{
+                                      padding: "5px 12px",
+                                      borderRadius: "8px",
+                                      background: "rgba(255, 255, 255, 0.05)",
+                                      border: "1px solid var(--border)",
+                                      color: "var(--text3)",
+                                      fontSize: "0.78rem",
+                                      fontWeight: 600,
+                                    }}
+                                  >
+                                    {t}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+
+                            <div className="d-flex flex-wrap gap-3">
+                              <button
+                                type="button"
+                                className="btn-p"
+                                style={{ flex: 1, textAlign: "center" }}
+                                onClick={() => {
+                                  setActiveModal(item.id);
+                                  setActiveModalSlideIndex(0);
+                                }}
+                              >
+                                View Interactive Demo <i className="fas fa-expand-alt ms-1"></i>
+                              </button>
+                              <Link href="/contact" className="btn-s" style={{ textDecoration: "none", padding: "12px 24px" }}>
+                                Contact Us
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="pf-plus"><i className="fas fa-plus"></i></div>
-                  </div>
+                  ) : (
+                    <div
+                      className="pf-item"
+                      style={{ height: item.height || "380px", cursor: "pointer", position: "relative" }}
+                      onClick={() => {
+                        setActiveModal(item.id);
+                        setActiveModalSlideIndex(0);
+                      }}
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
+                    >
+                      <img className="pf-img" src={item.img || item.image} alt={item.name || item.title} loading="lazy" decoding="async" />
+                      <div className="pf-ov">
+                        <div>
+                          <div className="pf-cat">{item.catLabel || item.categoryLabel}</div>
+                          <h3 className="pf-name">{item.name || item.title}</h3>
+                        </div>
+                      </div>
+                      <div className="pf-plus"><i className="fas fa-plus"></i></div>
+                    </div>
+                  )}
                 </div>
               ))
             ) : (
@@ -1764,175 +2016,202 @@ export default function Home() {
       {/* DYNAMIC PORTFOLIO MODAL */}
       {activePortfolioModalItem && (
         <div className="modal fade show" tabIndex="-1" onClick={() => setActiveModal(null)}>
-          <div className="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" onClick={(e) => e.stopPropagation()}>
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">{activePortfolioModalItem.name || activePortfolioModalItem.title}</h5>
                 <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
               </div>
-              <div className="modal-body">
-                {activePortfolioModalItem.screens && activePortfolioModalItem.screens.length > 0 ? (
-                  <div style={{ marginBottom: "24px", borderRadius: "18px", overflow: "hidden", border: "1px solid var(--border)", boxShadow: "0 14px 34px rgba(0,0,0,0.5)" }}>
-                    <ProjectImageSlideshow
-                      images={activePortfolioModalItem.screens}
-                      interval={2500}
-                      transitionDuration={1800}
-                      height="400px"
-                      showControls={true}
-                      showIndicators={true}
-                      showBadge={true}
-                      badgePosition="top-left"
-                      pauseOnHover={true}
-                      activeSlideIndex={activeModalSlideIndex}
-                      onSlideChange={setActiveModalSlideIndex}
-                    />
-                  </div>
-                ) : (
-                  (activePortfolioModalItem.img || activePortfolioModalItem.image) && (
-                    <img
-                      className="pf-mod-img"
-                      src={activePortfolioModalItem.img || activePortfolioModalItem.image}
-                      alt={activePortfolioModalItem.name || activePortfolioModalItem.title}
-                    />
-                  )
-                )}
-                <div className="row g-3 mb-4">
-                  {activePortfolioModalItem.client && (
-                    <div className="col-6 col-md-3">
-                      <div className="pf-d-lbl">Client</div>
-                      <div className="pf-d-val">{activePortfolioModalItem.client}</div>
-                    </div>
-                  )}
-                  <div className="col-6 col-md-3">
-                    <div className="pf-d-lbl">Category</div>
-                    <div className="pf-d-val">{activePortfolioModalItem.catLabel || activePortfolioModalItem.categoryLabel || activePortfolioModalItem.category}</div>
-                  </div>
-                  {activePortfolioModalItem.year && (
-                    <div className="col-6 col-md-3">
-                      <div className="pf-d-lbl">Year</div>
-                      <div className="pf-d-val">{activePortfolioModalItem.year}</div>
-                    </div>
-                  )}
-                  {activePortfolioModalItem.duration && (
-                    <div className="col-6 col-md-3">
-                      <div className="pf-d-lbl">Duration</div>
-                      <div className="pf-d-val">{activePortfolioModalItem.duration}</div>
-                    </div>
-                  )}
-                </div>
-                {(activePortfolioModalItem.desc || activePortfolioModalItem.overview) && (
-                  <>
-                    <h6 style={{ fontWeight: 700, marginBottom: "12px" }}>Project Overview</h6>
-                    <p style={{ color: "var(--text2)", lineHeight: "1.82", marginBottom: "20px" }}>
-                      {activePortfolioModalItem.desc || activePortfolioModalItem.overview}
-                    </p>
-                  </>
-                )}
-
-                {activePortfolioModalItem.keyFeatures && (
-                  <div style={{ marginBottom: "20px" }}>
-                    <h6 style={{ fontWeight: 700, marginBottom: "10px" }}>Key Capabilities</h6>
-                    <ul style={{ paddingLeft: "20px", margin: 0, color: "var(--text2)", fontSize: "0.9rem", lineHeight: "1.75" }}>
-                      {activePortfolioModalItem.keyFeatures.map((feat, fIdx) => (
-                        <li key={fIdx} style={{ marginBottom: "6px" }}>{feat}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {activePortfolioModalItem.tech && activePortfolioModalItem.tech.length > 0 && (
-                  <div style={{ marginBottom: "20px" }}>
-                    <h6 style={{ fontWeight: 700, marginBottom: "10px" }}>Technology Stack</h6>
-                    <div className="d-flex flex-wrap gap-2">
-                      {activePortfolioModalItem.tech.map((t, idx) => (
-                        <span
-                          key={idx}
-                          style={{
-                            padding: "4px 12px",
-                            borderRadius: "8px",
-                            background: "rgba(223, 193, 93, 0.08)",
-                            border: "1px solid rgba(223, 193, 93, 0.25)",
-                            color: "var(--primary)",
-                            fontSize: "0.8rem",
-                            fontWeight: 600,
-                          }}
-                        >
-                          {t}
-                        </span>
-                      ))}
+              <div className="modal-body" style={{ padding: "30px" }}>
+                <div className="row g-4 align-items-stretch">
+                  {/* LEFT SIDE: ONLY THE PICS */}
+                  <div className="col-lg-5 col-12 d-flex flex-column align-items-center justify-content-center" style={{ background: "radial-gradient(circle at center, #15141d 0%, #0a090e 100%)", borderRadius: "20px", padding: "30px 16px", border: "1px solid var(--border)" }}>
+                    <div
+                      style={{
+                        width: "100%",
+                        maxWidth: "280px",
+                        height: "560px",
+                        borderRadius: "34px",
+                        overflow: "hidden",
+                        border: "2px solid rgba(223, 193, 93, 0.45)",
+                        boxShadow: "0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(223, 193, 93, 0.15)",
+                        position: "relative",
+                        background: "#050508",
+                      }}
+                    >
+                      {activePortfolioModalItem.screens && activePortfolioModalItem.screens.length > 0 ? (
+                        <ProjectImageSlideshow
+                          images={activePortfolioModalItem.screens}
+                          interval={2500}
+                          transitionDuration={1800}
+                          height="100%"
+                          showControls={true}
+                          showIndicators={true}
+                          showBadge={true}
+                          badgePosition="top-left"
+                          pauseOnHover={true}
+                          activeSlideIndex={activeModalSlideIndex}
+                          onSlideChange={setActiveModalSlideIndex}
+                          objectFit="cover"
+                          objectPosition="top center"
+                        />
+                      ) : (
+                        (activePortfolioModalItem.img || activePortfolioModalItem.image) && (
+                          <img
+                            className="pf-mod-img"
+                            src={activePortfolioModalItem.img || activePortfolioModalItem.image}
+                            alt={activePortfolioModalItem.name || activePortfolioModalItem.title}
+                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                          />
+                        )
+                      )}
                     </div>
                   </div>
-                )}
 
-                {(activePortfolioModalItem.screens || activePortfolioModalItem.gallery) && (
-                  <div style={{ marginBottom: "24px" }}>
-                    <div className="d-flex align-items-center justify-content-between mb-3">
-                      <h6 style={{ fontWeight: 800, margin: 0, color: "var(--text)" }}>
-                        Serial Application Previews
-                      </h6>
-                      <span style={{ fontSize: "0.78rem", color: "var(--primary)", fontWeight: 700 }}>
-                        Click any screen to view
-                      </span>
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "12px" }}>
-                      {(activePortfolioModalItem.screens || activePortfolioModalItem.gallery).map((scr, sIdx) => {
-                        const src = typeof scr === "string" ? scr : scr.src;
-                        const title = typeof scr === "string" ? `Screen 0${sIdx + 1}` : scr.title;
-                        const step = typeof scr === "string" ? `0${sIdx + 1}` : scr.step;
-                        const tag = typeof scr === "string" ? "" : scr.tag;
-                        const isCurrent = activeModalSlideIndex === sIdx;
-
-                        return (
-                          <div
-                            key={sIdx}
-                            onClick={() => setActiveModalSlideIndex(sIdx)}
-                            style={{
-                              borderRadius: "14px",
-                              overflow: "hidden",
-                              border: isCurrent
-                                ? "2px solid var(--primary, #dfc15d)"
-                                : "1px solid var(--border)",
-                              background: "#0c0b10",
-                              cursor: "pointer",
-                              position: "relative",
-                              transition: "all 0.3s ease",
-                              boxShadow: isCurrent ? "0 0 16px rgba(223, 193, 93, 0.35)" : "none",
-                              transform: isCurrent ? "scale(1.02)" : "scale(1)",
-                            }}
-                          >
-                            <div style={{ height: "180px", overflow: "hidden" }}>
-                              <img
-                                src={src}
-                                alt={title}
-                                style={{
-                                  width: "100%",
-                                  height: "100%",
-                                  objectFit: "cover",
-                                  objectPosition: "top center",
-                                  transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1)",
-                                }}
-                              />
-                            </div>
-                            <div style={{ padding: "8px 10px", background: "rgba(18, 17, 24, 0.95)" }}>
-                              <div style={{ fontSize: "0.7rem", color: "var(--primary)", fontWeight: 800 }}>
-                                {step} • {tag || "Step"}
-                              </div>
-                              <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "var(--text)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                                {title}
-                              </div>
-                            </div>
+                  {/* RIGHT SIDE: THE DESCRIPTION */}
+                  <div className="col-lg-7 col-12 d-flex flex-column justify-content-between">
+                    <div>
+                      <div className="row g-3 mb-4">
+                        {activePortfolioModalItem.client && (
+                          <div className="col-6 col-md-3">
+                            <div className="pf-d-lbl">Client</div>
+                            <div className="pf-d-val">{activePortfolioModalItem.client}</div>
                           </div>
-                        );
-                      })}
+                        )}
+                        <div className="col-6 col-md-3">
+                          <div className="pf-d-lbl">Category</div>
+                          <div className="pf-d-val">{activePortfolioModalItem.catLabel || activePortfolioModalItem.categoryLabel || activePortfolioModalItem.category}</div>
+                        </div>
+                        {activePortfolioModalItem.year && (
+                          <div className="col-6 col-md-3">
+                            <div className="pf-d-lbl">Year</div>
+                            <div className="pf-d-val">{activePortfolioModalItem.year}</div>
+                          </div>
+                        )}
+                        {activePortfolioModalItem.duration && (
+                          <div className="col-6 col-md-3">
+                            <div className="pf-d-lbl">Duration</div>
+                            <div className="pf-d-val">{activePortfolioModalItem.duration}</div>
+                          </div>
+                        )}
+                      </div>
+
+                      {(activePortfolioModalItem.desc || activePortfolioModalItem.overview) && (
+                        <>
+                          <h6 style={{ fontWeight: 800, marginBottom: "12px", color: "var(--text)" }}>Project Overview</h6>
+                          <p style={{ color: "var(--text2)", lineHeight: "1.82", marginBottom: "20px", fontSize: "0.94rem" }}>
+                            {activePortfolioModalItem.desc || activePortfolioModalItem.overview}
+                          </p>
+                        </>
+                      )}
+
+                      {activePortfolioModalItem.keyFeatures && (
+                        <div style={{ marginBottom: "20px" }}>
+                          <h6 style={{ fontWeight: 800, marginBottom: "10px", color: "var(--text)" }}>Key Capabilities</h6>
+                          <ul style={{ paddingLeft: "20px", margin: 0, color: "var(--text2)", fontSize: "0.9rem", lineHeight: "1.75" }}>
+                            {activePortfolioModalItem.keyFeatures.map((feat, fIdx) => (
+                              <li key={fIdx} style={{ marginBottom: "6px" }}>{feat}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {activePortfolioModalItem.tech && activePortfolioModalItem.tech.length > 0 && (
+                        <div style={{ marginBottom: "20px" }}>
+                          <h6 style={{ fontWeight: 800, marginBottom: "10px", color: "var(--text)" }}>Technology Stack</h6>
+                          <div className="d-flex flex-wrap gap-2">
+                            {activePortfolioModalItem.tech.map((t, idx) => (
+                              <span
+                                key={idx}
+                                style={{
+                                  padding: "4px 12px",
+                                  borderRadius: "8px",
+                                  background: "rgba(223, 193, 93, 0.08)",
+                                  border: "1px solid rgba(223, 193, 93, 0.25)",
+                                  color: "var(--primary)",
+                                  fontSize: "0.8rem",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {(activePortfolioModalItem.screens || activePortfolioModalItem.gallery) && (
+                        <div style={{ marginBottom: "24px" }}>
+                          <div className="d-flex align-items-center justify-content-between mb-3">
+                            <h6 style={{ fontWeight: 800, margin: 0, color: "var(--text)" }}>
+                              Serial Application Workflow
+                            </h6>
+                            <span style={{ fontSize: "0.78rem", color: "var(--primary)", fontWeight: 700 }}>
+                              Click screen to switch preview
+                            </span>
+                          </div>
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(110px, 1fr))", gap: "10px" }}>
+                            {(activePortfolioModalItem.screens || activePortfolioModalItem.gallery).map((scr, sIdx) => {
+                              const src = typeof scr === "string" ? scr : scr.src;
+                              const title = typeof scr === "string" ? `Screen 0${sIdx + 1}` : scr.title;
+                              const step = typeof scr === "string" ? `0${sIdx + 1}` : scr.step;
+                              const tag = typeof scr === "string" ? "" : scr.tag;
+                              const isCurrent = activeModalSlideIndex === sIdx;
+
+                              return (
+                                <div
+                                  key={sIdx}
+                                  onClick={() => setActiveModalSlideIndex(sIdx)}
+                                  style={{
+                                    borderRadius: "12px",
+                                    overflow: "hidden",
+                                    border: isCurrent
+                                      ? "2px solid var(--primary, #dfc15d)"
+                                      : "1px solid var(--border)",
+                                    background: "#0c0b10",
+                                    cursor: "pointer",
+                                    position: "relative",
+                                    transition: "all 0.3s ease",
+                                    boxShadow: isCurrent ? "0 0 16px rgba(223, 193, 93, 0.35)" : "none",
+                                    transform: isCurrent ? "scale(1.02)" : "scale(1)",
+                                  }}
+                                >
+                                  <div style={{ height: "130px", overflow: "hidden" }}>
+                                    <img
+                                      src={src}
+                                      alt={title}
+                                      style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "cover",
+                                        objectPosition: "top center",
+                                        transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1)",
+                                      }}
+                                    />
+                                  </div>
+                                  <div style={{ padding: "6px 8px", background: "rgba(18, 17, 24, 0.95)" }}>
+                                    <div style={{ fontSize: "0.68rem", color: "var(--primary)", fontWeight: 800 }}>
+                                      {step} • {tag || "Step"}
+                                    </div>
+                                    <div style={{ fontSize: "0.74rem", fontWeight: 700, color: "var(--text)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                      {title}
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+
+                      {activePortfolioModalItem.result && (
+                        <div className="pf-result" style={{ marginTop: "16px" }}>
+                          <p><strong>Result:</strong> {activePortfolioModalItem.result}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
-                )}
-
-                {activePortfolioModalItem.result && (
-                  <div className="pf-result">
-                    <p><strong>Result:</strong> {activePortfolioModalItem.result}</p>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
           </div>
