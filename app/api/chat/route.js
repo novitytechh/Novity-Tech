@@ -17,12 +17,12 @@ const DEFAULT_KNOWLEDGE = [
   {
     title: "Leadership Team & Founder",
     content:
-      "Novity Tech is led by principal engineering leads: Ali Haider (Enterprise Architecture & Strategy Lead), Muhammad Hussain (Cloud DevOps & Backend Infrastructure Lead), Moiz Waseem (Product Delivery & Quality Assurance Lead), Arham Ali (AI & Machine Learning Systems Lead), and Muhammad Faseeh Altaf (Lead Frontend & Multi-Platform Applications Engineer). Clients work directly with founding architects and engineering leads on every engagement with zero middlemen.",
+      "Novity Tech is led by principal engineering leads: Ali Haider (Founder), Muhammad Hussain (Cloud DevOps & Backend Infrastructure Lead), Moiz Waseem (Product Delivery & Quality Assurance Lead), Arham Ali (AI & Machine Learning Systems Lead), and Muhammad Faseeh Altaf (Lead Frontend & Multi-Platform Applications Engineer). Clients work directly with founding architects and engineering leads on every engagement with zero middlemen.",
   },
   {
     title: "Contact Details & Office Hours",
     content:
-      "Reach Novity Tech directly:\n• Founder & CEO: Ali Haider\n• Phone / WhatsApp: +92 329 1013649 (Alt: +92 303 5696807)\n• Official Email: novitytechh@gmail.com\n• Website: https://novitytech.com\n• Headquarters: Gujranwala, Pakistan (collaborating globally)\n• Business Hours: Monday – Friday: 9:00 AM – 6:00 PM | Saturday: 10:00 AM – 2:00 PM (PKT).\n• Architectural discovery sessions can be scheduled directly on the website or via phone/email.",
+      "Reach Novity Tech directly:\n• Founder: Ali Haider\n• Phone / WhatsApp: +92 329 1013649 (Alt: +92 303 5696807)\n• Official Email: novitytechh@gmail.com\n• Website: https://novitytech.com\n• Headquarters: Gujranwala, Pakistan (collaborating globally)\n• Business Hours: Monday – Friday: 9:00 AM – 6:00 PM | Saturday: 10:00 AM – 2:00 PM (PKT).\n• Architectural discovery sessions can be scheduled directly on the website or via phone/email.",
   },
   {
     title: "Core Engineering Services",
@@ -85,7 +85,7 @@ function getFallbackAnswer(userText, knowledge) {
     q.includes("who is the head") ||
     q.includes("leadership")
   ) {
-    return "**Ali Haider** is the Founder & Chief Executive Officer (CEO) of Novity Tech.";
+    return "**Ali Haider** is the Founder of Novity Tech.";
   }
 
   // 2. Contact / Phone / Email / Location queries
@@ -155,7 +155,7 @@ export async function POST(req) {
       .map((k) => `### ${k.title}\n${k.content}`)
       .join("\n\n");
 
-    const systemPrompt = `You are the concise, intelligent AI Assistant for Novity Tech (novitytech.com), an elite engineering & custom AI agency led by Founder & CEO Ali Haider.
+    const systemPrompt = `You are the concise, intelligent AI Assistant for Novity Tech (novitytech.com), an elite engineering & custom AI agency led by Founder Ali Haider.
 
 STRICT RULE — BE HIGHLY CONCISE & DIRECT:
 - Answer ONLY what the user asks. Do NOT provide extra unsolicited information, lengthy preambles, marketing fluff, or long background stories.
@@ -163,7 +163,7 @@ STRICT RULE — BE HIGHLY CONCISE & DIRECT:
 - For coding / technical questions: Provide the clean code snippet directly with a 1-sentence explanation. No essays.
 - For non-web / general questions: Answer the question accurately and concisely. Do not inject sales pitches.
 - For Novity Tech questions:
-  • CEO / Founder: "Ali Haider is the Founder & CEO of Novity Tech."
+  • Founder: "Ali Haider is the Founder of Novity Tech."
   • Location: "Headquartered in Gujranwala, Pakistan, serving clients globally."
   • Contact: "Email: novitytechh@gmail.com | Phone: +92 329 1013649."
   • Services: Briefly state: Full-Stack Next.js, Custom AI Agents, Cloud & DevOps, 4–6 week MVP Launches, and UI/UX Design Systems.

@@ -105,7 +105,7 @@ const jsonLd = {
         "@type": "Person",
         "@id": "https://novitytech.com/#founder",
         name: "Ali Haider",
-        jobTitle: "Founder & Chief Executive Officer (CEO)",
+        jobTitle: "Founder",
         url: "https://novitytech.com/team",
       },
       address: {

@@ -48,7 +48,7 @@ const EMAIL_CARD_HTML = `
         Ali Haider
       </div>
       <div style="font-size: 13px; font-weight: 700; color: #dfc15d; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 2px;">
-        Founder & CEO
+        Founder
       </div>
       <div style="font-size: 11.5px; color: #b8b3a8; font-weight: 500; margin-bottom: 10px;">
         Digital Engineering & AI Agency

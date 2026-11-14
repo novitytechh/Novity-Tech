@@ -24,7 +24,7 @@ export default function EmailCardPage() {
   // Synchronized credentials
   const [cardData, setCardData] = useState({
     name: "Ali Haider",
-    role: "Founder & Chief Executive Officer (CEO)",
+    role: "Founder",
     company: "Novity Tech",
     subCompany: "Digital Engineering & AI Agency",
     email: "novitytechh@gmail.com",
