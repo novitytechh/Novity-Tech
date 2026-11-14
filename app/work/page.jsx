@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { PROJECTS_DATA } from "@/lib/projectsData";
 import ProjectImageSlideshow from "@/components/ui/ProjectImageSlideshow";
+import DualFrontBackMockup from "@/components/ui/DualFrontBackMockup";
 
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -114,7 +115,7 @@ export default function WorkPage() {
                     }}
                   >
                     <div className="row g-0 align-items-center">
-                      {/* LEFT SIDE: ONLY THE PICS (COMPACT SLEEK PHONE FRAME) */}
+                      {/* LEFT SIDE: ONLY THE PICS (FRONT/BACK DUAL OR PHONE FRAME) */}
                       <div
                         className="col-lg-4 col-md-5 col-12"
                         style={{
@@ -124,48 +125,60 @@ export default function WorkPage() {
                           alignItems: "center",
                           justifyContent: "center",
                           padding: "22px 16px",
+                          minHeight: "440px",
                         }}
                       >
-                        {/* Smartphone Device Frame */}
-                        <div
-                          style={{
-                            width: "100%",
-                            maxWidth: "215px",
-                            height: "440px",
-                            borderRadius: "26px",
-                            overflow: "hidden",
-                            border: "2px solid rgba(223, 193, 93, 0.45)",
-                            boxShadow: "0 16px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(223, 193, 93, 0.12)",
-                            position: "relative",
-                            background: "#050508",
-                          }}
-                        >
-                          {proj.screens && proj.screens.length > 0 ? (
-                            <ProjectImageSlideshow
-                              images={proj.screens}
-                              interval={2500}
-                              transitionDuration={1800}
-                              height="100%"
-                              showControls={true}
-                              showIndicators={true}
-                              pauseOnHover={true}
-                              objectFit="cover"
-                              objectPosition="top center"
-                            />
-                          ) : (
-                            <img
-                              src={proj.image || proj.img}
-                              alt={proj.title || proj.name}
-                              style={{
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "cover",
-                                objectPosition: "top center",
-                                transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1.8s ease",
-                              }}
-                            />
-                          )}
-                        </div>
+                        {proj.deviceType === "desktop-dual" ? (
+                          <DualFrontBackMockup
+                            frontSrc={proj.frontImage || proj.screens?.[0]?.src}
+                            backSrc={proj.backImage || proj.screens?.[1]?.src}
+                            frontTitle={proj.screens?.[0]?.title || "Storefront (Front)"}
+                            backTitle={proj.screens?.[1]?.title || "Product Detail (Back)"}
+                            interval={2500}
+                            transitionDuration={1800}
+                          />
+                        ) : (
+                          /* Smartphone Device Frame */
+                          <div
+                            style={{
+                              width: "100%",
+                              maxWidth: "215px",
+                              height: "440px",
+                              borderRadius: "26px",
+                              overflow: "hidden",
+                              border: "2px solid rgba(223, 193, 93, 0.45)",
+                              boxShadow: "0 16px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(223, 193, 93, 0.12)",
+                              position: "relative",
+                              background: "#050508",
+                            }}
+                          >
+                            {proj.screens && proj.screens.length > 0 ? (
+                              <ProjectImageSlideshow
+                                images={proj.screens}
+                                interval={2500}
+                                transitionDuration={1800}
+                                height="100%"
+                                showControls={true}
+                                showIndicators={true}
+                                pauseOnHover={true}
+                                objectFit="cover"
+                                objectPosition="top center"
+                              />
+                            ) : (
+                              <img
+                                src={proj.image || proj.img}
+                                alt={proj.title || proj.name}
+                                style={{
+                                  width: "100%",
+                                  height: "100%",
+                                  objectFit: "cover",
+                                  objectPosition: "top center",
+                                  transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1.8s ease",
+                                }}
+                              />
+                            )}
+                          </div>
+                        )}
                       </div>
 
                       {/* RIGHT SIDE: CONCISE, SLEEK & IMPRESSIVE DESCRIPTION */}
@@ -241,10 +254,16 @@ export default function WorkPage() {
                           </div>
                         )}
 
-                        {/* Compact 4-Step Serial Flow */}
+                        {/* Compact Serial Screen Flow */}
                         {proj.screens && proj.screens.length > 0 && (
                           <div style={{ marginBottom: "14px" }}>
-                            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "6px" }}>
+                            <div
+                              style={{
+                                display: "grid",
+                                gridTemplateColumns: `repeat(${Math.min(proj.screens.length, 4)}, 1fr)`,
+                                gap: "6px",
+                              }}
+                            >
                               {proj.screens.map((scr, sIdx) => (
                                 <div
                                   key={sIdx}

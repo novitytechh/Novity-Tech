@@ -7,6 +7,7 @@ import Link from "next/link";
 import { PROJECTS_DATA } from "@/lib/projectsData";
 import { TEAM_MEMBERS, COMPANY_DESCRIPTION } from "@/lib/teamData";
 import ProjectImageSlideshow from "@/components/ui/ProjectImageSlideshow";
+import DualFrontBackMockup from "@/components/ui/DualFrontBackMockup";
 
 export default function Home() {
   // Theme state
@@ -724,7 +725,8 @@ export default function Home() {
           </div>
           <div className="row g-4 justify-content-center" id="pfGrid">
             {filteredPortfolio.length > 0 ? (
-              filteredPortfolio.map((item) => (
+              <>
+                {filteredPortfolio.slice(0, 2).map((item) => (
                 <div key={item.id} className={`${item.colClass || "col-12"} pf-cat`} style={{ maxWidth: "1040px" }}>
                   {item.screens && item.screens.length > 0 ? (
                     <div
@@ -748,7 +750,7 @@ export default function Home() {
                       }}
                     >
                       <div className="row g-0 align-items-center">
-                        {/* LEFT SIDE: ONLY THE PICS (COMPACT SLEEK PHONE FRAME) */}
+                        {/* LEFT SIDE: ONLY THE PICS (FRONT/BACK DUAL OR PHONE FRAME) */}
                         <div
                           className="col-lg-4 col-md-5 col-12"
                           style={{
@@ -758,33 +760,45 @@ export default function Home() {
                             alignItems: "center",
                             justifyContent: "center",
                             padding: "22px 16px",
+                            minHeight: "440px",
                           }}
                         >
-                          <div
-                            style={{
-                              width: "100%",
-                              maxWidth: "215px",
-                              height: "440px",
-                              borderRadius: "26px",
-                              overflow: "hidden",
-                              border: "2px solid rgba(223, 193, 93, 0.45)",
-                              boxShadow: "0 16px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(223, 193, 93, 0.12)",
-                              position: "relative",
-                              background: "#050508",
-                            }}
-                          >
-                            <ProjectImageSlideshow
-                              images={item.screens}
+                          {item.deviceType === "desktop-dual" ? (
+                            <DualFrontBackMockup
+                              frontSrc={item.frontImage || item.screens?.[0]?.src}
+                              backSrc={item.backImage || item.screens?.[1]?.src}
+                              frontTitle={item.screens?.[0]?.title || "Storefront (Front)"}
+                              backTitle={item.screens?.[1]?.title || "Product Detail (Back)"}
                               interval={2500}
                               transitionDuration={1800}
-                              height="100%"
-                              showIndicators={true}
-                              showControls={true}
-                              pauseOnHover={true}
-                              objectFit="cover"
-                              objectPosition="top center"
                             />
-                          </div>
+                          ) : (
+                            <div
+                              style={{
+                                width: "100%",
+                                maxWidth: "215px",
+                                height: "440px",
+                                borderRadius: "26px",
+                                overflow: "hidden",
+                                border: "2px solid rgba(223, 193, 93, 0.45)",
+                                boxShadow: "0 16px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(223, 193, 93, 0.12)",
+                                position: "relative",
+                                background: "#050508",
+                              }}
+                            >
+                              <ProjectImageSlideshow
+                                images={item.screens}
+                                interval={2500}
+                                transitionDuration={1800}
+                                height="100%"
+                                showIndicators={true}
+                                showControls={true}
+                                pauseOnHover={true}
+                                objectFit="cover"
+                                objectPosition="top center"
+                              />
+                            </div>
+                          )}
                         </div>
 
                         {/* RIGHT SIDE: CONCISE, SLEEK & IMPRESSIVE DESCRIPTION */}
@@ -860,10 +874,16 @@ export default function Home() {
                             </div>
                           )}
 
-                          {/* Compact 4-Step Serial Flow */}
+                          {/* Compact Serial Screen Flow */}
                           {item.screens && (
                             <div style={{ marginBottom: "14px" }}>
-                              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "6px" }}>
+                              <div
+                                style={{
+                                  display: "grid",
+                                  gridTemplateColumns: `repeat(${Math.min(item.screens.length, 4)}, 1fr)`,
+                                  gap: "6px",
+                                }}
+                              >
                                 {item.screens.map((scr, sIdx) => (
                                   <div
                                     key={sIdx}
@@ -975,8 +995,31 @@ export default function Home() {
                     </div>
                   )}
                 </div>
-              ))
-            ) : (
+              ))}
+
+              {/* See More Projects Button pushing to /work page */}
+              <div className="col-12 text-center" style={{ marginTop: "28px" }}>
+                <Link
+                  href="/work"
+                  className="btn-p"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    padding: "13px 32px",
+                    fontSize: "0.95rem",
+                    fontWeight: 700,
+                    borderRadius: "12px",
+                    boxShadow: "0 10px 25px rgba(223, 193, 93, 0.22)",
+                    textDecoration: "none",
+                  }}
+                >
+                  <span>See More Projects</span>
+                  <i className="fas fa-arrow-right" style={{ fontSize: "0.85rem" }}></i>
+                </Link>
+              </div>
+            </>
+          ) : (
               <div className="col-12 text-center" style={{ padding: "60px 20px" }}>
                 <div
                   style={{
@@ -1989,44 +2032,55 @@ export default function Home() {
                 <div className="row g-4 align-items-stretch">
                   {/* LEFT SIDE: ONLY THE PICS */}
                   <div className="col-lg-5 col-12 d-flex flex-column align-items-center justify-content-center" style={{ background: "radial-gradient(circle at center, #15141d 0%, #0a090e 100%)", borderRadius: "20px", padding: "30px 16px", border: "1px solid var(--border)" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        maxWidth: "280px",
-                        height: "560px",
-                        borderRadius: "34px",
-                        overflow: "hidden",
-                        border: "2px solid rgba(223, 193, 93, 0.45)",
-                        boxShadow: "0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(223, 193, 93, 0.15)",
-                        position: "relative",
-                        background: "#050508",
-                      }}
-                    >
-                      {activePortfolioModalItem.screens && activePortfolioModalItem.screens.length > 0 ? (
-                        <ProjectImageSlideshow
-                          images={activePortfolioModalItem.screens}
-                          interval={2500}
-                          transitionDuration={1800}
-                          height="100%"
-                          showControls={true}
-                          showIndicators={true}
-                          pauseOnHover={true}
-                          activeSlideIndex={activeModalSlideIndex}
-                          onSlideChange={setActiveModalSlideIndex}
-                          objectFit="cover"
-                          objectPosition="top center"
-                        />
-                      ) : (
-                        (activePortfolioModalItem.img || activePortfolioModalItem.image) && (
-                          <img
-                            className="pf-mod-img"
-                            src={activePortfolioModalItem.img || activePortfolioModalItem.image}
-                            alt={activePortfolioModalItem.name || activePortfolioModalItem.title}
-                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    {activePortfolioModalItem.deviceType === "desktop-dual" ? (
+                      <DualFrontBackMockup
+                        frontSrc={activePortfolioModalItem.frontImage || activePortfolioModalItem.screens?.[0]?.src}
+                        backSrc={activePortfolioModalItem.backImage || activePortfolioModalItem.screens?.[1]?.src}
+                        frontTitle={activePortfolioModalItem.screens?.[0]?.title || "Storefront (Front)"}
+                        backTitle={activePortfolioModalItem.screens?.[1]?.title || "Product Detail (Back)"}
+                        interval={2500}
+                        transitionDuration={1800}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          width: "100%",
+                          maxWidth: "280px",
+                          height: "560px",
+                          borderRadius: "34px",
+                          overflow: "hidden",
+                          border: "2px solid rgba(223, 193, 93, 0.45)",
+                          boxShadow: "0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(223, 193, 93, 0.15)",
+                          position: "relative",
+                          background: "#050508",
+                        }}
+                      >
+                        {activePortfolioModalItem.screens && activePortfolioModalItem.screens.length > 0 ? (
+                          <ProjectImageSlideshow
+                            images={activePortfolioModalItem.screens}
+                            interval={2500}
+                            transitionDuration={1800}
+                            height="100%"
+                            showControls={true}
+                            showIndicators={true}
+                            pauseOnHover={true}
+                            activeSlideIndex={activeModalSlideIndex}
+                            onSlideChange={setActiveModalSlideIndex}
+                            objectFit="cover"
+                            objectPosition="top center"
                           />
-                        )
-                      )}
-                    </div>
+                        ) : (
+                          (activePortfolioModalItem.img || activePortfolioModalItem.image) && (
+                            <img
+                              className="pf-mod-img"
+                              src={activePortfolioModalItem.img || activePortfolioModalItem.image}
+                              alt={activePortfolioModalItem.name || activePortfolioModalItem.title}
+                              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                            />
+                          )
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   {/* RIGHT SIDE: THE DESCRIPTION */}
