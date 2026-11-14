@@ -1158,26 +1158,6 @@ export default function Home() {
                       pointerEvents: "none",
                     }}
                   />
-                  <span
-                    style={{
-                      position: "absolute",
-                      top: "12px",
-                      right: "12px",
-                      fontSize: "0.7rem",
-                      fontWeight: 800,
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                      padding: "4px 10px",
-                      borderRadius: "100px",
-                      background: "rgba(11, 10, 14, 0.85)",
-                      backdropFilter: "blur(8px)",
-                      color: member.isChief ? "var(--primary)" : "#ffffff",
-                      border: "1px solid rgba(223, 193, 93, 0.45)",
-                      boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
-                    }}
-                  >
-                    {member.badge}
-                  </span>
                 </div>
 
                 {/* Body */}
@@ -1196,22 +1176,24 @@ export default function Home() {
                         fontSize: "1.08rem",
                         fontWeight: 800,
                         color: "var(--text)",
-                        marginBottom: "4px",
+                        marginBottom: member.role ? "4px" : "12px",
                       }}
                     >
                       {member.name}
                     </h4>
-                    <div
-                      style={{
-                        fontSize: "0.8rem",
-                        fontWeight: 700,
-                        color: "var(--primary)",
-                        marginBottom: "10px",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {member.role}
-                    </div>
+                    {member.role ? (
+                      <div
+                        style={{
+                          fontSize: "0.8rem",
+                          fontWeight: 700,
+                          color: "var(--primary)",
+                          marginBottom: "10px",
+                          lineHeight: 1.4,
+                        }}
+                      >
+                        {member.role}
+                      </div>
+                    ) : null}
                   </div>
 
                   <div
@@ -2239,7 +2221,7 @@ export default function Home() {
           <div className="modal-dialog modal-dialog-centered" onClick={(e) => e.stopPropagation()}>
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">{activeTeamMember.badge} Profile</h5>
+                <h5 className="modal-title">{activeTeamMember.name} Profile</h5>
                 <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
               </div>
               <div className="modal-body">
@@ -2279,10 +2261,12 @@ export default function Home() {
                     </div>
                   )}
                   <div>
-                    <h4 style={{ fontWeight: 800, marginBottom: "4px" }}>{activeTeamMember.name}</h4>
-                    <div className="tm-mod-role" style={{ color: "var(--primary)", fontSize: "0.85rem", fontWeight: 700 }}>
-                      {activeTeamMember.role}
-                    </div>
+                    <h4 style={{ fontWeight: 800, marginBottom: activeTeamMember.role ? "4px" : "0" }}>{activeTeamMember.name}</h4>
+                    {activeTeamMember.role ? (
+                      <div className="tm-mod-role" style={{ color: "var(--primary)", fontSize: "0.85rem", fontWeight: 700 }}>
+                        {activeTeamMember.role}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
                 <p className="tm-mod-bio" style={{ color: "var(--text2)", lineHeight: "1.8", marginBottom: "20px" }}>

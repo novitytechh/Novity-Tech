@@ -211,28 +211,6 @@ export default function TeamPage() {
                       </>
                     )}
 
-                    {/* Category / Chief Pill Badge */}
-                    <span
-                      style={{
-                        position: "absolute",
-                        top: "14px",
-                        right: "14px",
-                        fontSize: "0.72rem",
-                        fontWeight: 800,
-                        letterSpacing: "0.06em",
-                        textTransform: "uppercase",
-                        padding: "4px 12px",
-                        borderRadius: "100px",
-                        background: "rgba(11, 10, 14, 0.82)",
-                        backdropFilter: "blur(8px)",
-                        color: member.isChief ? "var(--primary)" : "#ffffff",
-                        border: "1px solid rgba(223, 193, 93, 0.45)",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
-                        zIndex: 2,
-                      }}
-                    >
-                      {member.badge}
-                    </span>
                   </div>
 
                   {/* Card Info Body */}
@@ -251,24 +229,26 @@ export default function TeamPage() {
                           fontSize: "1.15rem",
                           fontWeight: 800,
                           color: "var(--text)",
-                          marginBottom: "4px",
+                          marginBottom: member.role ? "4px" : "12px",
                           lineHeight: "1.3",
                         }}
                       >
                         {member.name}
                       </h3>
 
-                      <div
-                        style={{
-                          fontSize: "0.82rem",
-                          fontWeight: 700,
-                          color: "var(--primary)",
-                          marginBottom: "12px",
-                          lineHeight: "1.4",
-                        }}
-                      >
-                        {member.role}
-                      </div>
+                      {member.role ? (
+                        <div
+                          style={{
+                            fontSize: "0.82rem",
+                            fontWeight: 700,
+                            color: "var(--primary)",
+                            marginBottom: "12px",
+                            lineHeight: "1.4",
+                          }}
+                        >
+                          {member.role}
+                        </div>
+                      ) : null}
 
                       <p
                         style={{
@@ -558,21 +538,23 @@ export default function TeamPage() {
             <div className="modal-content" style={{ padding: "10px" }}>
               <div className="modal-header" style={{ borderBottom: "1px solid var(--border)", paddingBottom: "16px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <span
-                    style={{
-                      fontSize: "0.75rem",
-                      fontWeight: 800,
-                      color: "var(--primary)",
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      padding: "4px 12px",
-                      borderRadius: "100px",
-                      background: "rgba(223, 193, 93, 0.12)",
-                      border: "1px solid rgba(223, 193, 93, 0.3)",
-                    }}
-                  >
-                    {selectedMember.badge}
-                  </span>
+                  {selectedMember.badge ? (
+                    <span
+                      style={{
+                        fontSize: "0.75rem",
+                        fontWeight: 800,
+                        color: "var(--primary)",
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                        padding: "4px 12px",
+                        borderRadius: "100px",
+                        background: "rgba(223, 193, 93, 0.12)",
+                        border: "1px solid rgba(223, 193, 93, 0.3)",
+                      }}
+                    >
+                      {selectedMember.badge}
+                    </span>
+                  ) : null}
                 </div>
                 <button
                   type="button"
@@ -622,12 +604,14 @@ export default function TeamPage() {
                     </div>
                   )}
                   <div>
-                    <h3 style={{ fontWeight: 800, fontSize: "1.45rem", color: "var(--text)", marginBottom: "4px" }}>
+                    <h3 style={{ fontWeight: 800, fontSize: "1.45rem", color: "var(--text)", marginBottom: selectedMember.role ? "4px" : "0" }}>
                       {selectedMember.name}
                     </h3>
-                    <div style={{ color: "var(--primary)", fontSize: "0.92rem", fontWeight: 700 }}>
-                      {selectedMember.role}
-                    </div>
+                    {selectedMember.role ? (
+                      <div style={{ color: "var(--primary)", fontSize: "0.92rem", fontWeight: 700 }}>
+                        {selectedMember.role}
+                      </div>
+                    ) : null}
                     <a
                       href="https://maps.google.com/?q=Gujranwala,+Pakistan"
                       target="_blank"

@@ -140,62 +140,6 @@ export default function DualFrontBackMockup({
           }}
         />
       </div>
-
-      {/* Subtle Bottom Pagination Dots */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "8px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 4,
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          background: "rgba(10, 9, 14, 0.75)",
-          backdropFilter: "blur(6px)",
-          padding: "4px 10px",
-          borderRadius: "16px",
-          border: "1px solid rgba(223, 193, 93, 0.2)",
-        }}
-      >
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setActiveSide("front");
-          }}
-          aria-label="Front View"
-          style={{
-            width: isFrontForeground ? "20px" : "7px",
-            height: "7px",
-            borderRadius: "4px",
-            background: isFrontForeground ? "var(--primary, #dfc15d)" : "rgba(255, 255, 255, 0.3)",
-            border: "none",
-            padding: 0,
-            cursor: "pointer",
-            transition: "all 0.3s ease",
-          }}
-        />
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setActiveSide("back");
-          }}
-          aria-label="Back View"
-          style={{
-            width: !isFrontForeground ? "20px" : "7px",
-            height: "7px",
-            borderRadius: "4px",
-            background: !isFrontForeground ? "var(--primary, #dfc15d)" : "rgba(255, 255, 255, 0.3)",
-            border: "none",
-            padding: 0,
-            cursor: "pointer",
-            transition: "all 0.3s ease",
-          }}
-        />
-      </div>
     </div>
   );
 }
