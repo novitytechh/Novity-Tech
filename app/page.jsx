@@ -722,54 +722,53 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="row g-4" id="pfGrid">
+          <div className="row g-4 justify-content-center" id="pfGrid">
             {filteredPortfolio.length > 0 ? (
               filteredPortfolio.map((item) => (
-                <div key={item.id} className={`${item.colClass || "col-12"} pf-cat`}>
+                <div key={item.id} className={`${item.colClass || "col-12"} pf-cat`} style={{ maxWidth: "1040px" }}>
                   {item.screens && item.screens.length > 0 ? (
                     <div
                       style={{
-                        background: "var(--card)",
-                        border: "1px solid var(--border)",
-                        borderRadius: "28px",
+                        background: "linear-gradient(165deg, #13121b 0%, #0c0b10 100%)",
+                        border: "1px solid rgba(223, 193, 93, 0.35)",
+                        borderRadius: "22px",
                         overflow: "hidden",
-                        boxShadow: "0 20px 50px rgba(0,0,0,0.45)",
+                        boxShadow: "0 18px 45px rgba(0,0,0,0.5)",
                         transition: "transform 0.3s ease, border-color 0.3s ease",
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translateY(-4px)";
-                        e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.45)";
+                        e.currentTarget.style.transform = "translateY(-3px)";
+                        e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.55)";
                         setIsHovered(true);
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.transform = "translateY(0)";
-                        e.currentTarget.style.borderColor = "var(--border)";
+                        e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.35)";
                         setIsHovered(false);
                       }}
                     >
-                      <div className="row g-0 align-items-stretch">
-                        {/* LEFT SIDE: ONLY THE PICS (PORTRAIT SMARTPHONE SLIDESHOW) */}
+                      <div className="row g-0 align-items-center">
+                        {/* LEFT SIDE: ONLY THE PICS (COMPACT SLEEK PHONE FRAME) */}
                         <div
-                          className="col-lg-5 col-md-5 col-12"
+                          className="col-lg-4 col-md-5 col-12"
                           style={{
-                            background: "radial-gradient(circle at center, #15141d 0%, #0a090e 100%)",
-                            borderRight: "1px solid var(--border)",
+                            background: "radial-gradient(circle at center, #181722 0%, #09080d 100%)",
+                            borderRight: "1px solid rgba(223, 193, 93, 0.15)",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            padding: "40px 24px",
-                            position: "relative",
+                            padding: "22px 16px",
                           }}
                         >
                           <div
                             style={{
                               width: "100%",
-                              maxWidth: "290px",
-                              height: "580px",
-                              borderRadius: "36px",
+                              maxWidth: "215px",
+                              height: "440px",
+                              borderRadius: "26px",
                               overflow: "hidden",
                               border: "2px solid rgba(223, 193, 93, 0.45)",
-                              boxShadow: "0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(223, 193, 93, 0.15)",
+                              boxShadow: "0 16px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(223, 193, 93, 0.12)",
                               position: "relative",
                               background: "#050508",
                             }}
@@ -790,177 +789,144 @@ export default function Home() {
                           </div>
                         </div>
 
-                        {/* RIGHT SIDE: THE DESCRIPTION */}
+                        {/* RIGHT SIDE: CONCISE, SLEEK & IMPRESSIVE DESCRIPTION */}
                         <div
-                          className="col-lg-7 col-md-7 col-12"
+                          className="col-lg-8 col-md-7 col-12"
                           style={{
-                            padding: "44px 38px",
+                            padding: "26px 32px",
                             display: "flex",
                             flexDirection: "column",
-                            justifyContent: "space-between",
-                            background: "var(--card)",
+                            justifyContent: "center",
                           }}
                         >
-                          <div>
-                            {/* Badges */}
-                            <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-                              <div
-                                style={{
-                                  color: "var(--primary)",
-                                  fontSize: "0.82rem",
-                                  fontWeight: 800,
-                                  textTransform: "uppercase",
-                                  letterSpacing: "0.08em",
-                                }}
-                              >
-                                {item.catLabel || item.categoryLabel} {item.client ? `• ${item.client}` : ""}
-                              </div>
-                              {item.metric && (
-                                <div
-                                  style={{
-                                    background: "rgba(223, 193, 93, 0.12)",
-                                    border: "1px solid rgba(223, 193, 93, 0.4)",
-                                    color: "var(--primary)",
-                                    padding: "4px 14px",
-                                    borderRadius: "20px",
-                                    fontSize: "0.78rem",
-                                    fontWeight: 800,
-                                  }}
-                                >
-                                  {item.metric}
-                                </div>
-                              )}
-                            </div>
-
-                            {/* Title */}
-                            <h3
+                          {/* Badges */}
+                          <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                            <span
                               style={{
-                                fontSize: "clamp(1.45rem, 2.4vw, 2rem)",
-                                fontWeight: 900,
-                                color: "var(--text)",
-                                lineHeight: 1.25,
-                                marginBottom: "16px",
+                                color: "var(--primary)",
+                                fontSize: "0.74rem",
+                                fontWeight: 800,
+                                textTransform: "uppercase",
+                                letterSpacing: "0.08em",
                               }}
                             >
-                              {item.name || item.title}
-                            </h3>
-
-                            {/* Description */}
-                            <p style={{ color: "var(--text2)", fontSize: "0.96rem", lineHeight: "1.75", marginBottom: "22px" }}>
-                              {item.desc || item.overview}
-                            </p>
-
-                            {/* Capabilities */}
-                            {item.keyFeatures && item.keyFeatures.length > 0 && (
-                              <div style={{ marginBottom: "20px" }}>
-                                <div
-                                  style={{
-                                    fontSize: "0.78rem",
-                                    fontWeight: 800,
-                                    color: "var(--text)",
-                                    textTransform: "uppercase",
-                                    letterSpacing: "0.08em",
-                                    marginBottom: "10px",
-                                  }}
-                                >
-                                  Core Highlights &amp; Capabilities:
-                                </div>
-                                <ul style={{ paddingLeft: "0", listStyle: "none", margin: 0 }}>
-                                  {item.keyFeatures.slice(0, 4).map((feat, fIdx) => (
-                                    <li
-                                      key={fIdx}
-                                      style={{
-                                        marginBottom: "6px",
-                                        color: "var(--text2)",
-                                        fontSize: "0.88rem",
-                                        display: "flex",
-                                        alignItems: "flex-start",
-                                        gap: "8px",
-                                      }}
-                                    >
-                                      <i className="fas fa-check-circle" style={{ color: "var(--primary)", marginTop: "4px", fontSize: "0.82rem" }}></i>
-                                      <span>{feat}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-
-                            {/* Workflow */}
-                            {item.screens && (
-                              <div style={{ marginBottom: "24px" }}>
-                                <div
-                                  style={{
-                                    fontSize: "0.78rem",
-                                    fontWeight: 800,
-                                    color: "var(--text)",
-                                    textTransform: "uppercase",
-                                    letterSpacing: "0.08em",
-                                    marginBottom: "10px",
-                                  }}
-                                >
-                                  Application Workflow (Serial Order):
-                                </div>
-                                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "10px" }}>
-                                  {item.screens.map((scr, sIdx) => (
-                                    <div
-                                      key={sIdx}
-                                      style={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        gap: "10px",
-                                        padding: "8px 12px",
-                                        background: "rgba(255, 255, 255, 0.03)",
-                                        border: "1px solid rgba(223, 193, 93, 0.22)",
-                                        borderRadius: "12px",
-                                      }}
-                                    >
-                                      <span
-                                        style={{
-                                          width: "26px",
-                                          height: "26px",
-                                          borderRadius: "50%",
-                                          background: "rgba(223, 193, 93, 0.15)",
-                                          color: "var(--primary)",
-                                          display: "inline-flex",
-                                          alignItems: "center",
-                                          justifyContent: "center",
-                                          fontSize: "0.74rem",
-                                          fontWeight: 800,
-                                          flexShrink: 0,
-                                        }}
-                                      >
-                                        {scr.step}
-                                      </span>
-                                      <div style={{ overflow: "hidden" }}>
-                                        <div style={{ color: "var(--text)", fontSize: "0.8rem", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                                          {scr.title}
-                                        </div>
-                                        <div style={{ color: "var(--text3)", fontSize: "0.7rem" }}>
-                                          {scr.tag || "Serial Screen"}
-                                        </div>
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
+                              {item.catLabel || item.categoryLabel} • {item.client || "EdTech"}
+                            </span>
+                            {item.metric && (
+                              <span
+                                style={{
+                                  background: "rgba(223, 193, 93, 0.12)",
+                                  border: "1px solid rgba(223, 193, 93, 0.35)",
+                                  color: "var(--primary)",
+                                  padding: "2px 10px",
+                                  borderRadius: "14px",
+                                  fontSize: "0.72rem",
+                                  fontWeight: 800,
+                                }}
+                              >
+                                <i className="fas fa-sparkles me-1"></i> {item.metric}
+                              </span>
                             )}
                           </div>
 
-                          {/* Tech & Buttons */}
-                          <div>
+                          {/* Title */}
+                          <h3
+                            style={{
+                              fontSize: "1.38rem",
+                              fontWeight: 800,
+                              color: "var(--text)",
+                              lineHeight: 1.25,
+                              marginBottom: "8px",
+                            }}
+                          >
+                            {item.name || item.title}
+                          </h3>
+
+                          {/* Concise Description */}
+                          <p
+                            style={{
+                              color: "var(--text2)",
+                              fontSize: "0.88rem",
+                              lineHeight: "1.6",
+                              marginBottom: "12px",
+                            }}
+                          >
+                            {item.desc || item.overview}
+                          </p>
+
+                          {/* 3 Crisp Capabilities */}
+                          {item.keyFeatures && (
+                            <div style={{ marginBottom: "12px" }}>
+                              <ul style={{ paddingLeft: "0", listStyle: "none", margin: 0, display: "grid", gap: "5px" }}>
+                                {item.keyFeatures.slice(0, 3).map((feat, fIdx) => (
+                                  <li
+                                    key={fIdx}
+                                    style={{
+                                      color: "var(--text2)",
+                                      fontSize: "0.82rem",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: "7px",
+                                    }}
+                                  >
+                                    <i className="fas fa-check-circle" style={{ color: "var(--primary)", fontSize: "0.78rem", flexShrink: 0 }}></i>
+                                    <span>{feat}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {/* Compact 4-Step Serial Flow */}
+                          {item.screens && (
+                            <div style={{ marginBottom: "14px" }}>
+                              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "6px" }}>
+                                {item.screens.map((scr, sIdx) => (
+                                  <div
+                                    key={sIdx}
+                                    style={{
+                                      padding: "5px 6px",
+                                      background: "rgba(255, 255, 255, 0.03)",
+                                      border: "1px solid rgba(223, 193, 93, 0.2)",
+                                      borderRadius: "8px",
+                                      textAlign: "center",
+                                    }}
+                                  >
+                                    <div style={{ color: "var(--primary)", fontSize: "0.68rem", fontWeight: 800 }}>
+                                      {scr.step}
+                                    </div>
+                                    <div
+                                      style={{
+                                        color: "var(--text)",
+                                        fontSize: "0.72rem",
+                                        fontWeight: 600,
+                                        whiteSpace: "nowrap",
+                                        overflow: "hidden",
+                                        textOverflow: "ellipsis",
+                                      }}
+                                    >
+                                      {scr.title}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Tech Chips + Buttons */}
+                          <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 pt-1">
                             {item.tech && item.tech.length > 0 && (
-                              <div className="d-flex flex-wrap gap-2 mb-4">
-                                {item.tech.map((t, idx) => (
+                              <div className="d-flex flex-wrap gap-1">
+                                {item.tech.slice(0, 5).map((t, idx) => (
                                   <span
                                     key={idx}
                                     style={{
-                                      padding: "5px 12px",
-                                      borderRadius: "8px",
-                                      background: "rgba(255, 255, 255, 0.05)",
+                                      padding: "3px 8px",
+                                      borderRadius: "6px",
+                                      background: "rgba(255, 255, 255, 0.04)",
                                       border: "1px solid var(--border)",
                                       color: "var(--text3)",
-                                      fontSize: "0.78rem",
+                                      fontSize: "0.72rem",
                                       fontWeight: 600,
                                     }}
                                   >
@@ -970,20 +936,34 @@ export default function Home() {
                               </div>
                             )}
 
-                            <div className="d-flex flex-wrap gap-3">
+                            <div className="d-flex gap-2">
                               <button
                                 type="button"
                                 className="btn-p"
-                                style={{ flex: 1, textAlign: "center" }}
+                                style={{
+                                  fontSize: "0.8rem",
+                                  padding: "7px 16px",
+                                  display: "inline-flex",
+                                  alignItems: "center",
+                                  gap: "6px",
+                                }}
                                 onClick={() => {
                                   setActiveModal(item.id);
                                   setActiveModalSlideIndex(0);
                                 }}
                               >
-                                View Interactive Demo <i className="fas fa-expand-alt ms-1"></i>
+                                Interactive Demo <i className="fas fa-expand-alt" style={{ fontSize: "0.72rem" }}></i>
                               </button>
-                              <Link href="/contact" className="btn-s" style={{ textDecoration: "none", padding: "12px 24px" }}>
-                                Contact Us
+                              <Link
+                                href="/contact"
+                                className="btn-s"
+                                style={{
+                                  textDecoration: "none",
+                                  padding: "7px 14px",
+                                  fontSize: "0.8rem",
+                                }}
+                              >
+                                Inquire
                               </Link>
                             </div>
                           </div>

@@ -90,53 +90,52 @@ export default function WorkPage() {
         </div>
 
         {/* Projects Grid */}
-        <div className="container" style={{ marginBottom: "90px" }}>
-          <div className="row g-4">
+        <div className="container" style={{ marginBottom: "80px", maxWidth: "1040px" }}>
+          <div className="row g-4 justify-content-center">
             {filtered.length > 0 ? (
               filtered.map((proj) => (
                 <div key={proj.id} className="col-12">
                   <div
                     style={{
-                      background: "var(--card)",
-                      border: "1px solid var(--border)",
-                      borderRadius: "28px",
+                      background: "linear-gradient(165deg, #13121b 0%, #0c0b10 100%)",
+                      border: "1px solid rgba(223, 193, 93, 0.35)",
+                      borderRadius: "22px",
                       overflow: "hidden",
-                      boxShadow: "0 20px 50px rgba(0,0,0,0.45)",
+                      boxShadow: "0 18px 45px rgba(0,0,0,0.5)",
                       transition: "transform 0.3s ease, border-color 0.3s ease",
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "translateY(-4px)";
-                      e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.45)";
+                      e.currentTarget.style.transform = "translateY(-3px)";
+                      e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.55)";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = "translateY(0)";
-                      e.currentTarget.style.borderColor = "var(--border)";
+                      e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.35)";
                     }}
                   >
-                    <div className="row g-0 align-items-stretch">
-                      {/* LEFT SIDE: ONLY THE PICS (PORTRAIT SMARTPHONE SLIDESHOW) */}
+                    <div className="row g-0 align-items-center">
+                      {/* LEFT SIDE: ONLY THE PICS (COMPACT SLEEK PHONE FRAME) */}
                       <div
-                        className="col-lg-5 col-md-5 col-12"
+                        className="col-lg-4 col-md-5 col-12"
                         style={{
-                          background: "radial-gradient(circle at center, #15141d 0%, #0a090e 100%)",
-                          borderRight: "1px solid var(--border)",
+                          background: "radial-gradient(circle at center, #181722 0%, #09080d 100%)",
+                          borderRight: "1px solid rgba(223, 193, 93, 0.15)",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          padding: "40px 24px",
-                          position: "relative",
+                          padding: "22px 16px",
                         }}
                       >
                         {/* Smartphone Device Frame */}
                         <div
                           style={{
                             width: "100%",
-                            maxWidth: "290px",
-                            height: "590px",
-                            borderRadius: "36px",
+                            maxWidth: "215px",
+                            height: "440px",
+                            borderRadius: "26px",
                             overflow: "hidden",
                             border: "2px solid rgba(223, 193, 93, 0.45)",
-                            boxShadow: "0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(223, 193, 93, 0.15)",
+                            boxShadow: "0 16px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(223, 193, 93, 0.12)",
                             position: "relative",
                             background: "#050508",
                           }}
@@ -171,178 +170,144 @@ export default function WorkPage() {
                         </div>
                       </div>
 
-                      {/* RIGHT SIDE: THE DESCRIPTION & DETAILS */}
+                      {/* RIGHT SIDE: CONCISE, SLEEK & IMPRESSIVE DESCRIPTION */}
                       <div
-                        className="col-lg-7 col-md-7 col-12"
+                        className="col-lg-8 col-md-7 col-12"
                         style={{
-                          padding: "44px 38px",
+                          padding: "26px 32px",
                           display: "flex",
                           flexDirection: "column",
-                          justifyContent: "space-between",
-                          background: "var(--card)",
+                          justifyContent: "center",
                         }}
                       >
-                        <div>
-                          {/* Top Badges */}
-                          <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-                            <div
-                              style={{
-                                color: "var(--primary)",
-                                fontSize: "0.82rem",
-                                fontWeight: 800,
-                                textTransform: "uppercase",
-                                letterSpacing: "0.08em",
-                              }}
-                            >
-                              {proj.categoryLabel || proj.catLabel || proj.category} {proj.client ? `• ${proj.client}` : ""}
-                            </div>
-                            {proj.metric && (
-                              <div
-                                style={{
-                                  background: "rgba(223, 193, 93, 0.12)",
-                                  border: "1px solid rgba(223, 193, 93, 0.4)",
-                                  color: "var(--primary)",
-                                  padding: "4px 14px",
-                                  borderRadius: "20px",
-                                  fontSize: "0.78rem",
-                                  fontWeight: 800,
-                                  letterSpacing: "0.04em",
-                                }}
-                              >
-                                <i className="fas fa-sparkles me-1"></i> {proj.metric}
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Title */}
-                          <h2
+                        {/* Top Badges */}
+                        <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                          <span
                             style={{
-                              fontSize: "clamp(1.5rem, 2.5vw, 2.1rem)",
-                              fontWeight: 900,
-                              color: "var(--text)",
-                              lineHeight: 1.25,
-                              marginBottom: "16px",
+                              color: "var(--primary)",
+                              fontSize: "0.74rem",
+                              fontWeight: 800,
+                              textTransform: "uppercase",
+                              letterSpacing: "0.08em",
                             }}
                           >
-                            {proj.title || proj.name}
-                          </h2>
-
-                          {/* Description */}
-                          <p style={{ color: "var(--text2)", fontSize: "0.96rem", lineHeight: "1.75", marginBottom: "22px" }}>
-                            {proj.desc || proj.overview}
-                          </p>
-
-                          {/* Core Highlights */}
-                          {proj.keyFeatures && proj.keyFeatures.length > 0 && (
-                            <div style={{ marginBottom: "22px" }}>
-                              <div
-                                style={{
-                                  fontSize: "0.78rem",
-                                  fontWeight: 800,
-                                  color: "var(--text)",
-                                  textTransform: "uppercase",
-                                  letterSpacing: "0.08em",
-                                  marginBottom: "10px",
-                                }}
-                              >
-                                Core Highlights &amp; Capabilities:
-                              </div>
-                              <ul style={{ paddingLeft: "0", listStyle: "none", margin: 0 }}>
-                                {proj.keyFeatures.slice(0, 4).map((feat, fIdx) => (
-                                  <li
-                                    key={fIdx}
-                                    style={{
-                                      marginBottom: "6px",
-                                      color: "var(--text2)",
-                                      fontSize: "0.88rem",
-                                      display: "flex",
-                                      alignItems: "flex-start",
-                                      gap: "8px",
-                                    }}
-                                  >
-                                    <i className="fas fa-check-circle" style={{ color: "var(--primary)", marginTop: "4px", fontSize: "0.82rem" }}></i>
-                                    <span>{feat}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-
-                          {/* Serial Workflow Highlights */}
-                          {proj.screens && proj.screens.length > 0 && (
-                            <div style={{ marginBottom: "24px" }}>
-                              <div
-                                style={{
-                                  fontSize: "0.78rem",
-                                  fontWeight: 800,
-                                  color: "var(--text)",
-                                  textTransform: "uppercase",
-                                  letterSpacing: "0.08em",
-                                  marginBottom: "10px",
-                                }}
-                              >
-                                Application Workflow (Serial Screen Order):
-                              </div>
-                              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "10px" }}>
-                                {proj.screens.map((scr, sIdx) => (
-                                  <div
-                                    key={sIdx}
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                      gap: "10px",
-                                      padding: "8px 12px",
-                                      background: "rgba(255, 255, 255, 0.03)",
-                                      border: "1px solid rgba(223, 193, 93, 0.22)",
-                                      borderRadius: "12px",
-                                    }}
-                                  >
-                                    <span
-                                      style={{
-                                        width: "28px",
-                                        height: "28px",
-                                        borderRadius: "50%",
-                                        background: "rgba(223, 193, 93, 0.15)",
-                                        color: "var(--primary)",
-                                        display: "inline-flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        fontSize: "0.76rem",
-                                        fontWeight: 800,
-                                        flexShrink: 0,
-                                      }}
-                                    >
-                                      {scr.step}
-                                    </span>
-                                    <div style={{ overflow: "hidden" }}>
-                                      <div style={{ color: "var(--text)", fontSize: "0.82rem", fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                                        {scr.title}
-                                      </div>
-                                      <div style={{ color: "var(--text3)", fontSize: "0.72rem" }}>
-                                        {scr.tag || "Serial Flow"}
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
+                            {proj.categoryLabel || proj.catLabel || proj.category} • {proj.client || "EdTech"}
+                          </span>
+                          {proj.metric && (
+                            <span
+                              style={{
+                                background: "rgba(223, 193, 93, 0.12)",
+                                border: "1px solid rgba(223, 193, 93, 0.35)",
+                                color: "var(--primary)",
+                                padding: "2px 10px",
+                                borderRadius: "14px",
+                                fontSize: "0.72rem",
+                                fontWeight: 800,
+                              }}
+                            >
+                              <i className="fas fa-sparkles me-1"></i> {proj.metric}
+                            </span>
                           )}
                         </div>
 
-                        {/* Bottom Tech & CTA */}
-                        <div>
+                        {/* Title */}
+                        <h3
+                          style={{
+                            fontSize: "1.38rem",
+                            fontWeight: 800,
+                            color: "var(--text)",
+                            lineHeight: 1.25,
+                            marginBottom: "8px",
+                          }}
+                        >
+                          {proj.title || proj.name}
+                        </h3>
+
+                        {/* Concise Description */}
+                        <p
+                          style={{
+                            color: "var(--text2)",
+                            fontSize: "0.88rem",
+                            lineHeight: "1.6",
+                            marginBottom: "12px",
+                          }}
+                        >
+                          {proj.desc || proj.overview}
+                        </p>
+
+                        {/* 3 Crisp Capabilities */}
+                        {proj.keyFeatures && (
+                          <div style={{ marginBottom: "12px" }}>
+                            <ul style={{ paddingLeft: "0", listStyle: "none", margin: 0, display: "grid", gap: "5px" }}>
+                              {proj.keyFeatures.slice(0, 3).map((feat, fIdx) => (
+                                <li
+                                  key={fIdx}
+                                  style={{
+                                    color: "var(--text2)",
+                                    fontSize: "0.82rem",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "7px",
+                                  }}
+                                >
+                                  <i className="fas fa-check-circle" style={{ color: "var(--primary)", fontSize: "0.78rem", flexShrink: 0 }}></i>
+                                  <span>{feat}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        {/* Compact 4-Step Serial Flow */}
+                        {proj.screens && proj.screens.length > 0 && (
+                          <div style={{ marginBottom: "14px" }}>
+                            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "6px" }}>
+                              {proj.screens.map((scr, sIdx) => (
+                                <div
+                                  key={sIdx}
+                                  style={{
+                                    padding: "5px 6px",
+                                    background: "rgba(255, 255, 255, 0.03)",
+                                    border: "1px solid rgba(223, 193, 93, 0.2)",
+                                    borderRadius: "8px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  <div style={{ color: "var(--primary)", fontSize: "0.68rem", fontWeight: 800 }}>
+                                    {scr.step}
+                                  </div>
+                                  <div
+                                    style={{
+                                      color: "var(--text)",
+                                      fontSize: "0.72rem",
+                                      fontWeight: 600,
+                                      whiteSpace: "nowrap",
+                                      overflow: "hidden",
+                                      textOverflow: "ellipsis",
+                                    }}
+                                  >
+                                    {scr.title}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Tech Chips + CTA Button */}
+                        <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 pt-1">
                           {proj.tech && proj.tech.length > 0 && (
-                            <div className="d-flex flex-wrap gap-2 mb-4">
-                              {proj.tech.map((t, idx) => (
+                            <div className="d-flex flex-wrap gap-1">
+                              {proj.tech.slice(0, 5).map((t, idx) => (
                                 <span
                                   key={idx}
                                   style={{
-                                    padding: "5px 12px",
-                                    borderRadius: "8px",
-                                    background: "rgba(255, 255, 255, 0.05)",
+                                    padding: "3px 8px",
+                                    borderRadius: "6px",
+                                    background: "rgba(255, 255, 255, 0.04)",
                                     border: "1px solid var(--border)",
                                     color: "var(--text3)",
-                                    fontSize: "0.78rem",
+                                    fontSize: "0.72rem",
                                     fontWeight: 600,
                                   }}
                                 >
@@ -352,8 +317,20 @@ export default function WorkPage() {
                             </div>
                           )}
 
-                          <Link href="/contact" className="btn-p" style={{ width: "100%", textAlign: "center", display: "block", textDecoration: "none" }}>
-                            Inquire About Similar Project <i className="fas fa-arrow-right"></i>
+                          <Link
+                            href="/contact"
+                            className="btn-p"
+                            style={{
+                              fontSize: "0.8rem",
+                              padding: "7px 18px",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "6px",
+                              textDecoration: "none",
+                              whiteSpace: "nowrap",
+                            }}
+                          >
+                            Inquire Project <i className="fas fa-arrow-right" style={{ fontSize: "0.72rem" }}></i>
                           </Link>
                         </div>
                       </div>

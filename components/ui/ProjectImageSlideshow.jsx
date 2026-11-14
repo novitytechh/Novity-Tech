@@ -167,34 +167,34 @@ export default function ProjectImageSlideshow({
         <div
           style={{
             position: "absolute",
-            top: badgePosition.includes("top") ? "14px" : "auto",
-            bottom: badgePosition.includes("bottom") ? "14px" : "auto",
-            left: badgePosition.includes("left") ? "14px" : "auto",
-            right: badgePosition.includes("right") ? "14px" : "auto",
+            top: badgePosition.includes("top") ? "10px" : "auto",
+            bottom: badgePosition.includes("bottom") ? "10px" : "auto",
+            left: badgePosition.includes("left") ? "10px" : "auto",
+            right: badgePosition.includes("right") ? "10px" : "auto",
             zIndex: 4,
-            background: "rgba(10, 9, 14, 0.88)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
+            background: "rgba(10, 9, 14, 0.9)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
             border: "1px solid rgba(223, 193, 93, 0.4)",
             color: "var(--primary, #dfc15d)",
-            borderRadius: "30px",
-            padding: "5px 12px",
-            fontSize: "0.74rem",
+            borderRadius: "20px",
+            padding: "3px 9px",
+            fontSize: "0.68rem",
             fontWeight: 800,
-            letterSpacing: "0.06em",
+            letterSpacing: "0.04em",
             display: "inline-flex",
             alignItems: "center",
-            gap: "6px",
-            boxShadow: "0 6px 18px rgba(0, 0, 0, 0.45)",
+            gap: "5px",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.5)",
           }}
         >
           <span
             style={{
-              width: "6px",
-              height: "6px",
+              width: "5px",
+              height: "5px",
               borderRadius: "50%",
               background: "#dfc15d",
-              boxShadow: "0 0 8px #dfc15d",
+              boxShadow: "0 0 6px #dfc15d",
               display: "inline-block",
             }}
           ></span>
@@ -214,13 +214,13 @@ export default function ProjectImageSlideshow({
             style={{
               position: "absolute",
               top: "50%",
-              left: "12px",
+              left: "8px",
               transform: "translateY(-50%)",
               zIndex: 4,
-              width: "36px",
-              height: "36px",
+              width: "28px",
+              height: "28px",
               borderRadius: "50%",
-              background: "rgba(12, 11, 16, 0.75)",
+              background: "rgba(12, 11, 16, 0.8)",
               border: "1px solid rgba(223, 193, 93, 0.35)",
               color: "#fff",
               display: "flex",
@@ -235,12 +235,12 @@ export default function ProjectImageSlideshow({
               e.currentTarget.style.borderColor = "#dfc15d";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(12, 11, 16, 0.75)";
+              e.currentTarget.style.background = "rgba(12, 11, 16, 0.8)";
               e.currentTarget.style.color = "#fff";
               e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.35)";
             }}
           >
-            <i className="fas fa-chevron-left" style={{ fontSize: "0.85rem" }}></i>
+            <i className="fas fa-chevron-left" style={{ fontSize: "0.72rem" }}></i>
           </button>
 
           <button
@@ -250,13 +250,13 @@ export default function ProjectImageSlideshow({
             style={{
               position: "absolute",
               top: "50%",
-              right: "12px",
+              right: "8px",
               transform: "translateY(-50%)",
               zIndex: 4,
-              width: "36px",
-              height: "36px",
+              width: "28px",
+              height: "28px",
               borderRadius: "50%",
-              background: "rgba(12, 11, 16, 0.75)",
+              background: "rgba(12, 11, 16, 0.8)",
               border: "1px solid rgba(223, 193, 93, 0.35)",
               color: "#fff",
               display: "flex",
@@ -271,12 +271,12 @@ export default function ProjectImageSlideshow({
               e.currentTarget.style.borderColor = "#dfc15d";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(12, 11, 16, 0.75)";
+              e.currentTarget.style.background = "rgba(12, 11, 16, 0.8)";
               e.currentTarget.style.color = "#fff";
               e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.35)";
             }}
           >
-            <i className="fas fa-chevron-right" style={{ fontSize: "0.85rem" }}></i>
+            <i className="fas fa-chevron-right" style={{ fontSize: "0.72rem" }}></i>
           </button>
         </>
       )}
@@ -286,17 +286,17 @@ export default function ProjectImageSlideshow({
         <div
           style={{
             position: "absolute",
-            bottom: "12px",
+            bottom: "8px",
             left: "50%",
             transform: "translateX(-50%)",
             zIndex: 4,
             display: "flex",
             alignItems: "center",
-            gap: "7px",
-            background: "rgba(10, 9, 14, 0.75)",
+            gap: "5px",
+            background: "rgba(10, 9, 14, 0.8)",
             backdropFilter: "blur(6px)",
-            padding: "5px 10px",
-            borderRadius: "20px",
+            padding: "3px 8px",
+            borderRadius: "16px",
             border: "1px solid rgba(255, 255, 255, 0.08)",
           }}
         >
@@ -309,9 +309,9 @@ export default function ProjectImageSlideshow({
                 onClick={(e) => goToSlide(dotIdx, e)}
                 aria-label={`Jump to screenshot ${dotIdx + 1}`}
                 style={{
-                  width: isDotActive ? "22px" : "7px",
-                  height: "7px",
-                  borderRadius: "6px",
+                  width: isDotActive ? "16px" : "5px",
+                  height: "5px",
+                  borderRadius: "5px",
                   background: isDotActive
                     ? "var(--primary, #dfc15d)"
                     : "rgba(255, 255, 255, 0.25)",
@@ -319,7 +319,7 @@ export default function ProjectImageSlideshow({
                   padding: 0,
                   cursor: "pointer",
                   transition: "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
-                  boxShadow: isDotActive ? "0 0 8px rgba(223, 193, 93, 0.6)" : "none",
+                  boxShadow: isDotActive ? "0 0 6px rgba(223, 193, 93, 0.6)" : "none",
                 }}
               />
             );
