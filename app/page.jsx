@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { PROJECTS_DATA } from "@/lib/projectsData";
+import { REVIEWS_DATA } from "@/lib/reviewsData";
 import { TEAM_MEMBERS, COMPANY_DESCRIPTION } from "@/lib/teamData";
 import ProjectImageSlideshow from "@/components/ui/ProjectImageSlideshow";
 import DualFrontBackMockup from "@/components/ui/DualFrontBackMockup";
@@ -53,10 +54,10 @@ export default function Home() {
     experience: 0,
   });
   const [googleReviews, setGoogleReviews] = useState({
-    rating: null,
-    totalReviews: 0,
+    rating: 5.0,
+    totalReviews: REVIEWS_DATA.length,
     writeReviewUri: null,
-    reviews: [],
+    reviews: REVIEWS_DATA,
   });
 
   useEffect(() => {
@@ -65,12 +66,14 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => {
         if (!active) return;
-        setGoogleReviews({
-          rating: data.rating ?? null,
-          totalReviews: data.totalReviews ?? 0,
-          writeReviewUri: data.writeReviewUri ?? null,
-          reviews: Array.isArray(data.reviews) ? data.reviews : [],
-        });
+        if (Array.isArray(data.reviews) && data.reviews.length > 0) {
+          setGoogleReviews({
+            rating: data.rating ?? 5.0,
+            totalReviews: data.totalReviews ?? data.reviews.length,
+            writeReviewUri: data.writeReviewUri ?? null,
+            reviews: data.reviews,
+          });
+        }
       })
       .catch(() => {});
     return () => {
@@ -1397,6 +1400,11 @@ export default function Home() {
                             {rev.relativeTime}
                           </span>
                         </div>
+                        {rev.project && (
+                          <div style={{ color: "var(--primary)", fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "8px" }}>
+                            {rev.project}
+                          </div>
+                        )}
                         <p className="tst-txt" style={{ marginBottom: "20px" }}>
                           {rev.quote ? <>&ldquo;{rev.quote}&rdquo;</> : "Rated 5 stars on Google."}
                         </p>
@@ -1431,7 +1439,7 @@ export default function Home() {
                             {rev.author}
                           </div>
                           <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.78rem" }}>
-                            Verified Google Review
+                            {rev.role && rev.company ? `${rev.role} • ${rev.company}` : rev.company || "Verified Client Review"}
                           </div>
                         </div>
                         <i className="fas fa-check-circle" style={{ color: "#22c55e" }}></i>
@@ -1442,7 +1450,7 @@ export default function Home() {
               </div>
               <div className="text-center d-flex justify-content-center gap-3 flex-wrap">
                 <Link href="/reviews" className="btn-o">
-                  View All Google Reviews <i className="fas fa-arrow-right"></i>
+                  View All Client Reviews <i className="fas fa-arrow-right"></i>
                 </Link>
                 {googleReviews.writeReviewUri && (
                   <a

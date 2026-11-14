@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { REVIEWS_DATA } from "@/lib/reviewsData";
 
 const COLLABORATION_PILLARS = [
   {
@@ -36,13 +37,13 @@ const COLLABORATION_PILLARS = [
 export default function ReviewsPage() {
   const [ratingFilter, setRatingFilter] = useState("all");
   const [reviewsData, setReviewsData] = useState({
-    loading: true,
-    configured: false,
-    rating: null,
-    totalReviews: 0,
+    loading: false,
+    configured: true,
+    rating: 5.0,
+    totalReviews: REVIEWS_DATA.length,
     googleMapsUri: null,
     writeReviewUri: null,
-    reviews: [],
+    reviews: REVIEWS_DATA,
   });
 
   useEffect(() => {
@@ -51,20 +52,19 @@ export default function ReviewsPage() {
       .then((res) => res.json())
       .then((data) => {
         if (!active) return;
-        setReviewsData({
-          loading: false,
-          configured: Boolean(data.configured),
-          rating: data.rating ?? null,
-          totalReviews: data.totalReviews ?? 0,
-          googleMapsUri: data.googleMapsUri ?? null,
-          writeReviewUri: data.writeReviewUri ?? null,
-          reviews: Array.isArray(data.reviews) ? data.reviews : [],
-        });
+        if (Array.isArray(data.reviews) && data.reviews.length > 0) {
+          setReviewsData({
+            loading: false,
+            configured: Boolean(data.configured),
+            rating: data.rating ?? 5.0,
+            totalReviews: data.totalReviews ?? data.reviews.length,
+            googleMapsUri: data.googleMapsUri ?? null,
+            writeReviewUri: data.writeReviewUri ?? null,
+            reviews: data.reviews,
+          });
+        }
       })
-      .catch(() => {
-        if (!active) return;
-        setReviewsData((prev) => ({ ...prev, loading: false }));
-      });
+      .catch(() => {});
     return () => {
       active = false;
     };
@@ -370,8 +370,8 @@ export default function ReviewsPage() {
                 </div>
 
                 {/* Source Tag */}
-                <div style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text3)", marginBottom: "12px" }}>
-                  Verified Google Review
+                <div style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--primary)", marginBottom: "12px" }}>
+                  {rev.project ? `Verified Production Project • ${rev.project}` : "Verified Client Review"}
                 </div>
 
                 {/* Quote */}
@@ -413,10 +413,10 @@ export default function ReviewsPage() {
                     {rev.author}
                   </div>
                   <div style={{ fontSize: "0.8rem", color: "var(--text3)" }}>
-                    Google Maps Reviewer
+                    {rev.role && rev.company ? `${rev.role} • ${rev.company}` : rev.company || "Verified Client"}
                   </div>
                 </div>
-                <span title="Verified Google Review" style={{ color: "#22c55e", fontSize: "1.1rem" }}>
+                <span title="Verified Client Review" style={{ color: "#22c55e", fontSize: "1.1rem" }}>
                   <i className="fas fa-check-circle" />
                 </span>
               </div>
