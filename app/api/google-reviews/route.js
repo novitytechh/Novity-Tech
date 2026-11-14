@@ -8,11 +8,17 @@ export async function GET() {
   const placeId = process.env.GOOGLE_PLACE_ID?.trim();
 
   if (!apiKey || !placeId) {
+    const avgRating = Number(
+      (
+        REVIEWS_DATA.reduce((acc, r) => acc + r.rating, 0) /
+        REVIEWS_DATA.length
+      ).toFixed(1)
+    );
     return NextResponse.json(
       {
         configured: true,
         source: "direct",
-        rating: 5.0,
+        rating: avgRating,
         totalReviews: REVIEWS_DATA.length,
         googleMapsUri: null,
         writeReviewUri: null,

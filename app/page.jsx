@@ -1392,8 +1392,12 @@ export default function Home() {
                       <div>
                         <div className="d-flex justify-content-between align-items-center mb-3">
                           <div style={{ color: "#f59e0b", display: "flex", gap: "4px", fontSize: "0.9rem" }}>
-                            {Array.from({ length: rev.rating }).map((_, i) => (
-                              <i key={i} className="fas fa-star"></i>
+                            {Array.from({ length: 5 }).map((_, i) => (
+                              <i
+                                key={i}
+                                className={i < rev.rating ? "fas fa-star" : "far fa-star"}
+                                style={{ color: i < rev.rating ? "#f59e0b" : "rgba(255,255,255,0.25)" }}
+                              ></i>
                             ))}
                           </div>
                           <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.5)" }}>
@@ -1413,7 +1417,7 @@ export default function Home() {
                         {rev.avatar ? (
                           <img
                             src={rev.avatar}
-                            alt={rev.author}
+                            alt={rev.company || "Client"}
                             referrerPolicy="no-referrer"
                             style={{ width: "42px", height: "42px", borderRadius: "50%", objectFit: "cover" }}
                           />
@@ -1428,18 +1432,19 @@ export default function Home() {
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "center",
-                              fontWeight: 800,
+                              fontSize: "1rem",
+                              flexShrink: 0,
                             }}
                           >
-                            {rev.author.charAt(0).toUpperCase()}
+                            <i className="fas fa-user-check"></i>
                           </div>
                         )}
                         <div className="flex-grow-1">
                           <div style={{ color: "#fff", fontWeight: 700, fontSize: "0.95rem" }}>
-                            {rev.author}
+                            {rev.role || "Verified Client"}
                           </div>
                           <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.78rem" }}>
-                            {rev.role && rev.company ? `${rev.role} • ${rev.company}` : rev.company || "Verified Client Review"}
+                            {rev.company || "Enterprise Partner"}
                           </div>
                         </div>
                         <i className="fas fa-check-circle" style={{ color: "#22c55e" }}></i>

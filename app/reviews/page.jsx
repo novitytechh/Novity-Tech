@@ -72,9 +72,13 @@ export default function ReviewsPage() {
 
   const filteredReviews = reviewsData.reviews.filter((r) => {
     if (ratingFilter === "5") return r.rating === 5;
-    if (ratingFilter === "4") return r.rating >= 4;
+    if (ratingFilter === "4") return r.rating === 4;
     return true;
   });
+
+  const avgRating = reviewsData.reviews.length > 0
+    ? (reviewsData.reviews.reduce((acc, r) => acc + r.rating, 0) / reviewsData.reviews.length).toFixed(1)
+    : "4.7";
 
   return (
     <>
@@ -150,13 +154,13 @@ export default function ReviewsPage() {
               }}
             >
               <div style={{ fontFamily: "Phudu, cursive", fontSize: "2.4rem", fontWeight: 800, color: "var(--primary)" }}>
-                {reviewsData.rating ? `${reviewsData.rating.toFixed(1)} ★` : "—"}
+                {avgRating} ★
               </div>
               <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--text)", marginTop: "4px" }}>
-                Google Rating
+                Client Rating
               </div>
               <div style={{ fontSize: "0.8rem", color: "var(--text3)", marginTop: "4px" }}>
-                Verified Google Business rating
+                Verified project endorsements
               </div>
             </div>
 
@@ -173,10 +177,10 @@ export default function ReviewsPage() {
                 {reviewsData.totalReviews}
               </div>
               <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--text)", marginTop: "4px" }}>
-                Google Reviews
+                Client Reviews
               </div>
               <div style={{ fontSize: "0.8rem", color: "var(--text3)", marginTop: "4px" }}>
-                Synced from Google Maps
+                Verified production reviews
               </div>
             </div>
 
@@ -235,9 +239,9 @@ export default function ReviewsPage() {
         >
           <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
             {[
-              { id: "all", label: "All Google Reviews" },
+              { id: "all", label: "All Reviews" },
               { id: "5", label: "5 Stars" },
-              { id: "4", label: "4+ Stars" },
+              { id: "4", label: "4 Stars" },
             ].map((cat) => (
               <button
                 key={cat.id}
@@ -351,8 +355,12 @@ export default function ReviewsPage() {
                 {/* Header: Stars & Relative Time */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
                   <div style={{ color: "#f59e0b", display: "flex", gap: "4px", fontSize: "0.9rem" }}>
-                    {Array.from({ length: rev.rating }).map((_, i) => (
-                      <i key={i} className="fas fa-star" />
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <i
+                        key={i}
+                        className={i < rev.rating ? "fas fa-star" : "far fa-star"}
+                        style={{ color: i < rev.rating ? "#f59e0b" : "rgba(255,255,255,0.25)" }}
+                      />
                     ))}
                   </div>
                   <span
@@ -385,7 +393,7 @@ export default function ReviewsPage() {
                 {rev.avatar ? (
                   <img
                     src={rev.avatar}
-                    alt={rev.author}
+                    alt={rev.company || "Client"}
                     referrerPolicy="no-referrer"
                     style={{ width: "46px", height: "46px", borderRadius: "50%", objectFit: "cover" }}
                   />
@@ -400,20 +408,19 @@ export default function ReviewsPage() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontWeight: 800,
-                      fontSize: "1rem",
+                      fontSize: "1.1rem",
                       flexShrink: 0,
                     }}
                   >
-                    {rev.author.charAt(0).toUpperCase()}
+                    <i className="fas fa-user-check" />
                   </div>
                 )}
                 <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: 700, color: "var(--text)", fontSize: "0.95rem" }}>
-                    {rev.author}
+                    {rev.role || "Verified Client"}
                   </div>
                   <div style={{ fontSize: "0.8rem", color: "var(--text3)" }}>
-                    {rev.role && rev.company ? `${rev.role} • ${rev.company}` : rev.company || "Verified Client"}
+                    {rev.company || "Enterprise Client"}
                   </div>
                 </div>
                 <span title="Verified Client Review" style={{ color: "#22c55e", fontSize: "1.1rem" }}>
