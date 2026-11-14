@@ -827,6 +827,14 @@ export default function Home() {
                   flexDirection: "column",
                   transition: "all 0.3s cubic-bezier(0.23, 1, 0.32, 1)",
                 }}
+                onMouseEnter={(e) => {
+                  const img = e.currentTarget.querySelector("img");
+                  if (img) img.style.transform = "scale(1.08)";
+                }}
+                onMouseLeave={(e) => {
+                  const img = e.currentTarget.querySelector("img");
+                  if (img) img.style.transform = "scale(1)";
+                }}
               >
                 {/* Photo Header */}
                 <div
@@ -846,7 +854,7 @@ export default function Home() {
                         height: "100%",
                         objectFit: "cover",
                         objectPosition: "top center",
-                        transition: "transform 0.4s ease",
+                        transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1.8s ease",
                       }}
                     />
                   ) : (

@@ -466,3 +466,88 @@ select,
   -moz-user-select: text !important;
   user-select: text !important;
 }
+
+/* ==================== GLOBAL CINEMATIC PICTURE ANIMATIONS (MAX 2S TRANSITIONS) ==================== */
+
+/* Container overflow enforcement */
+.pf-item,
+.tm-card,
+.about-img-wrap,
+.news-card,
+.gallery-thumb-wrap {
+  overflow: hidden !important;
+}
+
+/* 1.8s - 2s Smooth Transition for All Pictures across the site */
+.pf-img,
+.pf-item img,
+.tm-card img,
+.tm-img,
+.about-img,
+.about-img-wrap img,
+.news-img,
+.news-card img,
+.cl-av,
+.pf-mod-img,
+.gallery-thumb-wrap img {
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.8s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 1.8s ease,
+              opacity 1.8s ease !important;
+  will-change: transform, filter;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Portfolio & Projects Hover Zoom Animation */
+.pf-item:hover .pf-img,
+.pf-item:hover img {
+  transform: scale(1.08) !important;
+  filter: brightness(1.06) contrast(1.02) !important;
+}
+
+/* Team Card Photo Hover Zoom Animation */
+.tm-card:hover img,
+.tm-card:hover .tm-img {
+  transform: scale(1.07) !important;
+  filter: brightness(1.05) contrast(1.02) !important;
+}
+
+/* About Section Photo Hover Zoom Animation */
+.about-img-wrap:hover .about-img,
+.about-img-wrap:hover img {
+  transform: scale(1.05) !important;
+  filter: brightness(1.04) !important;
+}
+
+/* News & Blog Card Photo Hover Zoom Animation */
+.news-card:hover .news-img,
+.news-card:hover img {
+  transform: scale(1.08) !important;
+  filter: brightness(1.05) !important;
+}
+
+/* Client Avatar Subtle Hover Lift */
+.cl-av:hover {
+  transform: translateY(-4px) scale(1.18) !important;
+  border-color: #dfc15d !important;
+  z-index: 5 !important;
+}
+
+/* Subtle Ambient Scale & Fade-in on load (2s max) */
+@keyframes luxuryPicReveal {
+  0% {
+    opacity: 0.88;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pf-img,
+.tm-card img,
+.about-img {
+  animation: luxuryPicReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

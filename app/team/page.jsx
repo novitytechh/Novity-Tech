@@ -121,6 +121,8 @@ export default function TeamPage() {
                     e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.65)";
                     e.currentTarget.style.boxShadow =
                       "0 18px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(223, 193, 93, 0.15)";
+                    const img = e.currentTarget.querySelector("img");
+                    if (img) img.style.transform = "scale(1.08)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = "translateY(0)";
@@ -128,6 +130,8 @@ export default function TeamPage() {
                       ? "rgba(223, 193, 93, 0.4)"
                       : "var(--border)";
                     e.currentTarget.style.boxShadow = "none";
+                    const img = e.currentTarget.querySelector("img");
+                    if (img) img.style.transform = "scale(1)";
                   }}
                 >
                   {/* Card Visual Header / Photo or Monogram */}
@@ -156,7 +160,7 @@ export default function TeamPage() {
                             height: "100%",
                             objectFit: "cover",
                             objectPosition: "top center",
-                            transition: "transform 0.4s ease",
+                            transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1.8s ease",
                           }}
                         />
                         <div

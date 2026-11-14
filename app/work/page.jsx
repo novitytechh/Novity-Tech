@@ -104,6 +104,19 @@ export default function WorkPage() {
                       display: "flex",
                       flexDirection: "column",
                       boxShadow: "0 16px 40px rgba(0,0,0,0.4)",
+                      transition: "transform 0.3s ease, border-color 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "translateY(-6px)";
+                      e.currentTarget.style.borderColor = "rgba(223, 193, 93, 0.45)";
+                      const img = e.currentTarget.querySelector("img");
+                      if (img) img.style.transform = "scale(1.08)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.borderColor = "var(--border)";
+                      const img = e.currentTarget.querySelector("img");
+                      if (img) img.style.transform = "scale(1)";
                     }}
                   >
                     <div style={{ position: "relative", height: "300px", overflow: "hidden", background: "#0c0b10" }}>
@@ -115,7 +128,7 @@ export default function WorkPage() {
                           height: "100%",
                           objectFit: "cover",
                           objectPosition: "top center",
-                          transition: "transform 0.4s ease",
+                          transition: "transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1.8s ease",
                         }}
                       />
                       {proj.metric && (
