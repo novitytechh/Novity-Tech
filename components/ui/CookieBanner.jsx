@@ -95,9 +95,20 @@ export default function CookieBanner() {
             <i className="fas fa-cookie-bite"></i>
           </div>
           <div style={{ flex: 1 }}>
-            <h4 style={{ fontSize: "1rem", fontWeight: 700, margin: "0 0 6px 0", color: "var(--text)" }}>
-              Privacy &amp; Cookies
-            </h4>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px", marginBottom: "6px" }}>
+              <h4 style={{ fontSize: "1rem", fontWeight: 700, margin: 0, color: "var(--text)" }}>
+                Privacy &amp; Cookies
+              </h4>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => saveConsent("essential")}
+                aria-label="Close cookie banner"
+                style={{ width: "28px", height: "28px", fontSize: "0.8rem", flexShrink: 0 }}
+              >
+                <i className="fas fa-times" aria-hidden="true"></i>
+              </button>
+            </div>
             <p style={{ fontSize: "0.82rem", color: "var(--text2)", margin: 0, lineHeight: 1.6 }}>
               Novity Tech uses minimal cookies to optimize site performance, remember theme preferences, and analyze anonymized platform traffic. Read our{" "}
               <Link

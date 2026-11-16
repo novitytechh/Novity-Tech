@@ -560,9 +560,10 @@ export default function TeamPage() {
                   type="button"
                   className="btn-close"
                   onClick={() => setSelectedMember(null)}
-                  style={{ filter: "invert(1) grayscale(100%) brightness(200%)" }}
                   aria-label="Close"
-                />
+                >
+                  <i className="fas fa-times" aria-hidden="true" />
+                </button>
               </div>
 
               <div className="modal-body" style={{ padding: "26px 20px" }}>

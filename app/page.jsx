@@ -1817,8 +1817,10 @@ export default function Home() {
                   type="button"
                   className="btn-close"
                   onClick={() => setActiveModal(null)}
-                  style={{ background: "#fff", padding: "8px", borderRadius: "50%", opacity: 0.9 }}
-                ></button>
+                  aria-label="Close"
+                >
+                  <i className="fas fa-times" aria-hidden="true"></i>
+                </button>
               </div>
               <div className="modal-body p-0 d-flex align-items-center justify-content-center" style={{ aspectRatio: "16/9" }}>
                 <iframe
@@ -1844,7 +1846,9 @@ export default function Home() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Digital Marketing Strategy</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
+                <button type="button" className="btn-close" onClick={() => setActiveModal(null)} aria-label="Close">
+                  <i className="fas fa-times" aria-hidden="true"></i>
+                </button>
               </div>
               <div className="modal-body">
                 <div className="mod-svc-ico"><i className="fas fa-chart-pie"></i></div>
@@ -1891,7 +1895,9 @@ export default function Home() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Brand Strategy &amp; Positioning</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
+                <button type="button" className="btn-close" onClick={() => setActiveModal(null)} aria-label="Close">
+                  <i className="fas fa-times" aria-hidden="true"></i>
+                </button>
               </div>
               <div className="modal-body">
                 <div className="mod-svc-ico"><i className="fas fa-fingerprint"></i></div>
@@ -1926,7 +1932,9 @@ export default function Home() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">SEO &amp; Performance Marketing</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
+                <button type="button" className="btn-close" onClick={() => setActiveModal(null)} aria-label="Close">
+                  <i className="fas fa-times" aria-hidden="true"></i>
+                </button>
               </div>
               <div className="modal-body">
                 <div className="mod-svc-ico"><i className="fas fa-search"></i></div>
@@ -1961,7 +1969,9 @@ export default function Home() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Social Media Marketing</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
+                <button type="button" className="btn-close" onClick={() => setActiveModal(null)} aria-label="Close">
+                  <i className="fas fa-times" aria-hidden="true"></i>
+                </button>
               </div>
               <div className="modal-body">
                 <div className="mod-svc-ico"><i className="fas fa-share-alt"></i></div>
@@ -1981,7 +1991,9 @@ export default function Home() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Web Design &amp; Development</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
+                <button type="button" className="btn-close" onClick={() => setActiveModal(null)} aria-label="Close">
+                  <i className="fas fa-times" aria-hidden="true"></i>
+                </button>
               </div>
               <div className="modal-body">
                 <div className="mod-svc-ico"><i className="fas fa-code"></i></div>
@@ -2001,7 +2013,9 @@ export default function Home() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Content Creation</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
+                <button type="button" className="btn-close" onClick={() => setActiveModal(null)} aria-label="Close">
+                  <i className="fas fa-times" aria-hidden="true"></i>
+                </button>
               </div>
               <div className="modal-body">
                 <div className="mod-svc-ico"><i className="fas fa-pen-nib"></i></div>
@@ -2021,7 +2035,9 @@ export default function Home() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">{activePortfolioModalItem.name || activePortfolioModalItem.title}</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
+                <button type="button" className="btn-close" onClick={() => setActiveModal(null)} aria-label="Close">
+                  <i className="fas fa-times" aria-hidden="true"></i>
+                </button>
               </div>
               <div className="modal-body" style={{ padding: "30px" }}>
                 <div className="row g-4 align-items-stretch">
@@ -2235,7 +2251,9 @@ export default function Home() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">{activeTeamMember.name} Profile</h5>
-                <button type="button" className="btn-close" onClick={() => setActiveModal(null)}></button>
+                <button type="button" className="btn-close" onClick={() => setActiveModal(null)} aria-label="Close">
+                  <i className="fas fa-times" aria-hidden="true"></i>
+                </button>
               </div>
               <div className="modal-body">
                 <div className="tm-mod-hd" style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "20px" }}>

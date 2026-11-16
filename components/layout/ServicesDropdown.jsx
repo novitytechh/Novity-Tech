@@ -209,20 +209,31 @@ export default function ServicesDropdown({ isOpen, onClose }) {
               Complete Services & Solutions Catalog
             </span>
           </div>
-          <span
-            style={{
-              fontSize: "0.72rem",
-              fontWeight: 700,
-              color: "var(--primary)",
-              background: "rgba(223, 193, 93, 0.12)",
-              padding: "4px 12px",
-              borderRadius: "50px",
-              border: "1px solid rgba(223, 193, 93, 0.35)",
-              letterSpacing: "0.04em",
-            }}
-          >
-            17 Tailored Capabilities
-          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <span
+              style={{
+                fontSize: "0.72rem",
+                fontWeight: 700,
+                color: "var(--primary)",
+                background: "rgba(223, 193, 93, 0.12)",
+                padding: "4px 12px",
+                borderRadius: "50px",
+                border: "1px solid rgba(223, 193, 93, 0.35)",
+                letterSpacing: "0.04em",
+              }}
+            >
+              17 Tailored Capabilities
+            </span>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={onClose}
+              aria-label="Close services menu"
+              style={{ width: "30px", height: "30px", fontSize: "0.85rem", flexShrink: 0 }}
+            >
+              <i className="fas fa-times" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
 
         {/* 3 Columns Grid */}
