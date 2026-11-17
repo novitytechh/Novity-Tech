@@ -710,8 +710,8 @@ export default function Home() {
                 {[
                   { id: "all", label: "All Work" },
                   { id: "app", label: "Mobile Apps" },
-                  { id: "web", label: "Web Platforms" },
-                  { id: "cloud", label: "Cloud & AI" },
+                  { id: "web", label: "Web & ERP Systems" },
+                  { id: "ecommerce", label: "E-Commerce" },
                 ].map((tab) => (
                   <button
                     key={tab.id}
@@ -729,7 +729,7 @@ export default function Home() {
           <div className="row g-4 justify-content-center" id="pfGrid">
             {filteredPortfolio.length > 0 ? (
               <>
-                {filteredPortfolio.slice(0, 2).map((item) => (
+                {filteredPortfolio.slice(0, 4).map((item) => (
                 <div key={item.id} className={`${item.colClass || "col-12"} pf-cat`} style={{ maxWidth: "1040px" }}>
                   {item.screens && item.screens.length > 0 ? (
                     <div
@@ -772,6 +772,7 @@ export default function Home() {
                               backSrc={item.backImage || item.screens?.[1]?.src}
                               frontTitle={item.screens?.[0]?.title || "Storefront (Front)"}
                               backTitle={item.screens?.[1]?.title || "Product Detail (Back)"}
+                              screens={item.screens}
                               interval={2500}
                               transitionDuration={1800}
                             />
@@ -1383,8 +1384,8 @@ export default function Home() {
           {googleReviews.reviews.length > 0 ? (
             <>
               <div className="row g-4 mb-4">
-                {googleReviews.reviews.slice(0, 3).map((rev) => (
-                  <div className="col-lg-4 col-md-6" key={rev.id}>
+                {googleReviews.reviews.slice(0, 4).map((rev) => (
+                  <div className="col-lg-6 col-md-6" key={rev.id}>
                     <div
                       className="tst-card h-100 d-flex flex-column justify-content-between"
                       style={{ padding: "28px" }}
@@ -2049,6 +2050,9 @@ export default function Home() {
                         backSrc={activePortfolioModalItem.backImage || activePortfolioModalItem.screens?.[1]?.src}
                         frontTitle={activePortfolioModalItem.screens?.[0]?.title || "Storefront (Front)"}
                         backTitle={activePortfolioModalItem.screens?.[1]?.title || "Product Detail (Back)"}
+                        screens={activePortfolioModalItem.screens}
+                        activeIndex={activeModalSlideIndex}
+                        onSelectIndex={setActiveModalSlideIndex}
                         interval={2500}
                         transitionDuration={1800}
                       />

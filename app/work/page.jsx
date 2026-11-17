@@ -71,7 +71,7 @@ export default function WorkPage() {
               className={`tab-btn ftab ${activeFilter === "web" ? "active" : ""}`}
               onClick={() => setActiveFilter("web")}
             >
-              Web Platforms
+              Web &amp; ERP Systems
             </button>
             <button
               type="button"
@@ -134,6 +134,7 @@ export default function WorkPage() {
                             backSrc={proj.backImage || proj.screens?.[1]?.src}
                             frontTitle={proj.screens?.[0]?.title || "Storefront (Front)"}
                             backTitle={proj.screens?.[1]?.title || "Product Detail (Back)"}
+                            screens={proj.screens}
                             interval={2500}
                             transitionDuration={1800}
                           />
