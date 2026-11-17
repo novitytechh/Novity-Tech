@@ -135,6 +135,7 @@ export default function WorkPage() {
                             frontTitle={proj.screens?.[0]?.title || "Storefront (Front)"}
                             backTitle={proj.screens?.[1]?.title || "Product Detail (Back)"}
                             screens={proj.screens}
+                            cardAspectRatio={proj.cardAspectRatio}
                             interval={2500}
                             transitionDuration={1800}
                           />

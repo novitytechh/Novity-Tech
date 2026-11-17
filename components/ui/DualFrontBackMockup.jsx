@@ -16,6 +16,7 @@ export default function DualFrontBackMockup({
   frontTitle = "Storefront (Front)",
   backTitle = "Product Detail (Back)",
   screens = [],
+  cardAspectRatio = null,
   activeIndex,
   onSelectIndex,
   interval = 2500, // 2.5s timelapse (>= 2s)
@@ -179,8 +180,9 @@ export default function DualFrontBackMockup({
         }}
         style={{
           position: "absolute",
-          width: "275px",
-          height: "360px",
+          width: cardAspectRatio ? "288px" : "275px",
+          height: cardAspectRatio ? "auto" : "360px",
+          aspectRatio: cardAspectRatio || undefined,
           borderRadius: "18px",
           overflow: "hidden",
           background: "#0d0c12",
@@ -221,8 +223,9 @@ export default function DualFrontBackMockup({
         }}
         style={{
           position: "absolute",
-          width: "275px",
-          height: "360px",
+          width: cardAspectRatio ? "288px" : "275px",
+          height: cardAspectRatio ? "auto" : "360px",
+          aspectRatio: cardAspectRatio || undefined,
           borderRadius: "18px",
           overflow: "hidden",
           background: "#0d0c12",

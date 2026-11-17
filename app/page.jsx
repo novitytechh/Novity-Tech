@@ -729,7 +729,7 @@ export default function Home() {
           <div className="row g-4 justify-content-center" id="pfGrid">
             {filteredPortfolio.length > 0 ? (
               <>
-                {filteredPortfolio.slice(0, 4).map((item) => (
+                {filteredPortfolio.slice(0, 5).map((item) => (
                 <div key={item.id} className={`${item.colClass || "col-12"} pf-cat`} style={{ maxWidth: "1040px" }}>
                   {item.screens && item.screens.length > 0 ? (
                     <div
@@ -773,6 +773,7 @@ export default function Home() {
                               frontTitle={item.screens?.[0]?.title || "Storefront (Front)"}
                               backTitle={item.screens?.[1]?.title || "Product Detail (Back)"}
                               screens={item.screens}
+                              cardAspectRatio={item.cardAspectRatio}
                               interval={2500}
                               transitionDuration={1800}
                             />
@@ -2051,6 +2052,7 @@ export default function Home() {
                         frontTitle={activePortfolioModalItem.screens?.[0]?.title || "Storefront (Front)"}
                         backTitle={activePortfolioModalItem.screens?.[1]?.title || "Product Detail (Back)"}
                         screens={activePortfolioModalItem.screens}
+                        cardAspectRatio={activePortfolioModalItem.cardAspectRatio}
                         activeIndex={activeModalSlideIndex}
                         onSelectIndex={setActiveModalSlideIndex}
                         interval={2500}
